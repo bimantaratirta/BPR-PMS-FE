@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +18,8 @@ void main() async {
 
   deviceOrientation();
   await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+
+  runApp(DevicePreview(enabled: !kReleaseMode && kIsWeb, builder: (context) => const MyApp()));
 }
 
 void deviceOrientation() {

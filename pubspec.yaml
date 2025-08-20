@@ -54,8 +54,8 @@ dev_dependencies:
 
 flutter_icons:
   android: "launcher_icon"
-  ios: false
-  image_path: "assets/images/Logo-BPR.png"
+  ios: true
+  image_path: "assets/images/Logo-BPR-Square.png"
   min_sdk_android: 21
   adaptive_icon_background: "#ffffff"
   remove_alpha_ios: true

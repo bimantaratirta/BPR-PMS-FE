@@ -1,4 +1,5 @@
 import 'package:bpr_pms/app/routes/app_pages.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController {
@@ -9,7 +10,7 @@ class SplashScreenController extends GetxController {
   }
 
   void startSplashScreen() {
-    Future.delayed(Duration(seconds: 5), () async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.offAndToNamed(Routes.HOME);
     });
   }
