@@ -5,10 +5,15 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
+  static const AUTH_LOGIN = _Paths.AUTH + _Paths.LOGIN;
+  static const AUTH_REGISTER = _Paths.AUTH + _Paths.REGISTER;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const SPLASH_SCREEN = '/splash-screen';
+  static const AUTH = '/auth';
+  static const LOGIN = '/login';
+  static const REGISTER = '/register';
 }
