@@ -6,7 +6,7 @@ import '../constant/app_colors.dart';
 
 class AppTheme {
   static ThemeData getTheme() {
-    const Color primaryColor = MainColor.greenNormal;
+    const Color primaryColor = MainColor.blueNormal;
     final Map<int, Color> primaryColorMap = {
       50: primaryColor,
       100: primaryColor,
@@ -36,7 +36,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: MainColor.greenNormal,
+          backgroundColor: MainColor.blueNormal,
           disabledBackgroundColor: SecondaryColor.neutral500,
           minimumSize: Size(double.infinity, 40.h),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
