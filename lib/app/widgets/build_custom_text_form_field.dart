@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../common/constant/app_colors.dart';
+import '../common/constant/app_colors.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class BuildCustomTextFormField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final TextInputType textInputType;
@@ -24,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color? fillColor;
   final bool useOnTapOutside;
 
-  const CustomTextFormField({
+  const BuildCustomTextFormField({
     super.key,
     required this.hintText,
     required this.controller,
@@ -66,19 +66,19 @@ class CustomTextFormField extends StatelessWidget {
       autocorrect: autocorrect,
       enableSuggestions: enableSuggestions,
       inputFormatters: withInputFormatter ? formatter : [],
-      style: Get.textTheme.bodyLarge!.copyWith(color: isEnable ? SecondaryColor.fontColour : SecondaryColor.neutral500),
+      style: Get.textTheme.bodyMedium!.copyWith(color: isEnable ? SecondaryColor.fontColour : SecondaryColor.neutral500),
       decoration: InputDecoration(
-        fillColor: fillColor ?? SecondaryColor.white,
-        filled: fillColor != null,
+        fillColor: fillColor ?? SecondaryColor.neutral100,
+        filled: true,
         hintText: hintText,
-        hintStyle: Get.textTheme.bodyLarge!.copyWith(color: SecondaryColor.neutral500),
+        hintStyle: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(width: 1, color: SecondaryColor.neutral400),
+          borderSide: BorderSide(width: 0, color: SecondaryColor.neutral400),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(width: 1, color: SecondaryColor.neutral400),
+          borderSide: BorderSide(width: 0, color: SecondaryColor.neutral400),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

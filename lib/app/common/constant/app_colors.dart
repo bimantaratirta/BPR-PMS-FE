@@ -45,7 +45,7 @@ class MainColor {
 
 class SecondaryColor {
   static const Color blackCharcoal = Color(0xff222222);
-  static const Color fontColour = Color(0xff333333);
+  static const Color fontColour = Color(0xff1D1D1D);
   static const Color white = Color(0xffFFFFFF);
   static const Color blueLink = Color(0xff468CD4);
   static const Color blueProgress = Color(0xff2B93FF);
