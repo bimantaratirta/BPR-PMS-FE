@@ -66,7 +66,9 @@ class AuthLoginView extends GetView<AuthLoginController> {
                 ),
                 SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.handleSubmitLoginForm();
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: MainColor.blueNormal,
