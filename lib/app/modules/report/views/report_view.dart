@@ -52,9 +52,13 @@ class ReportView extends GetView<ReportController> {
                   children: [
                     Expanded(
                       child: Container(
-                        decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                        ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                           child: Row(
                             children: [
                               SizedBox(
@@ -69,7 +73,7 @@ class ReportView extends GetView<ReportController> {
                                   controller: controller.searchController,
                                   decoration: InputDecoration(
                                     hintText: "Cari Nasabah...",
-                                    hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
+                                    hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral500),
                                     border: InputBorder.none,
                                     isDense: true,
                                   ),
@@ -90,9 +94,13 @@ class ReportView extends GetView<ReportController> {
                     ),
                     SizedBox(width: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
                           children: [
                             SizedBox(
