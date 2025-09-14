@@ -16,6 +16,8 @@ import '../modules/profile/_profile_detail/bindings/profile_profile_detail_bindi
 import '../modules/profile/_profile_detail/views/profile_profile_detail_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/report/_report_detail/bindings/report_report_detail_binding.dart';
+import '../modules/report/_report_detail/views/report_report_detail_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -52,6 +54,17 @@ class AppPages {
       ],
     ),
     GetPage(name: _Paths.NASABAH, page: () => const NasabahView(), binding: NasabahBinding()),
-    GetPage(name: _Paths.REPORT, page: () => const ReportView(), binding: ReportBinding()),
+    GetPage(
+      name: _Paths.REPORT,
+      page: () => const ReportView(),
+      binding: ReportBinding(),
+      children: [
+        GetPage(
+          name: _Paths.REPORT_REPORT_DETAIL,
+          page: () => const ReportReportDetailView(),
+          binding: ReportReportDetailBinding(),
+        ),
+      ],
+    ),
   ];
 }

@@ -1,6 +1,8 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/modules/report/_report_detail/bindings/report_report_detail_binding.dart';
+import 'package:bpr_pms/app/modules/report/_report_detail/views/report_report_detail_view.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -191,7 +193,9 @@ class ReportView extends GetView<ReportController> {
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                   padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => ReportReportDetailView(), binding: ReportReportDetailBinding());
+                                },
                                 child: Text(
                                   "Review",
                                   style: Get.textTheme.labelMedium!.copyWith(

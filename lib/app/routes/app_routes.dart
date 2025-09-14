@@ -13,6 +13,7 @@ abstract class Routes {
   static const PROFILE_PROFILE_DETAIL = _Paths.PROFILE_PROFILE_DETAIL;
   static const NASABAH = _Paths.NASABAH;
   static const REPORT = _Paths.REPORT;
+  static const REPORT_REPORT_DETAIL = _Paths.REPORT_REPORT_DETAIL;
 }
 
 abstract class _Paths {
@@ -28,4 +29,5 @@ abstract class _Paths {
   static const PROFILE_PROFILE_DETAIL = '/profile-detail';
   static const NASABAH = '/nasabah';
   static const REPORT = '/report';
+  static const REPORT_REPORT_DETAIL = '/report-detail';
 }
