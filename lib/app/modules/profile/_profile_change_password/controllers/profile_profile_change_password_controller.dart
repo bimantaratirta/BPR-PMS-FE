@@ -1,23 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileProfileChangePasswordController extends GetxController {
-  //TODO: Implement ProfileProfileChangePasswordController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController = TextEditingController();
 
   @override
   void onClose() {
+    newPasswordController.dispose();
+    confirmNewPasswordController.dispose();
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
