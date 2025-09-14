@@ -7,6 +7,9 @@ class IconAssets {
   static const String lock = "assets/icons/icon_lock.svg";
   static const String exit = "assets/icons/icon_exit.svg";
   static const String chevronLeft = "assets/icons/icon_chevron_left.svg";
+  static const String search = "assets/icons/icon_search.svg";
+  static const String filter = "assets/icons/icon_filter.svg";
+  static const String uploadFile = "assets/icons/icon_upload_file.svg";
 }
 
 class ImageAssets {
