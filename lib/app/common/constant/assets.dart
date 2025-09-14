@@ -3,6 +3,10 @@ class IconAssets {
   static const String nasabah = "assets/icons/icon_nasabah.svg";
   static const String profile = "assets/icons/icon_profile.svg";
   static const String report = "assets/icons/icon_report.svg";
+  static const String profileCircle = "assets/icons/icon_profile_circle.svg";
+  static const String lock = "assets/icons/icon_lock.svg";
+  static const String exit = "assets/icons/icon_exit.svg";
+  static const String chevronLeft = "assets/icons/icon_chevron_left.svg";
 }
 
 class ImageAssets {

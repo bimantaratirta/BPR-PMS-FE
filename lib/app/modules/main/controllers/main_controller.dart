@@ -5,10 +5,10 @@ import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const HOME_NAV_ID = "HOME_NAVIGATOR";
-const NASABAH_NAV_ID = "NASABAH_NAVIGATOR";
-const REPORT_NAV_ID = "REPORT_NAVIGATOR";
-const PROFILE_NAV_ID = "PROFILE_NAVIGATOR";
+const HOME_NAV_ID = 100;
+const NASABAH_NAV_ID = 200;
+const REPORT_NAV_ID = 300;
+const PROFILE_NAV_ID = 400;
 
 class MainController extends GetxController {
   final PageController pageController = PageController();

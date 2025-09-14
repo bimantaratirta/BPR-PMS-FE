@@ -9,8 +9,7 @@ abstract class Routes {
   static const AUTH_REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const MAIN = _Paths.MAIN;
   static const PROFILE = _Paths.PROFILE;
-  static const PROFILE_PROFILE_CHANGE_PASSWORD =
-      _Paths.PROFILE_PROFILE_CHANGE_PASSWORD;
+  static const PROFILE_PROFILE_CHANGE_PASSWORD = _Paths.PROFILE_PROFILE_CHANGE_PASSWORD;
   static const PROFILE_PROFILE_DETAIL = _Paths.PROFILE_PROFILE_DETAIL;
   static const NASABAH = _Paths.NASABAH;
   static const REPORT = _Paths.REPORT;

@@ -29,26 +29,11 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(
-        name: _Paths.HOME,
-        page: () => const HomeView(),
-        binding: HomeBinding()),
-    GetPage(
-        name: _Paths.SPLASH_SCREEN,
-        page: () => const SplashScreenView(),
-        binding: SplashScreenBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.LOGIN,
-        page: () => const AuthLoginView(),
-        binding: AuthLoginBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.REGISTER,
-        page: () => const AuthRegisterView(),
-        binding: AuthRegisterBinding()),
-    GetPage(
-        name: _Paths.MAIN,
-        page: () => const MainView(),
-        binding: MainBinding()),
+    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
+    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
+    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
@@ -66,15 +51,7 @@ class AppPages {
         ),
       ],
     ),
-    GetPage(
-      name: _Paths.NASABAH,
-      page: () => const NasabahView(),
-      binding: NasabahBinding(),
-    ),
-    GetPage(
-      name: _Paths.REPORT,
-      page: () => const ReportView(),
-      binding: ReportBinding(),
-    ),
+    GetPage(name: _Paths.NASABAH, page: () => const NasabahView(), binding: NasabahBinding()),
+    GetPage(name: _Paths.REPORT, page: () => const ReportView(), binding: ReportBinding()),
   ];
 }
