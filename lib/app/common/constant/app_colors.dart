@@ -1,21 +1,51 @@
 import 'package:flutter/material.dart';
 
 class MainColor {
-  static const Color greenLight = Color(0xFFedf7ee);
-  static const Color greenLightHover = Color(0xffe4f3e5);
-  static const Color greenLightActive = Color(0xffc8e6c9);
-  static const Color greenNormal = Color(0xff4caf50);
-  static const Color greenNormalHover = Color(0xff449e48);
-  static const Color greenNormalActive = Color(0xff3d8c40);
-  static const Color greenDark = Color(0xff39833c);
-  static const Color greenDarkHover = Color(0xff2e6930);
-  static const Color greenDarkActive = Color(0xff224f24);
-  static const Color greenDarker = Color(0xff1b3d1c);
+  static const Color blueLight = Color(0xffe6f5ff);
+  static const Color blueLightHover = Color(0xffd9f0ff);
+  static const Color blueLightActive = Color(0xffb0e1ff);
+  static const Color blueNormal = Color(0xff009dff);
+  static const Color blueNormalHover = Color(0xff008de6);
+  static const Color blueNormalActive = Color(0xff007ecc);
+  static const Color blueDark = Color(0xff0076bf);
+  static const Color blueDarkHover = Color(0xff005e99);
+  static const Color blueDarkActive = Color(0xff004773);
+  static const Color blueDarker = Color(0xff003759);
+  static const Color orangeLight = Color(0xfffff2e6);
+  static const Color orangeLightHover = Color(0xffffecd9);
+  static const Color orangeLightActive = Color(0xffffd7b0);
+  static const Color orangeNormal = Color(0xffff7f00);
+  static const Color orangeNormalHover = Color(0xffe67200);
+  static const Color orangeNormalActive = Color(0xffcc6600);
+  static const Color orangeDark = Color(0xffbf5f00);
+  static const Color orangeDarkHover = Color(0xff994c00);
+  static const Color orangeDarkActive = Color(0xff733900);
+  static const Color orangeDarker = Color(0xff592c00);
+  static const Color greyLight = Color(0xffeaeaea);
+  static const Color greyLightHover = Color(0xffe0e0e0);
+  static const Color greyLightActive = Color(0xffbfbfbf);
+  static const Color greyNormal = Color(0xff2f2f2f);
+  static const Color greyNormalHover = Color(0xff2a2a2a);
+  static const Color greyNormalActive = Color(0xff262626);
+  static const Color greyDark = Color(0xff232323);
+  static const Color greyDarkHover = Color(0xff1c1c1c);
+  static const Color greyDarkActive = Color(0xff151515);
+  static const Color greyDarker = Color(0xff101010);
+  static const Color greenLight = Color(0xffebfced);
+  static const Color greenLightHover = Color(0xffe1fbe4);
+  static const Color greenLightActive = Color(0xffc1f7c8);
+  static const Color greenNormal = Color(0xff38e54d);
+  static const Color greenNormalHover = Color(0xff32ce45);
+  static const Color greenNormalActive = Color(0xff2db73e);
+  static const Color greenDark = Color(0xff2aac3a);
+  static const Color greenDarkHover = Color(0xff22892e);
+  static const Color greenDarkActive = Color(0xff196723);
+  static const Color greenDarker = Color(0xff14501b);
 }
 
 class SecondaryColor {
   static const Color blackCharcoal = Color(0xff222222);
-  static const Color fontColour = Color(0xff333333);
+  static const Color fontColour = Color(0xff1D1D1D);
   static const Color white = Color(0xffFFFFFF);
   static const Color blueLink = Color(0xff468CD4);
   static const Color blueProgress = Color(0xff2B93FF);

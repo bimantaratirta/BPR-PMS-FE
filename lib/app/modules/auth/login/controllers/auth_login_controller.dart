@@ -1,23 +1,21 @@
+import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
-  //TODO: Implement AuthLoginController
+  final MainController _mainController = Get.find<MainController>();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  @override
-  void onReady() {
-    super.onReady();
+  void handleSubmitLoginForm() {
+    _mainController.changePage(HOME_INDEX);
   }
 
   @override
   void onClose() {
+    usernameController.dispose();
+    passwordController.dispose();
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

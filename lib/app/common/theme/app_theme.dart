@@ -6,7 +6,7 @@ import '../constant/app_colors.dart';
 
 class AppTheme {
   static ThemeData getTheme() {
-    const Color primaryColor = MainColor.greenNormal;
+    const Color primaryColor = MainColor.blueNormal;
     final Map<int, Color> primaryColorMap = {
       50: primaryColor,
       100: primaryColor,
@@ -31,30 +31,30 @@ class AppTheme {
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       appBarTheme: AppBarTheme(
         elevation: 0,
-        titleTextStyle: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 18.sp, fontWeight: FontWeight.w600),
+        titleTextStyle: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 18.sp, fontWeight: FontWeight.w600),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: MainColor.greenNormal,
+          backgroundColor: MainColor.blueNormal,
           disabledBackgroundColor: SecondaryColor.neutral500,
           minimumSize: Size(double.infinity, 40.h),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         ),
       ),
       textTheme: TextTheme(
-        displayLarge: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 30.sp),
-        displayMedium: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 25.sp),
-        displaySmall: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 20.sp),
-        titleLarge: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 20.sp),
-        titleMedium: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 15.sp),
-        titleSmall: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 12.sp),
-        bodyLarge: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 15.sp),
-        bodyMedium: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 12.sp),
-        bodySmall: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 8.sp),
-        labelLarge: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 15.sp),
-        labelMedium: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 12.sp),
-        labelSmall: GoogleFonts.urbanist(color: SecondaryColor.fontColour, fontSize: 8.sp),
+        displayLarge: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 30.sp),
+        displayMedium: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 25.sp),
+        displaySmall: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 20.sp),
+        titleLarge: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 20.sp),
+        titleMedium: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 15.sp),
+        titleSmall: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 12.sp),
+        bodyLarge: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 15.sp),
+        bodyMedium: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 12.sp),
+        bodySmall: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 8.sp),
+        labelLarge: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 15.sp),
+        labelMedium: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 12.sp),
+        labelSmall: GoogleFonts.poppins(color: SecondaryColor.fontColour, fontSize: 8.sp),
       ),
     );
   }

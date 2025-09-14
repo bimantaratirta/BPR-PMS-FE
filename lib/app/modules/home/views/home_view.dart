@@ -1,3 +1,6 @@
+import 'package:bpr_pms/app/common/constant/app_colors.dart';
+import 'package:bpr_pms/app/common/constant/assets.dart';
+import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,16 +12,180 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+      backgroundColor: MainColor.blueNormalActive,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: MainColor.blueNormalActive,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 25, top: 60, left: 20, right: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Image.asset(ImageAssets.logoBprSahabatSejatiTransparant, scale: 1),
+                          SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'BPR Sahabat Sejati',
+                                style: Get.textTheme.titleLarge!.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Program Management System',
+                                style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2C6BB6),
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          CircleAvatar(radius: 30, backgroundImage: NetworkImage('https://placehold.co/150')),
+                          SizedBox(width: 15),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'John Doe',
+                                  style: Get.textTheme.titleMedium!.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text('LO', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70)),
+                                Divider(color: Colors.white30, height: 20),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'SLO',
+                                            style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70, fontSize: 12),
+                                          ),
+                                          Text(
+                                            'Username',
+                                            style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(width: 1, height: 30, color: Colors.white30),
+                                    SizedBox(width: 15),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Kantor',
+                                            style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70, fontSize: 12),
+                                          ),
+                                          Text(
+                                            'Cabang 1',
+                                            style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'LO',
+                            style: Get.textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: MainColor.greyLightActive,
+                            ),
+                          ),
+                          Text(
+                            'Rata - Rata Nasabah',
+                            style: Get.textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(color: MainColor.greyLight, borderRadius: BorderRadius.circular(99)),
+                        child: DropdownButton<String>(
+                          value: 'Minggu',
+                          icon: Icon(Icons.arrow_drop_down),
+                          underline: SizedBox(),
+                          onChanged: (String? newValue) {},
+                          items: <String>['Minggu', 'Bulan', 'Tahun'].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value, style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.greyNormal)),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  // --- Placeholder untuk Grafik Batang ---
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
+                    alignment: Alignment.center,
+                    child: const Text('Grafik Batang', style: TextStyle(color: Colors.black54)),
+                  ),
+                  const SizedBox(height: 20000),
+                  // --- Ringkasan Statistik ---
+                ],
+              ),
+            ),
+          ],
         ),
       ),
+      bottomNavigationBar: BuildBottomNavigationBar(),
     );
   }
 }

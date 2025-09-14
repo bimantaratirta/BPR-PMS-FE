@@ -1,3 +1,7 @@
+import 'package:bpr_pms/app/common/constant/app_colors.dart';
+import 'package:bpr_pms/app/common/constant/assets.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
+import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +14,95 @@ class AuthLoginView extends GetView<AuthLoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(child: Text('AuthLoginView is working', style: TextStyle(fontSize: 20))),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 36, vertical: 75),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(alignment: Alignment.topCenter, child: Image.asset(ImageAssets.logoBpr, scale: 12)),
+                SizedBox(height: 64),
+                Text(
+                  "Masuk",
+                  style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blueNormal),
+                ),
+                SizedBox(height: 32),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Username",
+                      style: Get.textTheme.labelMedium!.copyWith(letterSpacing: 1, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 8),
+                    BuildCustomTextFormField(
+                      hintText: "Masukkan username...",
+                      controller: controller.usernameController,
+                      maxLines: 1,
+                      isReadOnly: false,
+                      isEnable: true,
+                      withInputFormatter: false,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      "Password",
+                      style: Get.textTheme.labelMedium!.copyWith(letterSpacing: 1, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 8),
+                    BuildCustomTextFormField(
+                      hintText: "Masukkan password...",
+                      controller: controller.passwordController,
+                      maxLines: 1,
+                      isReadOnly: false,
+                      isEnable: true,
+                      withInputFormatter: false,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text("Lupa Password?", style: Get.textTheme.bodyMedium!),
+                ),
+                SizedBox(height: 32),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.handleSubmitLoginForm();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: MainColor.blueNormal,
+                    disabledBackgroundColor: SecondaryColor.neutral500,
+                    minimumSize: Size(double.infinity, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Masuk",
+                        style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.bold, color: SecondaryColor.white),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Belum punya akun? ", style: Get.textTheme.bodyMedium!),
+                    GestureDetector(
+                      child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
+                      onTap: () {
+                        Get.offAndToNamed(Routes.AUTH_REGISTER);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
