@@ -14,6 +14,7 @@ abstract class Routes {
   static const NASABAH = _Paths.NASABAH;
   static const REPORT = _Paths.REPORT;
   static const REPORT_REPORT_DETAIL = _Paths.REPORT_REPORT_DETAIL;
+  static const NASABAH_NASABAH_DETAIL = _Paths.NASABAH_NASABAH_DETAIL;
 }
 
 abstract class _Paths {
@@ -30,4 +31,5 @@ abstract class _Paths {
   static const NASABAH = '/nasabah';
   static const REPORT = '/report';
   static const REPORT_REPORT_DETAIL = '/report-detail';
+  static const NASABAH_NASABAH_DETAIL = '/nasabah-detail';
 }

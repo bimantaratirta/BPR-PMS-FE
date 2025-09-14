@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
+import '../modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
+import '../modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
@@ -53,7 +55,18 @@ class AppPages {
         ),
       ],
     ),
-    GetPage(name: _Paths.NASABAH, page: () => const NasabahView(), binding: NasabahBinding()),
+    GetPage(
+      name: _Paths.NASABAH,
+      page: () => const NasabahView(),
+      binding: NasabahBinding(),
+      children: [
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_DETAIL,
+          page: () => const NasabahNasabahDetailView(),
+          binding: NasabahNasabahDetailBinding(),
+        ),
+      ],
+    ),
     GetPage(
       name: _Paths.REPORT,
       page: () => const ReportView(),

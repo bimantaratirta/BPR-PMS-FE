@@ -41,7 +41,7 @@ class ProfileView extends GetView<ProfileController> {
                         Get.to(() => ProfileProfileDetailView(), binding: ProfileProfileDetailBinding());
                       },
                       child: Container(
-                        decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
+                        decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                           child: Row(
@@ -73,7 +73,7 @@ class ProfileView extends GetView<ProfileController> {
                         Get.to(() => ProfileProfileChangePasswordView(), binding: ProfileProfileChangePasswordBinding());
                       },
                       child: Container(
-                        decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
+                        decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                           child: Row(
@@ -105,7 +105,7 @@ class ProfileView extends GetView<ProfileController> {
                         // Handle tap
                       },
                       child: Container(
-                        decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
+                        decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                           child: Row(

@@ -10,6 +10,7 @@ class IconAssets {
   static const String search = "assets/icons/icon_search.svg";
   static const String filter = "assets/icons/icon_filter.svg";
   static const String uploadFile = "assets/icons/icon_upload_file.svg";
+  static const String pencil = "assets/icons/icon_pencil.svg";
 }
 
 class ImageAssets {
