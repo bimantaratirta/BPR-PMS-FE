@@ -7,4 +7,5 @@ class IconAssets {
 
 class ImageAssets {
   static const String logoBpr = "assets/images/Logo-BPR.png";
+  static const String logoBprSahabatSejatiTransparant = "assets/images/logo_bpr_sahabat_sejati_transparant.png";
 }
