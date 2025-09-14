@@ -25,11 +25,10 @@ class BuildBottomNavigationBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ...mainController.sidebarSettings.asMap().entries.map((entry) {
-                int index = entry.key;
                 var item = entry.value;
                 return Obx(() {
-                  bool isActive = mainController.currentActiveBottomNavigationIndex.value == index;
-                  return BuildBottomNavigationBarItem(isActive: isActive, data: item, index: index);
+                  bool isActive = mainController.currentActiveBottomNavigationIndex.value == item.index;
+                  return BuildBottomNavigationBarItem(isActive: isActive, data: item, index: item.index);
                 });
               }),
             ],

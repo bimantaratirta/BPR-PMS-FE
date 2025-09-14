@@ -6,6 +6,7 @@ class BottomNavigationItemModel {
   final Color iconColor;
   final String label;
   final TextStyle labelStyle;
+  final int index;
 
   BottomNavigationItemModel({
     required this.onTap,
@@ -13,5 +14,6 @@ class BottomNavigationItemModel {
     required this.label,
     required this.iconColor,
     required this.labelStyle,
+    required this.index,
   });
 }

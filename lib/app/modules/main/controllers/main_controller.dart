@@ -5,17 +5,28 @@ import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+const LOGIN_NAV_ID = 01;
+const REGISTER_NAV_ID = 02;
 const HOME_NAV_ID = 100;
 const NASABAH_NAV_ID = 200;
 const REPORT_NAV_ID = 300;
 const PROFILE_NAV_ID = 400;
 
+const int AUTH_LOGIN_INDEX = 0;
+const int AUTH_REGISTER_INDEX = 1;
+const int HOME_INDEX = 2;
+const int NASABAH_INDEX = 3;
+const int REPORT_INDEX = 4;
+const int PROFILE_INDEX = 5;
+
 class MainController extends GetxController {
   final PageController pageController = PageController();
 
-  var currentActiveBottomNavigationIndex = 0.obs;
+  var currentActiveBottomNavigationIndex = AUTH_LOGIN_INDEX.obs;
 
   List<GetRouterOutlet> get pages => [
+    GetRouterOutlet(key: Get.nestedKey(LOGIN_NAV_ID), initialRoute: Routes.AUTH_LOGIN),
+    GetRouterOutlet(key: Get.nestedKey(REGISTER_NAV_ID), initialRoute: Routes.AUTH_REGISTER),
     GetRouterOutlet(key: Get.nestedKey(HOME_NAV_ID), initialRoute: Routes.HOME),
     GetRouterOutlet(key: Get.nestedKey(NASABAH_NAV_ID), initialRoute: Routes.NASABAH),
     GetRouterOutlet(key: Get.nestedKey(REPORT_NAV_ID), initialRoute: Routes.REPORT),
@@ -25,8 +36,9 @@ class MainController extends GetxController {
   List<BottomNavigationItemModel> get sidebarSettings => [
     BottomNavigationItemModel(
       onTap: () {
-        changePage(0);
+        changePage(HOME_INDEX);
       },
+      index: HOME_INDEX,
       iconPath: IconAssets.home,
       iconColor: MainColor.blueNormal,
       label: "Beranda",
@@ -34,8 +46,9 @@ class MainController extends GetxController {
     ),
     BottomNavigationItemModel(
       onTap: () {
-        changePage(1);
+        changePage(NASABAH_INDEX);
       },
+      index: NASABAH_INDEX,
       iconPath: IconAssets.nasabah,
       iconColor: MainColor.blueNormal,
       label: "Nasabah",
@@ -43,8 +56,9 @@ class MainController extends GetxController {
     ),
     BottomNavigationItemModel(
       onTap: () {
-        changePage(2);
+        changePage(REPORT_INDEX);
       },
+      index: REPORT_INDEX,
       iconPath: IconAssets.report,
       iconColor: MainColor.blueNormal,
       label: "Laporan",
@@ -52,8 +66,9 @@ class MainController extends GetxController {
     ),
     BottomNavigationItemModel(
       onTap: () {
-        changePage(3);
+        changePage(PROFILE_INDEX);
       },
+      index: PROFILE_INDEX,
       iconPath: IconAssets.profile,
       iconColor: MainColor.blueNormal,
       label: "Profil",
