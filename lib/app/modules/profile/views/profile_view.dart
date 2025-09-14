@@ -1,9 +1,9 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
 import 'package:bpr_pms/app/modules/profile/_profile_change_password/views/profile_profile_change_password_view.dart';
+import 'package:bpr_pms/app/modules/profile/_profile_detail/bindings/profile_profile_detail_binding.dart';
 import 'package:bpr_pms/app/modules/profile/_profile_detail/views/profile_profile_detail_view.dart';
-import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +38,7 @@ class ProfileView extends GetView<ProfileController> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => const ProfileProfileDetailView());
+                        Get.to(() => ProfileProfileDetailView(), binding: ProfileProfileDetailBinding());
                       },
                       child: Container(
                         decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
@@ -70,7 +70,7 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(height: 10),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => const ProfileProfileChangePasswordView());
+                        Get.to(() => ProfileProfileChangePasswordView(), binding: ProfileProfileChangePasswordBinding());
                       },
                       child: Container(
                         decoration: BoxDecoration(color: SecondaryColor.neutral50, borderRadius: BorderRadius.circular(12)),
