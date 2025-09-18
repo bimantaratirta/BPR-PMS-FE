@@ -1,6 +1,8 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_create/views/nasabah_nasabah_create_view.dart';
 import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
 import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
@@ -82,6 +84,40 @@ class NasabahView extends GetView<NasabahController> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: SvgPicture.asset(height: 18.h, IconAssets.plus, color: SecondaryColor.neutral500),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(() => NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding());
+                              },
+                              child: Text(
+                                "Tambah",
+                                style: Get.textTheme.labelMedium!.copyWith(
+                                  color: SecondaryColor.neutral500,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

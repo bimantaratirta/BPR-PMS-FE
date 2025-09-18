@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
+import '../modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
+import '../modules/nasabah/_nasabah_create/views/nasabah_nasabah_create_view.dart';
 import '../modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
 import '../modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
@@ -33,11 +35,26 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
-    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
-    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
+    GetPage(
+        name: _Paths.HOME,
+        page: () => const HomeView(),
+        binding: HomeBinding()),
+    GetPage(
+        name: _Paths.SPLASH_SCREEN,
+        page: () => const SplashScreenView(),
+        binding: SplashScreenBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.LOGIN,
+        page: () => const AuthLoginView(),
+        binding: AuthLoginBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.REGISTER,
+        page: () => const AuthRegisterView(),
+        binding: AuthRegisterBinding()),
+    GetPage(
+        name: _Paths.MAIN,
+        page: () => const MainView(),
+        binding: MainBinding()),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
@@ -64,6 +81,11 @@ class AppPages {
           name: _Paths.NASABAH_NASABAH_DETAIL,
           page: () => const NasabahNasabahDetailView(),
           binding: NasabahNasabahDetailBinding(),
+        ),
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_CREATE,
+          page: () => const NasabahNasabahCreateView(),
+          binding: NasabahNasabahCreateBinding(),
         ),
       ],
     ),
