@@ -1,6 +1,6 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/routes/app_pages.dart';
+import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_dropdown.dart';
 import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +173,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                       GestureDetector(
                         child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
                         onTap: () {
-                          Get.offAndToNamed(Routes.AUTH_LOGIN);
+                          Get.find<MainController>().changePage(AUTH_LOGIN_INDEX);
                         },
                       ),
                     ],

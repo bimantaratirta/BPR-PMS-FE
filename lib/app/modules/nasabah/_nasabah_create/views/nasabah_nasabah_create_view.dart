@@ -1,21 +1,22 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
+import 'package:bpr_pms/app/widgets/build_custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/profile_profile_detail_controller.dart';
+import '../controllers/nasabah_nasabah_create_controller.dart';
 
-class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
-  const ProfileProfileDetailView({super.key});
+class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
+  const NasabahNasabahCreateView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Profil Pengguna',
+          'Tambah Nasabah',
           style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
         ),
         centerTitle: true,
@@ -26,6 +27,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
           child: IconButton(
             icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
             onPressed: () {
+              FocusScope.of(context).unfocus();
               Navigator.pop(context);
             },
           ),
@@ -36,17 +38,17 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
         padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 25),
         child: SingleChildScrollView(
           child: Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: Get.size.height * 0.02),
-                CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://placehold.co/150')),
-                SizedBox(height: Get.size.height * 0.04),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                    SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
                       child: Padding(
@@ -54,7 +56,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
                                 "Nama",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
@@ -65,7 +67,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                               child: TextField(
                                 controller: controller.nameController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Nama...",
+                                  hintText: "Masukkan nama lengkap...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -85,18 +87,18 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
-                                "Username",
+                                "Nomor KTP",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
-                                controller: controller.usernameController,
+                                controller: controller.identityNumberController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Username...",
+                                  hintText: "Masukkan nomor KTP...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -116,18 +118,18 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
-                                "Type",
+                                "Tanggal Lahir",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
-                                controller: controller.typeController,
+                                controller: controller.dobController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Tipe...",
+                                  hintText: "Masukkan tanggal lahir...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -147,18 +149,18 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
-                                "Email",
+                                "No Handphone",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
-                                controller: controller.emailController,
+                                controller: controller.phoneNumberController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Email...",
+                                  hintText: "Masukkan nomor handphone...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -170,7 +172,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         ),
                       ),
                     ),
-
+                    SizedBox(height: Get.size.height * 0.02),
+                    Text("Alamat Domisili", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                     SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
@@ -179,49 +182,18 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
-                                "Supervisor",
+                                "Desa",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
-                                controller: controller.supervisorController,
+                                controller: controller.villageController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Supervisor...",
-                                  hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
-                                  border: InputBorder.none,
-                                  isDense: true,
-                                ),
-                                style: Get.textTheme.labelMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: Get.size.width * 0.2,
-                              child: Text(
-                                "Cabang",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                            SizedBox(width: Get.size.width * 0.02),
-                            Expanded(
-                              child: TextField(
-                                controller: controller.officeController,
-                                decoration: InputDecoration(
-                                  hintText: "Masukkan Cabang...",
+                                  hintText: "Masukkan desa...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -241,18 +213,18 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Get.size.width * 0.2,
+                              width: Get.size.width * 0.25,
                               child: Text(
-                                "Wilayah",
+                                "RT/RW",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
-                                controller: controller.districtController,
+                                controller: controller.neighborhoodUnitController,
                                 decoration: InputDecoration(
-                                  hintText: "Masukkan Wilayah...",
+                                  hintText: "Masukkan RT/RW...",
                                   hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                   border: InputBorder.none,
                                   isDense: true,
@@ -264,7 +236,54 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: Get.size.width * 0.25,
+                              child: Text(
+                                "Alamat",
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            SizedBox(width: Get.size.width * 0.02),
+                            Expanded(
+                              child: TextField(
+                                controller: controller.addressController,
+                                decoration: InputDecoration(
+                                  hintText: "Masukkan alamat...",
+                                  hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
+                                  border: InputBorder.none,
+                                  isDense: true,
+                                ),
+                                style: Get.textTheme.labelMedium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: Get.size.height * 0.02),
+                    Text("Tipe Pekerjaan", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                    SizedBox(height: 10),
+                    BuildDropdown(
+                      hintText: "Pilih tipe pekerjaan...",
+                      selectedValue: controller.selectedItemTypeJob.value,
+                      selectedLabel:
+                          controller.itemsTypeJob.value.firstWhereOrNull(
+                            (item) => item["value"] == controller.selectedItemTypeJob.value,
+                          )?["label"] ??
+                          '',
+                      itemDropdown: controller.itemsTypeJob.value,
+                      onChanged: (value) => {
+                        if (value != null) {controller.changeSelectedItemTypeJob(value)},
+                      },
+                    ),
+                    SizedBox(height: Get.size.height * 0.02),
                     Align(
                       alignment: Alignment.center,
                       child: SizedBox(
@@ -277,7 +296,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                           ),
                           onPressed: () {},
                           child: Text(
-                            "Simpan",
+                            "Tambahkan",
                             style: Get.textTheme.labelMedium!.copyWith(
                               color: SecondaryColor.white,
                               fontWeight: FontWeight.bold,

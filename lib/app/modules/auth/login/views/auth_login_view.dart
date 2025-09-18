@@ -1,6 +1,6 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/routes/app_pages.dart';
+import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -94,7 +94,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                     GestureDetector(
                       child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
                       onTap: () {
-                        Get.offAndToNamed(Routes.AUTH_REGISTER);
+                        Get.find<MainController>().changePage(AUTH_REGISTER_INDEX);
                       },
                     ),
                   ],

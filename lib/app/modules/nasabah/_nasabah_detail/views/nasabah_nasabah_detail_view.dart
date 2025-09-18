@@ -26,6 +26,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
           child: IconButton(
             icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
             onPressed: () {
+              FocusScope.of(context).unfocus();
               Navigator.pop(context);
             },
           ),
@@ -267,7 +268,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                   ),
                 ),
                 SizedBox(height: 12),
-                Text("Tipe Pekerjaan", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                Text("Jenis Usaha/Pekerjaan", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                 SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
@@ -363,7 +364,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                       ),
                       onPressed: () {},
                       child: Text(
-                        "Simpan",
+                        "Buat Laporan",
                         style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
                       ),
                     ),
