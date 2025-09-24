@@ -10,8 +10,12 @@ import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
 import '../modules/nasabah/_nasabah_create/views/nasabah_nasabah_create_view.dart';
+import '../modules/nasabah/_nasabah_create_report/bindings/nasabah_nasabah_create_report_binding.dart';
+import '../modules/nasabah/_nasabah_create_report/views/nasabah_nasabah_create_report_view.dart';
 import '../modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
 import '../modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
+import '../modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.dart';
+import '../modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
@@ -22,8 +26,6 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/report/_report_detail/bindings/report_report_detail_binding.dart';
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
-import '../modules/report/_report_submission/bindings/report_report_submission_binding.dart';
-import '../modules/report/_report_submission/views/report_report_submission_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -37,26 +39,11 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(
-        name: _Paths.HOME,
-        page: () => const HomeView(),
-        binding: HomeBinding()),
-    GetPage(
-        name: _Paths.SPLASH_SCREEN,
-        page: () => const SplashScreenView(),
-        binding: SplashScreenBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.LOGIN,
-        page: () => const AuthLoginView(),
-        binding: AuthLoginBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.REGISTER,
-        page: () => const AuthRegisterView(),
-        binding: AuthRegisterBinding()),
-    GetPage(
-        name: _Paths.MAIN,
-        page: () => const MainView(),
-        binding: MainBinding()),
+    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
+    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
+    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
@@ -89,6 +76,16 @@ class AppPages {
           page: () => const NasabahNasabahCreateView(),
           binding: NasabahNasabahCreateBinding(),
         ),
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_CREATE_REPORT,
+          page: () => const NasabahNasabahCreateReportView(),
+          binding: NasabahNasabahCreateReportBinding(),
+        ),
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_EDIT,
+          page: () => const NasabahNasabahEditView(),
+          binding: NasabahNasabahEditBinding(),
+        ),
       ],
     ),
     GetPage(
@@ -100,11 +97,6 @@ class AppPages {
           name: _Paths.REPORT_REPORT_DETAIL,
           page: () => const ReportReportDetailView(),
           binding: ReportReportDetailBinding(),
-        ),
-        GetPage(
-          name: _Paths.REPORT_REPORT_SUBMISSION,
-          page: () => const ReportReportSubmissionView(),
-          binding: ReportReportSubmissionBinding(),
         ),
       ],
     ),

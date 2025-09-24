@@ -1,7 +1,9 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/modules/report/_report_submission/bindings/report_report_submission_binding.dart';
-import 'package:bpr_pms/app/modules/report/_report_submission/views/report_report_submission_view.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_create_report/bindings/nasabah_nasabah_create_report_binding.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_create_report/views/nasabah_nasabah_create_report_view.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,7 +52,9 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                   children: [
                     Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => NasabahNasabahEditView(), binding: NasabahNasabahEditBinding());
+                      },
                       child: Container(
                         margin: EdgeInsets.only(left: 8),
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -366,7 +370,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                       ),
                       onPressed: () {
-                        Get.to(() => ReportReportSubmissionView(), binding: ReportReportSubmissionBinding());
+                        Get.to(() => NasabahNasabahCreateReportView(), binding: NasabahNasabahCreateReportBinding());
                       },
                       child: Text(
                         "Buat Laporan",

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class ReportReportSubmissionController extends GetxController {
+class NasabahNasabahCreateReportController extends GetxController {
   Rx<List<String>> evaluationList = Rx<List<String>>(['Good', 'Bad']);
   Rx<String?> pickEvaluation = Rx<String?>(null);
   void usePickEvaluation(String value) {

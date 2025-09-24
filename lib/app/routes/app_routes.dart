@@ -16,7 +16,8 @@ abstract class Routes {
   static const REPORT_REPORT_DETAIL = _Paths.REPORT_REPORT_DETAIL;
   static const NASABAH_NASABAH_DETAIL = _Paths.NASABAH_NASABAH_DETAIL;
   static const NASABAH_NASABAH_CREATE = _Paths.NASABAH_NASABAH_CREATE;
-  static const REPORT_REPORT_SUBMISSION = _Paths.REPORT_REPORT_SUBMISSION;
+  static const NASABAH_NASABAH_CREATE_REPORT = _Paths.NASABAH_NASABAH_CREATE_REPORT;
+  static const NASABAH_NASABAH_EDIT = _Paths.NASABAH_NASABAH_EDIT;
 }
 
 abstract class _Paths {
@@ -35,5 +36,6 @@ abstract class _Paths {
   static const REPORT_REPORT_DETAIL = '/report-detail';
   static const NASABAH_NASABAH_DETAIL = '/nasabah-detail';
   static const NASABAH_NASABAH_CREATE = '/nasabah-create';
-  static const REPORT_REPORT_SUBMISSION = '/report-submission';
+  static const NASABAH_NASABAH_CREATE_REPORT = '/nasabah-create-report';
+  static const NASABAH_NASABAH_EDIT = '/nasabah-edit';
 }

@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/report_report_submission_controller.dart';
+import '../controllers/nasabah_nasabah_create_report_controller.dart';
 
-class ReportReportSubmissionView extends GetView<ReportReportSubmissionController> {
-  const ReportReportSubmissionView({super.key});
+class NasabahNasabahCreateReportView extends GetView<NasabahNasabahCreateReportController> {
+  const NasabahNasabahCreateReportView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
