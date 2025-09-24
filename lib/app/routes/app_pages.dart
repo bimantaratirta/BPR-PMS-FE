@@ -22,6 +22,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/report/_report_detail/bindings/report_report_detail_binding.dart';
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
+import '../modules/report/_report_submission/bindings/report_report_submission_binding.dart';
+import '../modules/report/_report_submission/views/report_report_submission_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -98,6 +100,11 @@ class AppPages {
           name: _Paths.REPORT_REPORT_DETAIL,
           page: () => const ReportReportDetailView(),
           binding: ReportReportDetailBinding(),
+        ),
+        GetPage(
+          name: _Paths.REPORT_REPORT_SUBMISSION,
+          page: () => const ReportReportSubmissionView(),
+          binding: ReportReportSubmissionBinding(),
         ),
       ],
     ),

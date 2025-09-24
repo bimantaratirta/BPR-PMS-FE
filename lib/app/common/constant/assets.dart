@@ -12,6 +12,7 @@ class IconAssets {
   static const String uploadFile = "assets/icons/icon_upload_file.svg";
   static const String pencil = "assets/icons/icon_pencil.svg";
   static const String plus = "assets/icons/icon_plus.svg";
+  static const String imagePlus = "assets/icons/icon_image_plus.svg";
 }
 
 class ImageAssets {
