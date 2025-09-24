@@ -47,10 +47,22 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                    Row(
+                      children: [
+                        Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                        Text(
+                          " *",
+                          style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.red),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -59,7 +71,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "Nama",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -81,7 +93,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -90,7 +106,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "Nomor KTP",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -112,7 +128,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -121,7 +141,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "Tanggal Lahir",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -143,7 +163,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -152,7 +176,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "No Handphone",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -176,7 +200,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     Text("Alamat Domisili", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -185,7 +213,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "Desa",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -207,7 +235,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -216,7 +248,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "RT/RW",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -238,7 +270,11 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: SecondaryColor.neutral100,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4))],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -247,7 +283,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                               width: Get.size.width * 0.25,
                               child: Text(
                                 "Alamat",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
                               ),
                             ),
                             SizedBox(width: Get.size.width * 0.02),
@@ -270,19 +306,573 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                     SizedBox(height: Get.size.height * 0.02),
                     Text("Tipe Pekerjaan", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                     SizedBox(height: 10),
-                    BuildDropdown(
-                      hintText: "Pilih tipe pekerjaan...",
-                      selectedValue: controller.selectedItemTypeJob.value,
-                      selectedLabel:
-                          controller.itemsTypeJob.value.firstWhereOrNull(
-                            (item) => item["value"] == controller.selectedItemTypeJob.value,
-                          )?["label"] ??
-                          '',
-                      itemDropdown: controller.itemsTypeJob.value,
-                      onChanged: (value) => {
-                        if (value != null) {controller.changeSelectedItemTypeJob(value)},
-                      },
-                    ),
+                    Obx(() {
+                      return BuildDropdown(
+                        hintText: "Pilih tipe pekerjaan...",
+                        selectedValue: controller.selectedItemTypeJob.value,
+                        selectedLabel:
+                            controller.itemsTypeJob.value.firstWhereOrNull(
+                              (item) => item["value"] == controller.selectedItemTypeJob.value,
+                            )?["label"] ??
+                            '',
+                        itemDropdown: controller.itemsTypeJob.value,
+                        onChanged: (value) => {
+                          if (value != null) {controller.changeSelectedItemTypeJob(value)},
+                        },
+                      );
+                    }),
+                    Obx(() {
+                      return controller.selectedItemTypeJob.value == 'businessman'
+                          ? Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Jenis Usaha",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.detailTypeJob,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan jenis usaha...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Total Karyawan",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.totalEmployees,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan total karyawan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: Get.size.width * 0.25,
+                                                child: Text(
+                                                  "Pendapatan",
+                                                  style: Get.textTheme.labelMedium!.copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: Get.size.width * 0.02),
+                                              Expanded(
+                                                child: TextField(
+                                                  controller: controller.jobIncome,
+                                                  decoration: InputDecoration(
+                                                    hintText: "Masukkan pendapatan...",
+                                                    hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                      color: SecondaryColor.neutral400,
+                                                    ),
+                                                    border: InputBorder.none,
+                                                    isDense: true,
+                                                  ),
+                                                  style: Get.textTheme.labelMedium,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: Get.size.width * 0.25,
+                                        child: BuildDropdown(
+                                          hintText: "Pilih satuan...",
+                                          selectedValue: controller.selectedItemTypeIncomeJob.value,
+                                          selectedLabel:
+                                              controller.itemsTypeIncomeJob.value.firstWhereOrNull(
+                                                (item) => item["value"] == controller.selectedItemTypeIncomeJob.value,
+                                              )?["label"] ??
+                                              '',
+                                          itemDropdown: controller.itemsTypeIncomeJob.value,
+                                          onChanged: (value) => {
+                                            if (value != null) {controller.changeSelectedItemTypeIncomeJob(value)},
+                                          },
+                                          buttonHeight: null,
+                                          buttonPadding: EdgeInsets.only(left: 8, right: 8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          : controller.selectedItemTypeJob.value == 'permanentEmployee'
+                          ? Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Perusahaan",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobCompanyName,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan nama perusahaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Alamat",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobAddress,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan alamat perusahaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "No Handphone",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobPhoneNumber,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan no handphone perusahaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Pekerjaan",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobName,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan nama pekerjaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Posisi",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobPosition,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan posisi pekerjaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: Get.size.width * 0.25,
+                                                child: Text(
+                                                  "Pendapatan",
+                                                  style: Get.textTheme.labelMedium!.copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: Get.size.width * 0.02),
+                                              Expanded(
+                                                child: TextField(
+                                                  controller: controller.jobIncome,
+                                                  decoration: InputDecoration(
+                                                    hintText: "Masukkan pendapatan...",
+                                                    hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                      color: SecondaryColor.neutral400,
+                                                    ),
+                                                    border: InputBorder.none,
+                                                    isDense: true,
+                                                  ),
+                                                  style: Get.textTheme.labelMedium,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: Get.size.width * 0.25,
+                                        child: BuildDropdown(
+                                          hintText: "Pilih satuan...",
+                                          selectedValue: controller.selectedItemTypeIncomeJob.value,
+                                          selectedLabel:
+                                              controller.itemsTypeIncomeJob.value.firstWhereOrNull(
+                                                (item) => item["value"] == controller.selectedItemTypeIncomeJob.value,
+                                              )?["label"] ??
+                                              '',
+                                          itemDropdown: controller.itemsTypeIncomeJob.value,
+                                          onChanged: (value) => {
+                                            if (value != null) {controller.changeSelectedItemTypeIncomeJob(value)},
+                                          },
+                                          buttonHeight: null,
+                                          buttonPadding: EdgeInsets.only(left: 8, right: 8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          : controller.selectedItemTypeJob.value == 'freelancer'
+                          ? Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.25,
+                                          child: Text(
+                                            "Pekerjaan",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: controller.jobName,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan nama pekerjaan...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3, offset: Offset(0, 4)),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: Get.size.width * 0.25,
+                                                child: Text(
+                                                  "Pendapatan",
+                                                  style: Get.textTheme.labelMedium!.copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: Get.size.width * 0.02),
+                                              Expanded(
+                                                child: TextField(
+                                                  controller: controller.jobIncome,
+                                                  decoration: InputDecoration(
+                                                    hintText: "Masukkan pendapatan...",
+                                                    hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                      color: SecondaryColor.neutral400,
+                                                    ),
+                                                    border: InputBorder.none,
+                                                    isDense: true,
+                                                  ),
+                                                  style: Get.textTheme.labelMedium,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: Get.size.width * 0.25,
+                                        child: BuildDropdown(
+                                          hintText: "Pilih satuan...",
+                                          selectedValue: controller.selectedItemTypeIncomeJob.value,
+                                          selectedLabel:
+                                              controller.itemsTypeIncomeJob.value.firstWhereOrNull(
+                                                (item) => item["value"] == controller.selectedItemTypeIncomeJob.value,
+                                              )?["label"] ??
+                                              '',
+                                          itemDropdown: controller.itemsTypeIncomeJob.value,
+                                          onChanged: (value) => {
+                                            if (value != null) {controller.changeSelectedItemTypeIncomeJob(value)},
+                                          },
+                                          buttonHeight: null,
+                                          buttonPadding: EdgeInsets.only(left: 8, right: 8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          : SizedBox();
+                    }),
                     SizedBox(height: Get.size.height * 0.02),
                     Align(
                       alignment: Alignment.center,
@@ -291,7 +881,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: MainColor.blueNormal,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                           ),
                           onPressed: () {},

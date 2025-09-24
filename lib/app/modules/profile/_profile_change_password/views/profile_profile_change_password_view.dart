@@ -88,7 +88,7 @@ class ProfileProfileChangePasswordView extends GetView<ProfileProfileChangePassw
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: MainColor.blueNormal,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                           ),
                           onPressed: () {},

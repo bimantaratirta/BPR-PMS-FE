@@ -74,11 +74,15 @@ class BuildCustomTextFormField extends StatelessWidget {
         hintStyle: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(width: 0, color: SecondaryColor.neutral400),
+          borderSide: const BorderSide(width: 2, color: Colors.transparent),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(width: 0, color: SecondaryColor.neutral400),
+          borderSide: const BorderSide(width: 2, color: Colors.transparent),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: const BorderSide(width: 2, color: Colors.transparent),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

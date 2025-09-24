@@ -48,7 +48,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -79,7 +79,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -110,7 +110,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -141,7 +141,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -173,7 +173,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
 
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -204,7 +204,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -235,7 +235,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
                         child: Row(
@@ -272,7 +272,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: MainColor.blueNormal,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                           ),
                           onPressed: () {},

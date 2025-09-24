@@ -15,7 +15,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Detail Laporan',
+          'Detail Data Nasabah',
           style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
         ),
         centerTitle: true,
@@ -56,6 +56,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(color: SecondaryColor.neutral300),
+                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 5)],
                         ),
                         child: Row(
                           children: [
@@ -359,7 +360,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MainColor.blueNormal,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                       ),
                       onPressed: () {},
