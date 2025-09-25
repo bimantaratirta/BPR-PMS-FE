@@ -13,6 +13,7 @@ class IconAssets {
   static const String pencil = "assets/icons/icon_pencil.svg";
   static const String plus = "assets/icons/icon_plus.svg";
   static const String imagePlus = "assets/icons/icon_image_plus.svg";
+  static const String peopleDocument = "assets/icons/icon_people_document.svg";
 }
 
 class ImageAssets {

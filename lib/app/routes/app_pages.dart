@@ -6,6 +6,8 @@ import '../modules/auth/register/bindings/auth_register_binding.dart';
 import '../modules/auth/register/views/auth_register_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/lo/bindings/lo_binding.dart';
+import '../modules/lo/views/lo_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
@@ -28,6 +30,8 @@ import '../modules/report/_report_detail/bindings/report_report_detail_binding.d
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
+import '../modules/slo/bindings/slo_binding.dart';
+import '../modules/slo/views/slo_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 
@@ -39,11 +43,26 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
-    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
-    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
+    GetPage(
+        name: _Paths.HOME,
+        page: () => const HomeView(),
+        binding: HomeBinding()),
+    GetPage(
+        name: _Paths.SPLASH_SCREEN,
+        page: () => const SplashScreenView(),
+        binding: SplashScreenBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.LOGIN,
+        page: () => const AuthLoginView(),
+        binding: AuthLoginBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.REGISTER,
+        page: () => const AuthRegisterView(),
+        binding: AuthRegisterBinding()),
+    GetPage(
+        name: _Paths.MAIN,
+        page: () => const MainView(),
+        binding: MainBinding()),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
@@ -99,6 +118,16 @@ class AppPages {
           binding: ReportReportDetailBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.LO,
+      page: () => const LoView(),
+      binding: LoBinding(),
+    ),
+    GetPage(
+      name: _Paths.SLO,
+      page: () => const SloView(),
+      binding: SloBinding(),
     ),
   ];
 }
