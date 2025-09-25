@@ -7,16 +7,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/nasabah_nasabah_create_controller.dart';
+import '../controllers/nasabah_nasabah_edit_controller.dart';
 
-class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
-  const NasabahNasabahCreateView({super.key});
+class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
+  const NasabahNasabahEditView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Tambah Nasabah',
+          'Edit Data Nasabah',
           style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
         ),
         centerTitle: true,
@@ -886,7 +886,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                           ),
                           onPressed: () {},
                           child: Text(
-                            "Tambahkan",
+                            "Simpan",
                             style: Get.textTheme.labelMedium!.copyWith(
                               color: SecondaryColor.white,
                               fontWeight: FontWeight.bold,

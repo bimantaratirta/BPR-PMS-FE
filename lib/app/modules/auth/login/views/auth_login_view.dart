@@ -3,6 +3,7 @@ import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -76,14 +77,20 @@ class AuthLoginView extends GetView<AuthLoginController> {
                     minimumSize: Size(double.infinity, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Masuk",
-                        style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.bold, color: SecondaryColor.white),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Masuk",
+                          style: Get.textTheme.labelMedium!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: SecondaryColor.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),

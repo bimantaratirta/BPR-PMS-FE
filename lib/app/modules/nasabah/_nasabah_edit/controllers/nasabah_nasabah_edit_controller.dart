@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NasabahNasabahCreateController extends GetxController {
+class NasabahNasabahEditController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController identityNumberController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
@@ -73,5 +73,32 @@ class NasabahNasabahCreateController extends GetxController {
     totalEmployees.clear();
     jobIncome.clear();
     selectedItemTypeIncomeJob.value = '';
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    createDummyData();
+  }
+
+  void createDummyData() {
+    nameController.text = "Muhammad Rizki";
+    identityNumberController.text = "3201012001010001";
+    dobController.text = "2001-01-01";
+    phoneNumberController.text = "081234567890";
+    villageController.text = "Desa Sukamaju";
+    neighborhoodUnitController.text = "001/002";
+    addressController.text = "Jl. Sukamaju No. 123";
+
+    selectedItemTypeJob.value = "businessman";
+    detailTypeJob.text = "Pedagang";
+    jobName.text = "Toko Sukses Makmur";
+    jobCompanyName.text = "PT. Sukses Makmur";
+    jobAddress.text = "Jl. Merdeka No. 45";
+    jobPhoneNumber.text = "021-12345678";
+    jobPosition.text = "Pemilik";
+    totalEmployees.text = "5";
+    jobIncome.text = "5000000";
+    selectedItemTypeIncomeJob.value = "monthly";
   }
 }

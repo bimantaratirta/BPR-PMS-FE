@@ -11,6 +11,16 @@ class BuildDropdown extends StatelessWidget {
   final List<Map<String, String>> itemDropdown;
   final void Function(String?)? onChanged;
 
+  final EdgeInsetsGeometry? buttonPadding;
+  final double? buttonBorderWidth;
+  final Color? buttonBorderColor;
+  final Color? buttonFocusedBorderColor;
+  final double? buttonBorderRadius;
+  final Color? buttonBackgroundColor;
+  final double? buttonHeight;
+  final double? iconSize;
+  final double? iconRightGap;
+
   const BuildDropdown({
     super.key,
     required this.selectedValue,
@@ -18,58 +28,84 @@ class BuildDropdown extends StatelessWidget {
     required this.itemDropdown,
     required this.onChanged,
     this.hintText = "Select item",
+    this.buttonPadding,
+    this.buttonBorderWidth,
+    this.buttonBorderColor,
+    this.buttonFocusedBorderColor,
+    this.buttonBorderRadius,
+    this.buttonBackgroundColor,
+    this.buttonHeight,
+    this.iconSize,
+    this.iconRightGap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double radius = (buttonBorderRadius ?? 8).toDouble();
+    final double bw = (buttonBorderWidth ?? 2).toDouble();
+    final Color nonFocusColor = buttonBorderColor ?? Colors.transparent;
+    final Color focusColor = buttonFocusedBorderColor ?? MainColor.blueNormal;
+    final double _iconSize = (iconSize ?? 24);
+    final double _iconRightGap = (iconRightGap ?? 12);
+
     return SizedBox(
       width: double.infinity,
-      height: 50.h,
+      height: buttonHeight ?? 50.h,
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
+          isExpanded: true,
           value: selectedValue.isNotEmpty ? selectedValue : null,
           hint: Text(
             hintText,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.normal, color: MainColor.blueNormal),
           ),
-          items: itemDropdown
-              .map(
-                (item) => DropdownMenuItem<String>(
-                  value: item['value'],
-                  child: Text(
-                    item['label'] ?? '',
-                    style: Get.textTheme.labelMedium!.copyWith(
-                      fontWeight: FontWeight.normal,
-                      color: SecondaryColor.blackCharcoal,
-                    ),
-                  ),
+          items: itemDropdown.map((item) {
+            return DropdownMenuItem<String>(
+              value: item['value'],
+              child: Text(
+                item['label'] ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Get.textTheme.labelMedium!.copyWith(
+                  fontWeight: FontWeight.normal,
+                  color: SecondaryColor.blackCharcoal,
                 ),
-              )
-              .toList(),
+              ),
+            );
+          }).toList(),
           selectedItemBuilder: (context) {
             return itemDropdown.map((item) {
-              return Center(
-                child: Text(
-                  item['label'] ?? '',
-                  style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.normal, color: MainColor.blueNormal),
-                ),
+              final label = item['label'] ?? '';
+              return Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.normal, color: MainColor.blueNormal),
+                    ),
+                  ),
+                ],
               );
             }).toList();
           },
           onChanged: onChanged,
           buttonStyleData: ButtonStyleData(
-            width: 250.w,
-            height: 40.h,
-            padding: EdgeInsets.symmetric(horizontal: 12),
+            width: double.infinity,
+            height: buttonHeight ?? 40.h,
+            padding: buttonPadding ?? const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
-              color: MainColor.blueLight,
-              border: Border.all(color: SecondaryColor.neutral400, width: 0),
-              borderRadius: BorderRadius.circular(8),
+              color: buttonBackgroundColor ?? MainColor.blueLight,
+              borderRadius: BorderRadius.circular(radius),
+              border: Border.all(color: nonFocusColor, width: bw),
             ),
           ),
           iconStyleData: IconStyleData(
-            icon: Icon(Icons.keyboard_arrow_down_rounded, size: 30),
-            iconEnabledColor: MainColor.blueNormal,
+            icon: Icon(Icons.keyboard_arrow_down_rounded, size: _iconSize),
+            iconEnabledColor: focusColor,
           ),
           dropdownStyleData: DropdownStyleData(
             elevation: 0,

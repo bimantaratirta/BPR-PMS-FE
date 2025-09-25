@@ -6,12 +6,18 @@ import '../modules/auth/register/bindings/auth_register_binding.dart';
 import '../modules/auth/register/views/auth_register_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/lo/bindings/lo_binding.dart';
+import '../modules/lo/views/lo_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
 import '../modules/nasabah/_nasabah_create/views/nasabah_nasabah_create_view.dart';
+import '../modules/nasabah/_nasabah_create_report/bindings/nasabah_nasabah_create_report_binding.dart';
+import '../modules/nasabah/_nasabah_create_report/views/nasabah_nasabah_create_report_view.dart';
 import '../modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
 import '../modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
+import '../modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.dart';
+import '../modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
@@ -24,6 +30,8 @@ import '../modules/report/_report_detail/bindings/report_report_detail_binding.d
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
+import '../modules/slo/bindings/slo_binding.dart';
+import '../modules/slo/views/slo_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 
@@ -87,6 +95,16 @@ class AppPages {
           page: () => const NasabahNasabahCreateView(),
           binding: NasabahNasabahCreateBinding(),
         ),
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_CREATE_REPORT,
+          page: () => const NasabahNasabahCreateReportView(),
+          binding: NasabahNasabahCreateReportBinding(),
+        ),
+        GetPage(
+          name: _Paths.NASABAH_NASABAH_EDIT,
+          page: () => const NasabahNasabahEditView(),
+          binding: NasabahNasabahEditBinding(),
+        ),
       ],
     ),
     GetPage(
@@ -100,6 +118,16 @@ class AppPages {
           binding: ReportReportDetailBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.LO,
+      page: () => const LoView(),
+      binding: LoBinding(),
+    ),
+    GetPage(
+      name: _Paths.SLO,
+      page: () => const SloView(),
+      binding: SloBinding(),
     ),
   ];
 }

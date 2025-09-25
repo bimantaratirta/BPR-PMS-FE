@@ -1,25 +1,21 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_create_report/bindings/nasabah_nasabah_create_report_binding.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_create_report/views/nasabah_nasabah_create_report_view.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/nasabah_nasabah_detail_controller.dart';
+import '../controllers/nasabah_nasabah_create_report_controller.dart';
 
-class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
-  const NasabahNasabahDetailView({super.key});
+class NasabahNasabahCreateReportView extends GetView<NasabahNasabahCreateReportController> {
+  const NasabahNasabahCreateReportView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Detail Data Nasabah',
+          'Form Pengajuan Laporan',
           style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
         ),
         centerTitle: true,
@@ -51,34 +47,6 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => NasabahNasabahEditView(), binding: NasabahNasabahEditBinding());
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(left: 8),
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: SecondaryColor.neutral300),
-                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 5)],
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(height: 16.h, IconAssets.pencil, color: SecondaryColor.neutral500),
-                            SizedBox(width: 4),
-                            Text(
-                              "Edit",
-                              style: Get.textTheme.labelMedium!.copyWith(
-                                color: SecondaryColor.neutral500,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 SizedBox(height: 12),
@@ -358,6 +326,65 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                     ],
                   ),
                 ),
+                SizedBox(height: 12),
+                Text("Foto Lapangan", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                SizedBox(height: 12),
+                Container(
+                  width: Get.size.width,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: SecondaryColor.neutral100,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 5)],
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(height: 40.h, IconAssets.imagePlus, color: Colors.black),
+                        SizedBox(height: 12),
+                        Text(
+                          "Tambahkan Foto",
+                          style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text("Penilaian", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                SizedBox(height: 12),
+                Obx(() {
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: controller.evaluationList.value.map((data) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 50),
+                          child: GestureDetector(
+                            onTap: () => controller.usePickEvaluation(data),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  (controller.pickEvaluation.value == data)
+                                      ? Icons.radio_button_checked
+                                      : Icons.radio_button_off,
+                                  size: 20,
+                                  color: (controller.pickEvaluation.value == data)
+                                      ? MainColor.blueNormal
+                                      : SecondaryColor.blackCharcoal,
+                                ),
+                                SizedBox(width: 10),
+                                Text(data, style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }),
                 SizedBox(height: 20),
                 Align(
                   alignment: Alignment.center,
@@ -369,11 +396,9 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                       ),
-                      onPressed: () {
-                        Get.to(() => NasabahNasabahCreateReportView(), binding: NasabahNasabahCreateReportBinding());
-                      },
+                      onPressed: () {},
                       child: Text(
-                        "Buat Laporan",
+                        "Ajukan Laporan",
                         style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
                       ),
                     ),

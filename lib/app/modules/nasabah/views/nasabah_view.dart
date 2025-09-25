@@ -56,7 +56,7 @@ class NasabahView extends GetView<NasabahController> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
                           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
                         ),
                         child: Padding(
@@ -88,36 +88,36 @@ class NasabahView extends GetView<NasabahController> {
                       ),
                     ),
                     SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: SvgPicture.asset(height: 18.h, IconAssets.plus, color: SecondaryColor.neutral500),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding());
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: SvgPicture.asset(height: 18.h, IconAssets.plus, color: SecondaryColor.neutral500),
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 8),
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(() => NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding());
-                              },
-                              child: Text(
+                              SizedBox(width: 8),
+                              Text(
                                 "Tambah",
                                 style: Get.textTheme.labelMedium!.copyWith(
                                   color: SecondaryColor.neutral500,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -128,7 +128,7 @@ class NasabahView extends GetView<NasabahController> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                     boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
                   ),
                   child: Padding(
@@ -142,7 +142,7 @@ class NasabahView extends GetView<NasabahController> {
                         ),
                         SizedBox(height: 12),
                         Container(
-                          decoration: BoxDecoration(color: MainColor.blueLight, borderRadius: BorderRadius.circular(12)),
+                          decoration: BoxDecoration(color: MainColor.blueLight, borderRadius: BorderRadius.circular(8)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

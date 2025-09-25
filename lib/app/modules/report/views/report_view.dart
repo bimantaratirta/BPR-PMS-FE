@@ -54,7 +54,7 @@ class ReportView extends GetView<ReportController> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
                           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
                         ),
                         child: Padding(
@@ -96,7 +96,7 @@ class ReportView extends GetView<ReportController> {
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
                       ),
                       child: Padding(
@@ -122,7 +122,7 @@ class ReportView extends GetView<ReportController> {
                 SizedBox(height: Get.size.height * 0.02),
                 Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(color: MainColor.blueNormal, borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(color: MainColor.blueNormal, borderRadius: BorderRadius.circular(8)),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
@@ -137,7 +137,7 @@ class ReportView extends GetView<ReportController> {
                         ),
                         SizedBox(height: 12),
                         Container(
-                          decoration: BoxDecoration(color: SecondaryColor.white, borderRadius: BorderRadius.circular(12)),
+                          decoration: BoxDecoration(color: SecondaryColor.white, borderRadius: BorderRadius.circular(8)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -198,7 +198,7 @@ class ReportView extends GetView<ReportController> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: MainColor.blueNormalActive,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                   padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                                 ),
                                 onPressed: () {
