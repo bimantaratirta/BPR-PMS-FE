@@ -6,6 +6,8 @@ import '../modules/auth/register/bindings/auth_register_binding.dart';
 import '../modules/auth/register/views/auth_register_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/lo/_lo_detail/bindings/lo_lo_detail_binding.dart';
+import '../modules/lo/_lo_detail/views/lo_lo_detail_view.dart';
 import '../modules/lo/bindings/lo_binding.dart';
 import '../modules/lo/views/lo_view.dart';
 import '../modules/main/bindings/main_binding.dart';
@@ -30,6 +32,8 @@ import '../modules/report/_report_detail/bindings/report_report_detail_binding.d
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
+import '../modules/slo/_slo_detail/bindings/slo_slo_detail_binding.dart';
+import '../modules/slo/_slo_detail/views/slo_slo_detail_view.dart';
 import '../modules/slo/bindings/slo_binding.dart';
 import '../modules/slo/views/slo_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -123,11 +127,25 @@ class AppPages {
       name: _Paths.LO,
       page: () => const LoView(),
       binding: LoBinding(),
+      children: [
+        GetPage(
+          name: _Paths.LO_LO_DETAIL,
+          page: () => const LoLoDetailView(),
+          binding: LoLoDetailBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.SLO,
       page: () => const SloView(),
       binding: SloBinding(),
+      children: [
+        GetPage(
+          name: _Paths.SLO_SLO_DETAIL,
+          page: () => const SloSloDetailView(),
+          binding: SloSloDetailBinding(),
+        ),
+      ],
     ),
   ];
 }

@@ -1,5 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
+import 'package:bpr_pms/app/modules/lo/_lo_detail/bindings/lo_lo_detail_binding.dart';
+import 'package:bpr_pms/app/modules/lo/_lo_detail/views/lo_lo_detail_view.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -86,38 +88,46 @@ class LoView extends GetView<LoController> {
                   ],
                 ),
                 SizedBox(height: Get.size.height * 0.02),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: MainColor.blueNormal,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: Get.size.height * 0.08,
-                          width: Get.size.height * 0.08,
-                          child: CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://placehold.co/150')),
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'John Doe',
-                                style: Get.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.white),
-                              ),
-                              SizedBox(height: 4),
-                              Text('LO', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70)),
-                              SizedBox(height: 8),
-                            ],
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => LoLoDetailView(), binding: LoLoDetailBinding());
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: MainColor.blueNormal,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: Get.size.height * 0.08,
+                            width: Get.size.height * 0.08,
+                            child: CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://placehold.co/150')),
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'John Doe',
+                                  style: Get.textTheme.titleMedium!.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(height: 4),
+                                Text('LO', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70)),
+                                SizedBox(height: 8),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

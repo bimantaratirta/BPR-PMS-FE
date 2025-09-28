@@ -1,6 +1,8 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
 import 'package:bpr_pms/app/modules/report/_report_detail/bindings/report_report_detail_binding.dart';
 import 'package:bpr_pms/app/modules/report/_report_detail/views/report_report_detail_view.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
@@ -208,6 +210,84 @@ class ReportView extends GetView<ReportController> {
                                   "Review",
                                   style: Get.textTheme.labelMedium!.copyWith(
                                     color: SecondaryColor.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: Get.size.height * 0.02),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "John Doe",
+                          style: Get.textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 12),
+                        Container(
+                          decoration: BoxDecoration(color: MainColor.blueLight, borderRadius: BorderRadius.circular(8)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "No Handphone",
+                                      style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      "081122334455",
+                                      style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Divider(color: SecondaryColor.neutral300, height: 1),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("RT/RW", style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
+                                    Text("01/01", style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => NasabahNasabahDetailView(), binding: NasabahNasabahDetailBinding());
+                          },
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              child: SizedBox(
+                                child: Text(
+                                  "Detail",
+                                  style: Get.textTheme.labelMedium!.copyWith(
+                                    color: MainColor.blueNormal,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
