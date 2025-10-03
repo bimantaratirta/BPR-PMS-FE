@@ -125,6 +125,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
+                                readOnly: true,
+                                enabled: false,
                                 controller: controller.typeController,
                                 decoration: InputDecoration(
                                   hintText: "Masukkan Tipe...",
@@ -149,38 +151,6 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                             SizedBox(
                               width: Get.size.width * 0.2,
                               child: Text(
-                                "Email",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                            SizedBox(width: Get.size.width * 0.02),
-                            Expanded(
-                              child: TextField(
-                                controller: controller.emailController,
-                                decoration: InputDecoration(
-                                  hintText: "Masukkan Email...",
-                                  hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
-                                  border: InputBorder.none,
-                                  isDense: true,
-                                ),
-                                style: Get.textTheme.labelMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: 10),
-                    Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: Get.size.width * 0.2,
-                              child: Text(
                                 "Supervisor",
                                 style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
                               ),
@@ -188,6 +158,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
+                                readOnly: true,
+                                enabled: false,
                                 controller: controller.supervisorController,
                                 decoration: InputDecoration(
                                   hintText: "Masukkan Supervisor...",
@@ -219,6 +191,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
+                                readOnly: true,
+                                enabled: false,
                                 controller: controller.officeController,
                                 decoration: InputDecoration(
                                   hintText: "Masukkan Cabang...",
@@ -250,6 +224,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                             SizedBox(width: Get.size.width * 0.02),
                             Expanded(
                               child: TextField(
+                                readOnly: true,
+                                enabled: false,
                                 controller: controller.districtController,
                                 decoration: InputDecoration(
                                   hintText: "Masukkan Wilayah...",

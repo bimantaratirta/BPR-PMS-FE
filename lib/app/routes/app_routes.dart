@@ -9,19 +9,19 @@ abstract class Routes {
   static const AUTH_REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const MAIN = _Paths.MAIN;
   static const PROFILE = _Paths.PROFILE;
-  static const PROFILE_PROFILE_CHANGE_PASSWORD =
-      _Paths.PROFILE_PROFILE_CHANGE_PASSWORD;
+  static const PROFILE_PROFILE_CHANGE_PASSWORD = _Paths.PROFILE_PROFILE_CHANGE_PASSWORD;
   static const PROFILE_PROFILE_DETAIL = _Paths.PROFILE_PROFILE_DETAIL;
   static const NASABAH = _Paths.NASABAH;
   static const REPORT = _Paths.REPORT;
   static const REPORT_REPORT_DETAIL = _Paths.REPORT_REPORT_DETAIL;
   static const NASABAH_NASABAH_DETAIL = _Paths.NASABAH_NASABAH_DETAIL;
   static const NASABAH_NASABAH_CREATE = _Paths.NASABAH_NASABAH_CREATE;
-  static const NASABAH_NASABAH_CREATE_REPORT =
-      _Paths.NASABAH_NASABAH_CREATE_REPORT;
+  static const NASABAH_NASABAH_CREATE_REPORT = _Paths.NASABAH_NASABAH_CREATE_REPORT;
   static const NASABAH_NASABAH_EDIT = _Paths.NASABAH_NASABAH_EDIT;
   static const LO = _Paths.LO;
   static const SLO = _Paths.SLO;
+  static const LO_LO_DETAIL = _Paths.LO_LO_DETAIL;
+  static const SLO_SLO_DETAIL = _Paths.SLO_SLO_DETAIL;
 }
 
 abstract class _Paths {
@@ -44,4 +44,6 @@ abstract class _Paths {
   static const NASABAH_NASABAH_EDIT = '/nasabah-edit';
   static const LO = '/lo';
   static const SLO = '/slo';
+  static const LO_LO_DETAIL = '/lo-detail';
+  static const SLO_SLO_DETAIL = '/slo-detail';
 }
