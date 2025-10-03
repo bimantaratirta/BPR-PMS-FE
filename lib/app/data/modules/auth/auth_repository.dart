@@ -1,0 +1,24 @@
+import 'package:bpr_pms/app/common/constant/app_constants.dart';
+import 'package:bpr_pms/app/data/main/api/api_params_model.dart';
+import 'package:bpr_pms/app/data/main/api/api_response_model.dart';
+import 'package:bpr_pms/app/data/modules/auth/models/login_response_model.dart';
+import 'package:bpr_pms/app/data/modules/user/models/user_model.dart';
+import 'package:bpr_pms/app/network/api_client.dart';
+
+class AuthRepository {
+  Future<ApiResponseModel<LoginResponseModel>> login(Map<String, dynamic> body) async {
+    return await apiClient.post(
+      ApiParams<LoginResponseModel>(
+        path: AppConstants.loginEndpoint,
+        body: body,
+        fromJson: (json) => LoginResponseModel.fromJson(json),
+      ),
+    );
+  }
+
+  Future<ApiResponseModel<UserModel>> me() async {
+    return await apiClient.get(
+      ApiParams<UserModel>(path: AppConstants.meEndpoint, fromJson: (json) => UserModel.fromJson(json)),
+    );
+  }
+}

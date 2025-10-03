@@ -66,33 +66,45 @@ class AuthLoginView extends GetView<AuthLoginController> {
                   child: Text("Lupa Password?", style: Get.textTheme.bodyMedium!),
                 ),
                 SizedBox(height: 32),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.handleSubmitLoginForm();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: MainColor.blueNormal,
-                    disabledBackgroundColor: SecondaryColor.neutral500,
-                    minimumSize: Size(double.infinity, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Masuk",
-                          style: Get.textTheme.labelMedium!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: SecondaryColor.white,
-                          ),
-                        ),
-                      ],
+                Obx(() {
+                  final isFormValid = controller.isFormValid.value;
+
+                  final VoidCallback? action = (isFormValid && !controller.isLoading.value)
+                      ? () => controller.login(context)
+                      : null;
+                  return ElevatedButton(
+                    onPressed: action,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MainColor.blueNormal,
+                      disabledBackgroundColor: SecondaryColor.neutral500,
+                      minimumSize: Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     ),
-                  ),
-                ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (controller.isLoading.value)
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: const CircularProgressIndicator(color: SecondaryColor.white, strokeWidth: 2),
+                            )
+                          else
+                            Text(
+                              "Masuk",
+                              style: Get.textTheme.labelMedium!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: SecondaryColor.white,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
                 SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

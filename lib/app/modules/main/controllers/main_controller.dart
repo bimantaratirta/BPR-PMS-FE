@@ -24,7 +24,7 @@ const int SLO_INDEX = 7;
 
 class MainController extends GetxController {
   final PageController pageController = PageController();
-  final authController = Get.find<AuthController>();
+  final authController = Get.put<AuthController>(AuthController(), permanent: true);
 
   var currentActiveBottomNavigationIndex = AUTH_LOGIN_INDEX.obs;
 
