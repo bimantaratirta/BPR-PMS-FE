@@ -25,4 +25,8 @@ class AuthRepository {
       ApiParams<UserModel>(path: AppConstants.meEndpoint, fromJson: (json) => UserModel.fromJson(json)),
     );
   }
+
+  Future<ApiResponseModel> updateProfile(Map<String, dynamic> body) async {
+    return await apiClient.put(ApiParams(path: AppConstants.meEndpoint, body: body, fromJson: (json) => null));
+  }
 }

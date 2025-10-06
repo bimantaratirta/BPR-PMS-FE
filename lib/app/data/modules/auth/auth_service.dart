@@ -54,4 +54,20 @@ class AuthService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel> updateProfile(Map<String, dynamic> body) async {
+    try {
+      final response = await _authRepository.updateProfile(body);
+      if (response.code == 200 || response.code == 201) {
+        final meResponse = await me();
+        if ((meResponse.code == 200 || meResponse.code == 201) && meResponse.data != null) {
+          _authController.user.value = meResponse.data;
+          _authController.user.refresh();
+        }
+      }
+      return response;
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }

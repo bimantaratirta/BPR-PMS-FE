@@ -235,7 +235,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                   ),
                   SizedBox(height: 32),
                   Obx(() {
-                    final isFormValid = controller.isFormValid.value || true;
+                    final isFormValid = controller.isFormValid.value;
 
                     final VoidCallback? action = (isFormValid && !controller.isLoading.value)
                         ? () => controller.register(context)
