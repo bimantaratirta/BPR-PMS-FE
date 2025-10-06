@@ -46,7 +46,7 @@ class BuildDropdown extends StatelessWidget {
     final Color nonFocusColor = buttonBorderColor ?? Colors.transparent;
     final Color focusColor = buttonFocusedBorderColor ?? MainColor.blueNormal;
     final double _iconSize = (iconSize ?? 24);
-    final double _iconRightGap = (iconRightGap ?? 12);
+    // final double _iconRightGap = (iconRightGap ?? 12);
 
     return SizedBox(
       width: double.infinity,

@@ -12,7 +12,16 @@ class AuthRegisterController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  RxBool isPasswordVisible = false.obs;
+  void togglePasswordVisible() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
+
   final TextEditingController confirmPasswordController = TextEditingController();
+  RxBool isConfirmPasswordVisible = false.obs;
+  void toggleConfirmPasswordVisible() {
+    isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value;
+  }
 
   Rx<List<String>> typeAccountList = Rx<List<String>>(['LO', 'SLO', 'AM']);
   Rx<String?> pickTypeAccount = Rx<String?>("LO");

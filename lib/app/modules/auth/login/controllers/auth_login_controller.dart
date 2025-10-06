@@ -8,7 +8,12 @@ class AuthLoginController extends GetxController {
   final AuthService _authService = AuthService();
 
   final TextEditingController usernameController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+  RxBool isPasswordVisible = false.obs;
+  void togglePasswordVisible() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
 
   final isLoading = false.obs;
   final RxString message = ''.obs;

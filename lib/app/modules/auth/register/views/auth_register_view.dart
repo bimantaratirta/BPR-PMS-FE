@@ -1,10 +1,10 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
-import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_dropdown.dart';
 import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
@@ -46,7 +46,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 16),
                       Text(
                         "Username",
                         style: Get.textTheme.labelMedium!.copyWith(letterSpacing: 1, fontWeight: FontWeight.w600),
@@ -137,6 +137,14 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         hintText: "Buat password...",
                         controller: controller.passwordController,
                         maxLines: 1,
+                        textInputType: TextInputType.visiblePassword,
+                        obscureText: !controller.isPasswordVisible.value,
+                        suffixIcon: IconButton(
+                          onPressed: () => controller.togglePasswordVisible(),
+                          icon: controller.isPasswordVisible.value
+                              ? SvgPicture.asset(IconAssets.eye, height: 20.h)
+                              : SvgPicture.asset(IconAssets.eyeClosed, height: 20.h),
+                        ),
                         isReadOnly: false,
                         isEnable: true,
                         withInputFormatter: false,
@@ -151,6 +159,14 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         hintText: "Ketikkan ulang password...",
                         controller: controller.confirmPasswordController,
                         maxLines: 1,
+                        textInputType: TextInputType.visiblePassword,
+                        obscureText: !controller.isConfirmPasswordVisible.value,
+                        suffixIcon: IconButton(
+                          onPressed: () => controller.toggleConfirmPasswordVisible(),
+                          icon: controller.isConfirmPasswordVisible.value
+                              ? SvgPicture.asset(IconAssets.eye, height: 20.h)
+                              : SvgPicture.asset(IconAssets.eyeClosed, height: 20.h),
+                        ),
                         isReadOnly: false,
                         isEnable: true,
                         withInputFormatter: false,
