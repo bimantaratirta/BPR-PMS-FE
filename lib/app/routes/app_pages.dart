@@ -47,26 +47,11 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(
-        name: _Paths.HOME,
-        page: () => const HomeView(),
-        binding: HomeBinding()),
-    GetPage(
-        name: _Paths.SPLASH_SCREEN,
-        page: () => const SplashScreenView(),
-        binding: SplashScreenBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.LOGIN,
-        page: () => const AuthLoginView(),
-        binding: AuthLoginBinding()),
-    GetPage(
-        name: _Paths.AUTH + _Paths.REGISTER,
-        page: () => const AuthRegisterView(),
-        binding: AuthRegisterBinding()),
-    GetPage(
-        name: _Paths.MAIN,
-        page: () => const MainView(),
-        binding: MainBinding()),
+    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
+    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
+    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
+    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
@@ -127,25 +112,13 @@ class AppPages {
       name: _Paths.LO,
       page: () => const LoView(),
       binding: LoBinding(),
-      children: [
-        GetPage(
-          name: _Paths.LO_LO_DETAIL,
-          page: () => const LoLoDetailView(),
-          binding: LoLoDetailBinding(),
-        ),
-      ],
+      children: [GetPage(name: _Paths.LO_LO_DETAIL, page: () => const LoLoDetailView(), binding: LoLoDetailBinding())],
     ),
     GetPage(
       name: _Paths.SLO,
       page: () => const SloView(),
       binding: SloBinding(),
-      children: [
-        GetPage(
-          name: _Paths.SLO_SLO_DETAIL,
-          page: () => const SloSloDetailView(),
-          binding: SloSloDetailBinding(),
-        ),
-      ],
+      children: [GetPage(name: _Paths.SLO_SLO_DETAIL, page: () => const SloSloDetailView(), binding: SloSloDetailBinding())],
     ),
   ];
 }

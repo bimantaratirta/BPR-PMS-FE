@@ -34,6 +34,20 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        "Nama",
+                        style: Get.textTheme.labelMedium!.copyWith(letterSpacing: 1, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 8),
+                      BuildCustomTextFormField(
+                        hintText: "Masukkan nama...",
+                        controller: controller.nameController,
+                        maxLines: 1,
+                        isReadOnly: false,
+                        isEnable: true,
+                        withInputFormatter: false,
+                      ),
+                      SizedBox(height: 8),
+                      Text(
                         "Username",
                         style: Get.textTheme.labelMedium!.copyWith(letterSpacing: 1, fontWeight: FontWeight.w600),
                       ),
@@ -97,7 +111,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                                   '',
                               itemDropdown: controller.itemDropdownDistrict.value,
                               onChanged: (value) => {
-                                if (value != null) {controller.selectedItemDropdownDistrict.value = value},
+                                if (value != null) {controller.changeSelectedItemDropdownDistrict(value)},
                               },
                             )
                           : BuildDropdown(

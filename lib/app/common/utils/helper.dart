@@ -19,4 +19,27 @@ class Helper {
       return null;
     }
   }
+
+  List<T> listParser<T>(dynamic response, T Function(Map<String, dynamic>) fromJson) {
+    if (response is List) {
+      try {
+        return response.map((e) => fromJson(e as Map<String, dynamic>)).toList();
+      } catch (e) {
+        print('Error mapping list element (List case): $e');
+        throw Exception('Failed to parse list elements: $e');
+      }
+    }
+
+    if (response is Map<String, dynamic> && response['data'] is List) {
+      try {
+        final rawList = response['data'] as List;
+        return rawList.map((e) => fromJson(e as Map<String, dynamic>)).toList();
+      } catch (e) {
+        print('Error mapping list element (Map case): $e');
+        throw Exception('Failed to parse list elements: $e');
+      }
+    }
+
+    throw Exception('Expected List but got ${response.runtimeType}');
+  }
 }

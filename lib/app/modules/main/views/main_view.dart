@@ -9,8 +9,13 @@ class MainView extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => IndexedStack(index: controller.currentActiveBottomNavigationIndex.value, children: controller.pages)),
+    return WillPopScope(
+      onWillPop: controller.handleWillPop,
+      child: Scaffold(
+        body: Obx(
+          () => IndexedStack(index: controller.currentActiveBottomNavigationIndex.value, children: controller.pages),
+        ),
+      ),
     );
   }
 }

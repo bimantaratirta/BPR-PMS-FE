@@ -5,8 +5,6 @@ import '../controllers/auth_register_controller.dart';
 class AuthRegisterBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AuthRegisterController>(
-      () => AuthRegisterController(),
-    );
+    Get.lazyPut<AuthRegisterController>(() => AuthRegisterController());
   }
 }

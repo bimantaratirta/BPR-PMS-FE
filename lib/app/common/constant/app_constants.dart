@@ -6,6 +6,8 @@ class AppConstants {
   static const String loginEndpoint = "/auth/login";
   static const String meEndpoint = "/auth/me";
   static const String refreshTokenEndpoint = "/auth/refresh-token";
+  static const String branchEndpoint = "/branch";
+  static const String regionEndpoint = "/region";
 
   // Storage Keys
   static const String userKey = "user_data";

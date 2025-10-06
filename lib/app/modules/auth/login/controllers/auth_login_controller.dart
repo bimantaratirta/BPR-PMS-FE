@@ -31,14 +31,12 @@ class AuthLoginController extends GetxController {
 
   Future login(BuildContext context) async {
     try {
-      CustomSnackbar(message: "Loading...", type: CustomSnackbarType.loading).show(context);
       isLoading.value = true;
       message.value = '';
 
       final payload = {"username": usernameController.text, "password": passwordController.text};
       final response = await _authService.login(payload);
 
-      CustomSnackbar.dismiss();
       isLoading.value = false;
 
       if (response.code == 200) {

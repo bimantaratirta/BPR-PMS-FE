@@ -11,30 +11,36 @@ class BuildBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainController = Get.find<MainController>();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: SecondaryColor.white,
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, -5)),
-        ],
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ...mainController.sidebarSettings.asMap().entries.map((entry) {
-                var item = entry.value;
-                return Obx(() {
-                  bool isActive = mainController.currentActiveBottomNavigationIndex.value == item.index;
-                  return BuildBottomNavigationBarItem(isActive: isActive, data: item, index: item.index);
-                });
+    return Obx(() {
+      final items = mainController.sidebarSettings;
+      final activeIndex = mainController.currentActiveBottomNavigationIndex.value;
+
+      return Container(
+        decoration: BoxDecoration(
+          color: SecondaryColor.white,
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.1), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, -5)),
+          ],
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(items.length, (i) {
+                final item = items[i];
+                final isActive = activeIndex == item.index;
+                return BuildBottomNavigationBarItem(
+                  key: ValueKey(item.index),
+                  isActive: isActive,
+                  data: item,
+                  index: item.index,
+                );
               }),
-            ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
