@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
-  final AuthService _authService = AuthService();
+  final AuthService authService = AuthService();
 
   final TextEditingController usernameController = TextEditingController();
 
@@ -31,19 +31,27 @@ class AuthLoginController extends GetxController {
     isFormValid.value = usernameController.text.isNotEmpty && passwordController.text.isNotEmpty;
   }
 
+  @override
+  void onClose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
+
   Future login(BuildContext context) async {
     try {
+      validationErrors.clear();
       isLoading.value = true;
       message.value = '';
 
       final payload = {"username": usernameController.text, "password": passwordController.text};
-      final response = await _authService.login(payload);
+      final response = await authService.login(payload);
 
       isLoading.value = false;
 
       if (response.code == 200) {
         message.value = "Login berhasil!";
-        Get.offNamed(Routes.MAIN);
+        Get.offAllNamed(Routes.MAIN);
       } else if (response.code == 422) {
         Map<String, dynamic>? validationErrorsMap;
 
@@ -75,12 +83,5 @@ class AuthLoginController extends GetxController {
       message.value = e.toString();
       CustomSnackbar(message: message.value, type: CustomSnackbarType.error).show(context);
     }
-  }
-
-  @override
-  void onClose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.onClose();
   }
 }

@@ -39,6 +39,14 @@ class AuthService {
     }
   }
 
+  Future<ApiResponseModel> register(Map<String, dynamic> body) async {
+    try {
+      return await _authRepository.register(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
   Future<ApiResponseModel<UserModel>> me() async {
     try {
       return await _authRepository.me();

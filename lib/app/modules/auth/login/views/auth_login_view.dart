@@ -46,6 +46,18 @@ class AuthLoginView extends GetView<AuthLoginController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['username'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['username'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 16),
                       Text(
                         "Password",
@@ -68,6 +80,18 @@ class AuthLoginView extends GetView<AuthLoginController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['password'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['password'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                   SizedBox(height: 16),

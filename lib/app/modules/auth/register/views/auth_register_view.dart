@@ -14,10 +14,10 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
   const AuthRegisterView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Obx(() {
-          return SingleChildScrollView(
+    return Obx(() {
+      return Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 36, vertical: 75),
               child: Column(
@@ -46,6 +46,18 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['name'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['name'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 16),
                       Text(
                         "Username",
@@ -60,6 +72,18 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['username'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['username'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 16),
                       Text(
                         "Type",
@@ -94,6 +118,18 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                           }).toList(),
                         ),
                       ),
+                      controller.validationErrors['role'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['role'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 16),
                       Text(
                         controller.pickTypeAccount.value == 'AM' ? "Wilayah" : "Kantor",
@@ -149,6 +185,18 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['password'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['password'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 16),
                       Text(
                         "Konfirmasi Password",
@@ -171,34 +219,60 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                         isEnable: true,
                         withInputFormatter: false,
                       ),
+                      controller.validationErrors['password_confirmation'] != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  controller.validationErrors['password_confirmation'] ?? '',
+                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                   SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: MainColor.blueNormal,
-                      disabledBackgroundColor: SecondaryColor.neutral500,
-                      minimumSize: Size(double.infinity, 40),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Daftar",
-                            style: Get.textTheme.labelMedium!.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: SecondaryColor.white,
-                            ),
-                          ),
-                        ],
+                  Obx(() {
+                    final isFormValid = controller.isFormValid.value || true;
+
+                    final VoidCallback? action = (isFormValid && !controller.isLoading.value)
+                        ? () => controller.register(context)
+                        : null;
+                    return ElevatedButton(
+                      onPressed: action,
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: MainColor.blueNormal,
+                        disabledBackgroundColor: SecondaryColor.neutral500,
+                        minimumSize: Size(double.infinity, 40),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                    ),
-                  ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (controller.isLoading.value)
+                              SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: const CircularProgressIndicator(color: SecondaryColor.white, strokeWidth: 2),
+                              )
+                            else
+                              Text(
+                                "Daftar",
+                                style: Get.textTheme.labelMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: SecondaryColor.white,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
                   SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -215,9 +289,9 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                 ],
               ),
             ),
-          );
-        }),
-      ),
-    );
+          ),
+        ),
+      );
+    });
   }
 }
