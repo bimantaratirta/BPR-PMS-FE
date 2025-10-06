@@ -5,128 +5,139 @@ import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-const int AUTH_LOGIN_INDEX = 0;
-const int AUTH_REGISTER_INDEX = 1;
-const int HOME_INDEX = 2;
-const int NASABAH_INDEX = 3;
-const int REPORT_INDEX = 4;
-const int PROFILE_INDEX = 5;
-const int LO_INDEX = 6;
-const int SLO_INDEX = 7;
+import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 
 class MainController extends GetxController {
-  final PageController pageController = PageController();
-  final authController = Get.put<AuthController>(AuthController(), permanent: true);
+  // ---- Dependencies
+  final authController = Get.find<AuthController>();
 
-  var currentActiveBottomNavigationIndex = AUTH_LOGIN_INDEX.obs;
+  // ---- State
+  final RxInt currentIndex = 0.obs;
+  final RxList<BottomNavigationItemModel> sidebarSettings = <BottomNavigationItemModel>[].obs;
+  late Disposer _roleDisposer;
 
-  static const int LOGIN_NAV_ID = 1;
-  static const int REGISTER_NAV_ID = 2;
-  static const int HOME_NAV_ID = 100;
-  static const int NASABAH_NAV_ID = 200;
-  static const int REPORT_NAV_ID = 300;
-  static const int PROFILE_NAV_ID = 400;
-  static const int LO_NAV_ID = 600;
-  static const int SLO_NAV_ID = 700;
+  // Index konstanta
+  static const int HOME_INDEX = 0;
+  static const int NASABAH_INDEX = 1;
+  static const int REPORT_INDEX = 2;
+  static const int PROFILE_INDEX = 3;
+  static const int LO_INDEX = 2; // untuk SLO role, urutan berbeda
+  static const int SLO_INDEX = 2; // untuk AM role, urutan berbeda
 
-  late final List<Widget> pages = [
-    GetRouterOutlet(key: Get.nestedKey(LOGIN_NAV_ID), initialRoute: Routes.AUTH_LOGIN),
-    GetRouterOutlet(key: Get.nestedKey(REGISTER_NAV_ID), initialRoute: Routes.AUTH_REGISTER),
-    GetRouterOutlet(key: Get.nestedKey(HOME_NAV_ID), initialRoute: Routes.HOME),
-    GetRouterOutlet(key: Get.nestedKey(NASABAH_NAV_ID), initialRoute: Routes.NASABAH),
-    GetRouterOutlet(key: Get.nestedKey(REPORT_NAV_ID), initialRoute: Routes.REPORT),
-    GetRouterOutlet(key: Get.nestedKey(PROFILE_NAV_ID), initialRoute: Routes.PROFILE),
-    GetRouterOutlet(key: Get.nestedKey(LO_NAV_ID), initialRoute: Routes.LO),
-    GetRouterOutlet(key: Get.nestedKey(SLO_NAV_ID), initialRoute: Routes.SLO),
-  ];
+  // ====== ROUTE MAPS per role (child dari /main) ======
+  // Urutan list = urutan tab di bottom nav untuk role tsb.
+  List<String> _routesForRole(UserRole? role) {
+    switch (role) {
+      case UserRole.lo:
+        // [Home, Nasabah, Report, Profile]
+        return [Routes.HOME, Routes.NASABAH, Routes.REPORT, Routes.PROFILE];
+      case UserRole.slo:
+        // [Home, Report, LO, Profile]
+        return [Routes.HOME, Routes.REPORT, Routes.LO, Routes.PROFILE];
+      case UserRole.am:
+        // [Home, Report, SLO, Profile]
+        return [Routes.HOME, Routes.REPORT, Routes.SLO, Routes.PROFILE];
+      default:
+        return [];
+    }
+  }
 
-  List<BottomNavigationItemModel> get sidebarSettings {
+  // ====== BUILD SIDEBAR (BOTTOM NAV) ITEMS SESUAI ROLE ======
+  List<BottomNavigationItemModel> _buildItems(UserRole? role) {
     final items = <BottomNavigationItemModel>[];
 
+    // Home selalu ada
     items.add(
       BottomNavigationItemModel(
-        onTap: () => changePage(HOME_INDEX),
-        index: HOME_INDEX,
+        onTap: () => changePage(0),
+        index: 0,
         iconPath: IconAssets.home,
         iconColor: MainColor.blueNormal,
-        label: "Beranda",
+        label: 'Beranda',
         labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
       ),
     );
 
-    switch (authController.pickRole.value) {
+    // Middle items berdasarkan role
+    switch (role) {
       case UserRole.lo:
+        // [Nasabah, Laporan]
         items.addAll([
           BottomNavigationItemModel(
-            onTap: () => changePage(NASABAH_INDEX),
-            index: NASABAH_INDEX,
+            onTap: () => changePage(1),
+            index: 1,
             iconPath: IconAssets.nasabah,
             iconColor: MainColor.blueNormal,
-            label: "Nasabah",
+            label: 'Nasabah',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
           BottomNavigationItemModel(
-            onTap: () => changePage(REPORT_INDEX),
-            index: REPORT_INDEX,
+            onTap: () => changePage(2),
+            index: 2,
             iconPath: IconAssets.report,
             iconColor: MainColor.blueNormal,
-            label: "Laporan",
+            label: 'Laporan',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
         ]);
         break;
+
       case UserRole.slo:
+        // [Laporan, LO]
         items.addAll([
           BottomNavigationItemModel(
-            onTap: () => changePage(REPORT_INDEX),
-            index: REPORT_INDEX,
+            onTap: () => changePage(1),
+            index: 1,
             iconPath: IconAssets.report,
             iconColor: MainColor.blueNormal,
-            label: "Laporan",
+            label: 'Laporan',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
           BottomNavigationItemModel(
-            onTap: () => changePage(LO_INDEX),
-            index: LO_INDEX,
+            onTap: () => changePage(2),
+            index: 2,
             iconPath: IconAssets.peopleDocument,
             iconColor: MainColor.blueNormal,
-            label: "LO",
+            label: 'LO',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
         ]);
         break;
+
       case UserRole.am:
+        // [Laporan, SLO]
         items.addAll([
           BottomNavigationItemModel(
-            onTap: () => changePage(REPORT_INDEX),
-            index: REPORT_INDEX,
+            onTap: () => changePage(1),
+            index: 1,
             iconPath: IconAssets.report,
             iconColor: MainColor.blueNormal,
-            label: "Laporan",
+            label: 'Laporan',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
           BottomNavigationItemModel(
-            onTap: () => changePage(SLO_INDEX),
-            index: SLO_INDEX,
+            onTap: () => changePage(2),
+            index: 2,
             iconPath: IconAssets.peopleDocument,
             iconColor: MainColor.blueNormal,
-            label: "SLO",
+            label: 'SLO',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
         ]);
         break;
+
       default:
         break;
     }
 
+    // Profile selalu ada
     items.add(
       BottomNavigationItemModel(
-        onTap: () => changePage(PROFILE_INDEX),
-        index: PROFILE_INDEX,
+        onTap: () => changePage(3),
+        index: 3,
         iconPath: IconAssets.profile,
         iconColor: MainColor.blueNormal,
-        label: "Profil",
+        label: 'Profil',
         labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
       ),
     );
@@ -134,16 +145,71 @@ class MainController extends GetxController {
     return items;
   }
 
+  // ====== NAVIGASI ANTAR TAB ======
   void changePage(int index) {
-    currentActiveBottomNavigationIndex.value = index;
+    final role = authController.pickRole.value;
+    final routes = _routesForRole(role);
+
+    // clamp index jika out of range
+    final safeIndex = index.clamp(0, routes.length - 1);
+    if (currentIndex.value == safeIndex) return;
+
+    currentIndex.value = safeIndex;
+    final childPath = routes[safeIndex]; // contoh: Routes.HOME, Routes.NASABAH, dst.
+
+    print("childPath: $childPath");
+
+    Get.rootDelegate.toNamed('${Routes.MAIN}$childPath');
   }
 
-  Future<bool> handleWillPop() async {
-    final canPop = Get.rootDelegate.navigatorKey.currentState?.canPop() ?? false;
-    if (canPop) {
-      Get.rootDelegate.popRoute();
-      return false;
+  // Panggil ini setelah login jika perlu
+  void navigateToHome() {
+    currentIndex.value = 0; // Home
+    Get.rootDelegate.offNamed('${Routes.MAIN}${Routes.HOME}');
+  }
+
+  // Sinkronkan index saat deep-link / refresh web mengarah ke child tertentu
+  void syncIndexFromLocation() {
+    final role = authController.pickRole.value;
+    final routes = _routesForRole(role);
+
+    final location = Get.rootDelegate.currentConfiguration?.location ?? '';
+    // location contoh: /main/home, /main/report, ...
+    final matched = routes.indexWhere((r) => location.endsWith(r));
+    if (matched != -1) {
+      currentIndex.value = matched;
+    } else {
+      // fallback ke Home
+      currentIndex.value = 0;
     }
-    return true;
+  }
+
+  // ====== Lifecycle ======
+  @override
+  void onInit() {
+    super.onInit();
+
+    final role = authController.pickRole.value;
+    sidebarSettings.assignAll(_buildItems(role));
+
+    // Simpan disposer yang dikembalikan oleh ever()
+    _roleDisposer = ever(authController.pickRole, (UserRole? newRole) {
+      final newItems = _buildItems(newRole);
+      sidebarSettings.assignAll(newItems);
+
+      final routes = _routesForRole(newRole);
+      if (currentIndex.value >= routes.length) {
+        currentIndex.value = 0;
+      }
+      final childPath = routes[currentIndex.value];
+
+      Get.rootDelegate.offNamed('${Routes.MAIN}$childPath');
+    });
+
+    syncIndexFromLocation();
+  }
+
+  void stopListeners() {
+    _roleDisposer();
   }
 }

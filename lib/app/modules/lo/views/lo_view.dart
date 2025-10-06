@@ -32,7 +32,7 @@ class LoView extends GetView<LoController> {
           child: IconButton(
             icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
             onPressed: () {
-              mainController.changePage(HOME_INDEX);
+              mainController.navigateToHome();
             },
           ),
         ),

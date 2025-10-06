@@ -4,16 +4,18 @@ import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BuildBottomNavigationBar extends StatelessWidget {
+class BuildBottomNavigationBar extends GetView<MainController> {
   const BuildBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mainController = Get.find<MainController>();
+    if (!Get.isRegistered<MainController>()) {
+      return const SizedBox.shrink();
+    }
 
     return Obx(() {
-      final items = mainController.sidebarSettings;
-      final activeIndex = mainController.currentActiveBottomNavigationIndex.value;
+      final items = controller.sidebarSettings;
+      final activeIndex = controller.currentIndex.value;
 
       return Container(
         decoration: BoxDecoration(

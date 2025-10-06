@@ -34,7 +34,7 @@ class NasabahView extends GetView<NasabahController> {
           child: IconButton(
             icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
             onPressed: () {
-              mainController.changePage(HOME_INDEX);
+              mainController.navigateToHome();
             },
           ),
         ),

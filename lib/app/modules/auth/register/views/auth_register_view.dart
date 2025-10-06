@@ -191,7 +191,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                       GestureDetector(
                         child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
                         onTap: () {
-                          Get.find<MainController>().changePage(AUTH_LOGIN_INDEX);
+                          Get.back();
                         },
                       ),
                     ],

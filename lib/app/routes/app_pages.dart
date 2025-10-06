@@ -51,74 +51,61 @@ class AppPages {
     GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
     GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
     GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
-    GetPage(name: _Paths.MAIN, page: () => const MainView(), binding: MainBinding()),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
+      name: _Paths.MAIN,
+      page: () => const MainView(),
+      binding: MainBinding(),
       children: [
         GetPage(
-          name: _Paths.PROFILE_PROFILE_CHANGE_PASSWORD,
-          page: () => const ProfileProfileChangePasswordView(),
-          binding: ProfileProfileChangePasswordBinding(),
+          name: _Paths.PROFILE,
+          page: () => const ProfileView(),
+          binding: ProfileBinding(),
+          children: [
+            GetPage(
+              name: "/change-password",
+              page: () => const ProfileProfileChangePasswordView(),
+              binding: ProfileProfileChangePasswordBinding(),
+            ),
+            GetPage(name: "/detail", page: () => const ProfileProfileDetailView(), binding: ProfileProfileDetailBinding()),
+          ],
         ),
         GetPage(
-          name: _Paths.PROFILE_PROFILE_DETAIL,
-          page: () => const ProfileProfileDetailView(),
-          binding: ProfileProfileDetailBinding(),
+          name: _Paths.NASABAH,
+          page: () => const NasabahView(),
+          binding: NasabahBinding(),
+          children: [
+            GetPage(name: "/create", page: () => const NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding()),
+            GetPage(name: '/:id', page: () => const NasabahNasabahDetailView(), binding: NasabahNasabahDetailBinding()),
+            GetPage(
+              name: '/:id/report',
+              page: () => const NasabahNasabahCreateReportView(),
+              binding: NasabahNasabahCreateReportBinding(),
+            ),
+
+            GetPage(name: '/:id/edit', page: () => const NasabahNasabahEditView(), binding: NasabahNasabahEditBinding()),
+          ],
+        ),
+        GetPage(
+          name: _Paths.REPORT,
+          page: () => const ReportView(),
+          binding: ReportBinding(),
+          children: [
+            GetPage(name: "/:id", page: () => const ReportReportDetailView(), binding: ReportReportDetailBinding()),
+          ],
+        ),
+        GetPage(
+          name: _Paths.LO,
+          page: () => const LoView(),
+          binding: LoBinding(),
+          children: [GetPage(name: "/:id", page: () => const LoLoDetailView(), binding: LoLoDetailBinding())],
+        ),
+        GetPage(
+          name: _Paths.SLO,
+          page: () => const SloView(),
+          binding: SloBinding(),
+          children: [GetPage(name: "/:id", page: () => const SloSloDetailView(), binding: SloSloDetailBinding())],
         ),
       ],
-    ),
-    GetPage(
-      name: _Paths.NASABAH,
-      page: () => const NasabahView(),
-      binding: NasabahBinding(),
-      children: [
-        GetPage(
-          name: _Paths.NASABAH_NASABAH_DETAIL,
-          page: () => const NasabahNasabahDetailView(),
-          binding: NasabahNasabahDetailBinding(),
-        ),
-        GetPage(
-          name: _Paths.NASABAH_NASABAH_CREATE,
-          page: () => const NasabahNasabahCreateView(),
-          binding: NasabahNasabahCreateBinding(),
-        ),
-        GetPage(
-          name: _Paths.NASABAH_NASABAH_CREATE_REPORT,
-          page: () => const NasabahNasabahCreateReportView(),
-          binding: NasabahNasabahCreateReportBinding(),
-        ),
-        GetPage(
-          name: _Paths.NASABAH_NASABAH_EDIT,
-          page: () => const NasabahNasabahEditView(),
-          binding: NasabahNasabahEditBinding(),
-        ),
-      ],
-    ),
-    GetPage(
-      name: _Paths.REPORT,
-      page: () => const ReportView(),
-      binding: ReportBinding(),
-      children: [
-        GetPage(
-          name: _Paths.REPORT_REPORT_DETAIL,
-          page: () => const ReportReportDetailView(),
-          binding: ReportReportDetailBinding(),
-        ),
-      ],
-    ),
-    GetPage(
-      name: _Paths.LO,
-      page: () => const LoView(),
-      binding: LoBinding(),
-      children: [GetPage(name: _Paths.LO_LO_DETAIL, page: () => const LoLoDetailView(), binding: LoLoDetailBinding())],
-    ),
-    GetPage(
-      name: _Paths.SLO,
-      page: () => const SloView(),
-      binding: SloBinding(),
-      children: [GetPage(name: _Paths.SLO_SLO_DETAIL, page: () => const SloSloDetailView(), binding: SloSloDetailBinding())],
     ),
   ];
 }

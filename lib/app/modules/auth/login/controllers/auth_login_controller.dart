@@ -1,14 +1,11 @@
 import 'package:bpr_pms/app/data/modules/auth/auth_service.dart';
-import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
-import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
   final AuthService _authService = AuthService();
-
-  final MainController _mainController = Get.find<MainController>();
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -41,7 +38,7 @@ class AuthLoginController extends GetxController {
 
       if (response.code == 200) {
         message.value = "Login berhasil!";
-        _mainController.changePage(HOME_INDEX);
+        Get.offNamed(Routes.MAIN);
       } else if (response.code == 422) {
         Map<String, dynamic>? validationErrorsMap;
 
