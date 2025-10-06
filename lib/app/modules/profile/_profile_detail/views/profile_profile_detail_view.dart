@@ -89,9 +89,17 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 8),
-                                Text(
-                                  controller.validationErrors['name'] ?? '',
-                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 25, right: 25),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: Get.size.width * 0.22),
+                                      Text(
+                                        controller.validationErrors['name'] ?? '',
+                                        style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             )
@@ -135,9 +143,17 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 8),
-                                Text(
-                                  controller.validationErrors['username'] ?? '',
-                                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 25, right: 25),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: Get.size.width * 0.22),
+                                      Text(
+                                        controller.validationErrors['username'] ?? '',
+                                        style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             )
