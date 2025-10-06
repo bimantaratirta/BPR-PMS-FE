@@ -21,8 +21,8 @@ class ProfileProfileDetailController extends GetxController {
       usernameController.text = user.username ?? '';
       typeController.text = user.role ?? '';
       supervisorController.text = user.supervisor?.name ?? '';
-      officeController.text = user.region?.region ?? '';
-      districtController.text = user.branch?.branch ?? '';
+      officeController.text = user.branch?.branch ?? '';
+      districtController.text = user.region?.region ?? '';
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +13,8 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
   const ProfileProfileDetailView({super.key});
   @override
   Widget build(BuildContext context) {
+    final AuthController authController = Get.find<AuthController>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -141,72 +144,98 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: Get.size.width * 0.2,
-                              child: Text(
-                                "Supervisor",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                            SizedBox(width: Get.size.width * 0.02),
-                            Expanded(
-                              child: TextField(
-                                readOnly: true,
-                                enabled: false,
-                                controller: controller.supervisorController,
-                                decoration: InputDecoration(
-                                  hintText: "Masukkan Supervisor...",
-                                  hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
-                                  border: InputBorder.none,
-                                  isDense: true,
+                    authController.pickRole.value != UserRole.am
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: SecondaryColor.neutral100,
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                style: Get.textTheme.labelMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: Get.size.width * 0.2,
-                              child: Text(
-                                "Cabang",
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                            SizedBox(width: Get.size.width * 0.02),
-                            Expanded(
-                              child: TextField(
-                                readOnly: true,
-                                enabled: false,
-                                controller: controller.officeController,
-                                decoration: InputDecoration(
-                                  hintText: "Masukkan Cabang...",
-                                  hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
-                                  border: InputBorder.none,
-                                  isDense: true,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: Get.size.width * 0.2,
+                                        child: Text(
+                                          "Supervisor",
+                                          style: Get.textTheme.labelMedium!.copyWith(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: Get.size.width * 0.02),
+                                      Expanded(
+                                        child: TextField(
+                                          readOnly: true,
+                                          enabled: false,
+                                          controller: controller.supervisorController,
+                                          decoration: InputDecoration(
+                                            hintText: "Masukkan Supervisor...",
+                                            hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
+                                            border: InputBorder.none,
+                                            isDense: true,
+                                          ),
+                                          style: Get.textTheme.labelMedium,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                style: Get.textTheme.labelMedium,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
+                    authController.pickRole.value != UserRole.am
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: SecondaryColor.neutral100,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: Get.size.width * 0.2,
+                                        child: Text(
+                                          "Cabang",
+                                          style: Get.textTheme.labelMedium!.copyWith(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: Get.size.width * 0.02),
+                                      Expanded(
+                                        child: TextField(
+                                          readOnly: true,
+                                          enabled: false,
+                                          controller: controller.officeController,
+                                          decoration: InputDecoration(
+                                            hintText: "Masukkan Cabang...",
+                                            hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
+                                            border: InputBorder.none,
+                                            isDense: true,
+                                          ),
+                                          style: Get.textTheme.labelMedium,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
                     SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),

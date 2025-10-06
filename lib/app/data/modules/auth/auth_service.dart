@@ -14,7 +14,7 @@ class AuthService {
   Future<ApiResponseModel<LoginResponseModel>> login(Map<String, dynamic> body) async {
     try {
       final response = await _authRepository.login(body);
-      if (response.code == 200 && response.data != null) {
+      if ((response.code == 200 || response.code == 201) && response.data != null) {
         if (response.data is LoginResponseModel) {
           if (response.data?.token != null &&
               response.data?.token?.accessToken != null &&
