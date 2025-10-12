@@ -157,8 +157,6 @@ class MainController extends GetxController {
     currentIndex.value = safeIndex;
     final childPath = routes[safeIndex]; // contoh: Routes.HOME, Routes.NASABAH, dst.
 
-    print("childPath: $childPath");
-
     Get.rootDelegate.toNamed('${Routes.MAIN}$childPath');
   }
 

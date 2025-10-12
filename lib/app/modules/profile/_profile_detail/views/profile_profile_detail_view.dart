@@ -1,6 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
+import 'package:bpr_pms/app/widgets/build_validation_error_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -84,26 +85,10 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                           ),
                         ),
                       ),
-                      controller.validationErrors['name'] != null
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 8),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25, right: 25),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: Get.size.width * 0.22),
-                                      Text(
-                                        controller.validationErrors['name'] ?? '',
-                                        style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
+                      BuildValidationErrorText(
+                        errorMessage: controller.validationErrors['name'],
+                        alignmentWidth: Get.size.width * 0.22,
+                      ),
                       SizedBox(height: 10),
                       Container(
                         decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
@@ -138,26 +123,10 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                           ),
                         ),
                       ),
-                      controller.validationErrors['username'] != null
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 8),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25, right: 25),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: Get.size.width * 0.22),
-                                      Text(
-                                        controller.validationErrors['username'] ?? '',
-                                        style: Get.textTheme.bodySmall!.copyWith(color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
+                      BuildValidationErrorText(
+                        errorMessage: controller.validationErrors['username'],
+                        alignmentWidth: Get.size.width * 0.22,
+                      ),
                       SizedBox(height: 10),
                       Container(
                         decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),

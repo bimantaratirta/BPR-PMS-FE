@@ -1,10 +1,9 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_create/bindings/nasabah_nasabah_create_binding.dart';
-import 'package:bpr_pms/app/modules/nasabah/_nasabah_create/views/nasabah_nasabah_create_view.dart';
 import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/bindings/nasabah_nasabah_detail_binding.dart';
 import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/views/nasabah_nasabah_detail_view.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,7 +90,7 @@ class NasabahView extends GetView<NasabahController> {
                   SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding());
+                      Get.toNamed(Routes.nasabahCreate());
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -131,6 +130,13 @@ class NasabahView extends GetView<NasabahController> {
                 onRefresh: () => controller.getAllCustomer(context),
                 child: controller.isLoading.value
                     ? Center(child: CircularProgressIndicator())
+                    : controller.customersData.value.isEmpty
+                    ? Center(
+                        child: Text(
+                          "Data Nasabah Kosong",
+                          style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                        ),
+                      )
                     : ListView.builder(
                         padding: EdgeInsets.only(bottom: 90),
                         itemCount: controller.customersData.value.length,
@@ -208,7 +214,7 @@ class NasabahView extends GetView<NasabahController> {
                                     SizedBox(height: 12),
                                     GestureDetector(
                                       onTap: () {
-                                        Get.to(() => NasabahNasabahDetailView(), binding: NasabahNasabahDetailBinding());
+                                        Get.toNamed(Routes.nasabahDetail(data.id ?? ""));
                                       },
                                       child: Align(
                                         alignment: Alignment.center,

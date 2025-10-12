@@ -59,7 +59,10 @@ class BuildDropdown extends StatelessWidget {
             hintText,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.normal, color: MainColor.blueNormal),
+            style: Get.textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.normal,
+              color: onChanged == null ? MainColor.blueNormal : SecondaryColor.neutral500,
+            ),
           ),
           items: itemDropdown.map((item) {
             return DropdownMenuItem<String>(
@@ -85,7 +88,10 @@ class BuildDropdown extends StatelessWidget {
                       label,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.normal, color: MainColor.blueNormal),
+                      style: Get.textTheme.labelMedium!.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: onChanged != null ? MainColor.blueNormal : SecondaryColor.neutral500,
+                      ),
                     ),
                   ),
                 ],
@@ -98,7 +104,7 @@ class BuildDropdown extends StatelessWidget {
             height: buttonHeight ?? 40.h,
             padding: buttonPadding ?? const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
-              color: buttonBackgroundColor ?? MainColor.blueLight,
+              color: onChanged != null ? buttonBackgroundColor ?? MainColor.blueLight : SecondaryColor.neutral200,
               borderRadius: BorderRadius.circular(radius),
               border: Border.all(color: nonFocusColor, width: bw),
             ),

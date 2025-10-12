@@ -81,7 +81,6 @@ class AppPages {
               page: () => const NasabahNasabahCreateReportView(),
               binding: NasabahNasabahCreateReportBinding(),
             ),
-
             GetPage(name: '/:id/edit', page: () => const NasabahNasabahEditView(), binding: NasabahNasabahEditBinding()),
           ],
         ),

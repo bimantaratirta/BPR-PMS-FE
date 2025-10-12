@@ -8,6 +8,7 @@ class NasabahController extends GetxController {
   final CustomerService customerService = CustomerService();
 
   final TextEditingController searchController = TextEditingController();
+  final RxString searchQuery = ''.obs;
 
   final Rx<List<CustomerModel>> customersData = Rx<List<CustomerModel>>([]);
   final isLoading = false.obs;
@@ -17,6 +18,14 @@ class NasabahController extends GetxController {
   void onInit() {
     super.onInit();
     getAllCustomer(Get.context!);
+
+    searchController.addListener(() {
+      searchQuery.value = searchController.text;
+    });
+
+    debounce(searchQuery, (_) async {
+      await getAllCustomer(Get.context!);
+    }, time: const Duration(milliseconds: 1000));
   }
 
   @override
@@ -30,7 +39,9 @@ class NasabahController extends GetxController {
       isLoading.value = true;
       message.value = '';
 
-      final response = await customerService.getAllCustomer();
+      final params = {'search': searchController.text.trim()};
+
+      final response = await customerService.getAllCustomer(params);
 
       isLoading.value = false;
 
