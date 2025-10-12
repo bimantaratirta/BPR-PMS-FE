@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-ApiResponseModel<T> apiResponseModelFromJson<T>(String str, T Function(Map<String, dynamic>) fromJsonT) =>
+ApiResponseModel<T> apiResponseModelFromJson<T>(String str, T Function(dynamic) fromJsonT) =>
     ApiResponseModel.fromJson(json.decode(str), fromJsonT);
 
 String apiResponseModelToJson<T>(ApiResponseModel<T> data, Map<String, dynamic> Function(T) toJsonT) =>
@@ -17,14 +17,16 @@ class ApiResponseModel<T> {
 
   ApiResponseModel({this.code, this.status, this.message, this.pagination, this.data, this.errors, this.error});
 
-  factory ApiResponseModel.fromJson(Map<String, dynamic> json, T Function(Map<String, dynamic>) fromJsonT) {
+  factory ApiResponseModel.fromJson(Map<String, dynamic> json, T Function(dynamic) fromJsonT) {
     final rawData = json["data"];
 
     T? parsedData;
-    if (rawData != null && rawData is Map<String, dynamic>) {
-      parsedData = fromJsonT(rawData);
-    } else {
-      parsedData = null;
+    if (rawData != null) {
+      try {
+        parsedData = fromJsonT(rawData);
+      } catch (e) {
+        parsedData = null;
+      }
     }
 
     return ApiResponseModel<T>(

@@ -1,4 +1,5 @@
 import 'package:bpr_pms/app/data/modules/user/models/user_model.dart';
+import 'package:bpr_pms/app/data/storage/storage_client.dart';
 import 'package:get/get.dart';
 
 enum UserRole {
@@ -23,9 +24,15 @@ enum UserRole {
 class AuthController extends GetxController {
   Rx<UserModel?> user = Rx<UserModel?>(null);
   Rx<List<UserRole>> roles = Rx<List<UserRole>>([UserRole.lo, UserRole.slo, UserRole.am]);
-  Rx<UserRole?> pickRole = Rx<UserRole?>(UserRole.am);
+  Rx<UserRole?> pickRole = Rx<UserRole?>(null);
 
   void changePickRole(UserRole? value) {
     pickRole.value = value;
+  }
+
+  Future<void> logout() async {
+    user.value = null;
+    pickRole.value = null;
+    await StorageClient.clearSession();
   }
 }

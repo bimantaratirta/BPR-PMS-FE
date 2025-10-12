@@ -22,7 +22,8 @@ class ApiClient {
   }
 
   Future<ApiResponseModel<T>> _responseHandler<T>(Response response, ApiParams<T> param) async {
-    final jsonString = response.data is String ? response.data : json.encode(response.data);
+    final jsonBody = response.data is String ? json.decode(response.data) : response.data;
+    final jsonString = json.encode(jsonBody);
 
     try {
       final ApiResponseModel<T> result = apiResponseModelFromJson<T>(jsonString, (jsonMap) => param.fromJson(jsonMap));

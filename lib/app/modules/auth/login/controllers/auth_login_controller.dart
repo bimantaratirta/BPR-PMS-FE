@@ -1,17 +1,19 @@
 import 'package:bpr_pms/app/data/modules/auth/auth_service.dart';
-import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
-import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
-  final AuthService _authService = AuthService();
-
-  final MainController _mainController = Get.find<MainController>();
+  final AuthService authService = AuthService();
 
   final TextEditingController usernameController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+  RxBool isPasswordVisible = false.obs;
+  void togglePasswordVisible() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
 
   final isLoading = false.obs;
   final RxString message = ''.obs;
@@ -29,21 +31,27 @@ class AuthLoginController extends GetxController {
     isFormValid.value = usernameController.text.isNotEmpty && passwordController.text.isNotEmpty;
   }
 
+  @override
+  void onClose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
+
   Future login(BuildContext context) async {
     try {
-      CustomSnackbar(message: "Loading...", type: CustomSnackbarType.loading).show(context);
+      validationErrors.clear();
       isLoading.value = true;
       message.value = '';
 
       final payload = {"username": usernameController.text, "password": passwordController.text};
-      final response = await _authService.login(payload);
+      final response = await authService.login(payload);
 
-      CustomSnackbar.dismiss();
       isLoading.value = false;
 
       if (response.code == 200) {
         message.value = "Login berhasil!";
-        _mainController.changePage(HOME_INDEX);
+        Get.offAllNamed(Routes.MAIN);
       } else if (response.code == 422) {
         Map<String, dynamic>? validationErrorsMap;
 
@@ -75,12 +83,5 @@ class AuthLoginController extends GetxController {
       message.value = e.toString();
       CustomSnackbar(message: message.value, type: CustomSnackbarType.error).show(context);
     }
-  }
-
-  @override
-  void onClose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.onClose();
   }
 }

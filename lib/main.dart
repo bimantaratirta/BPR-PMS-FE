@@ -1,3 +1,5 @@
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,14 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize date formatting for Indonesian locale
+  await initializeDateFormatting('id_ID', null);
+
   // Initialize GetStorage
   await GetStorage.init();
+
+  // Initialize Fixed Controller
+  Get.put(AuthController());
 
   deviceOrientation();
   await ScreenUtil.ensureScreenSize();

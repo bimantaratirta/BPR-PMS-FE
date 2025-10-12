@@ -1,5 +1,4 @@
 part of 'app_pages.dart';
-// DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
 abstract class Routes {
   Routes._();
@@ -9,19 +8,29 @@ abstract class Routes {
   static const AUTH_REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const MAIN = _Paths.MAIN;
   static const PROFILE = _Paths.PROFILE;
-  static const PROFILE_PROFILE_CHANGE_PASSWORD = _Paths.PROFILE_PROFILE_CHANGE_PASSWORD;
-  static const PROFILE_PROFILE_DETAIL = _Paths.PROFILE_PROFILE_DETAIL;
   static const NASABAH = _Paths.NASABAH;
   static const REPORT = _Paths.REPORT;
-  static const REPORT_REPORT_DETAIL = _Paths.REPORT_REPORT_DETAIL;
-  static const NASABAH_NASABAH_DETAIL = _Paths.NASABAH_NASABAH_DETAIL;
-  static const NASABAH_NASABAH_CREATE = _Paths.NASABAH_NASABAH_CREATE;
-  static const NASABAH_NASABAH_CREATE_REPORT = _Paths.NASABAH_NASABAH_CREATE_REPORT;
-  static const NASABAH_NASABAH_EDIT = _Paths.NASABAH_NASABAH_EDIT;
   static const LO = _Paths.LO;
   static const SLO = _Paths.SLO;
-  static const LO_LO_DETAIL = _Paths.LO_LO_DETAIL;
-  static const SLO_SLO_DETAIL = _Paths.SLO_SLO_DETAIL;
+
+  // Nasabah Nested Routes
+  static String nasabahDetail(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id';
+  static String nasabahEdit(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id/edit';
+  static String nasabahReport(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id/report';
+  static String nasabahCreate() => '${_Paths.MAIN}${_Paths.NASABAH}/create';
+
+  // Profile Nested Routes
+  static String profileDetail() => '${_Paths.MAIN}${_Paths.PROFILE}/detail';
+  static String profileChangePassword() => '${_Paths.MAIN}${_Paths.PROFILE}/change-password';
+
+  // Report Nested Routes
+  static String reportDetail(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id';
+
+  // LO Nested Routes
+  static String loDetail(String id) => '${_Paths.MAIN}${_Paths.LO}/$id';
+
+  // SLO Nested Routes
+  static String sloDetail(String id) => '${_Paths.MAIN}${_Paths.SLO}/$id';
 }
 
 abstract class _Paths {
@@ -33,17 +42,8 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const MAIN = '/main';
   static const PROFILE = '/profile';
-  static const PROFILE_PROFILE_CHANGE_PASSWORD = '/profile-change-password';
-  static const PROFILE_PROFILE_DETAIL = '/profile-detail';
   static const NASABAH = '/nasabah';
   static const REPORT = '/report';
-  static const REPORT_REPORT_DETAIL = '/report-detail';
-  static const NASABAH_NASABAH_DETAIL = '/nasabah-detail';
-  static const NASABAH_NASABAH_CREATE = '/nasabah-create';
-  static const NASABAH_NASABAH_CREATE_REPORT = '/nasabah-create-report';
-  static const NASABAH_NASABAH_EDIT = '/nasabah-edit';
   static const LO = '/lo';
   static const SLO = '/slo';
-  static const LO_LO_DETAIL = '/lo-detail';
-  static const SLO_SLO_DETAIL = '/slo-detail';
 }

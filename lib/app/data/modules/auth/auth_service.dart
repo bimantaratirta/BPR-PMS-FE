@@ -14,7 +14,7 @@ class AuthService {
   Future<ApiResponseModel<LoginResponseModel>> login(Map<String, dynamic> body) async {
     try {
       final response = await _authRepository.login(body);
-      if (response.code == 200 && response.data != null) {
+      if ((response.code == 200 || response.code == 201) && response.data != null) {
         if (response.data is LoginResponseModel) {
           if (response.data?.token != null &&
               response.data?.token?.accessToken != null &&
@@ -39,9 +39,33 @@ class AuthService {
     }
   }
 
+  Future<ApiResponseModel> register(Map<String, dynamic> body) async {
+    try {
+      return await _authRepository.register(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
   Future<ApiResponseModel<UserModel>> me() async {
     try {
       return await _authRepository.me();
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel> updateProfile(Map<String, dynamic> body) async {
+    try {
+      final response = await _authRepository.updateProfile(body);
+      if (response.code == 200 || response.code == 201) {
+        final meResponse = await me();
+        if ((meResponse.code == 200 || meResponse.code == 201) && meResponse.data != null) {
+          _authController.user.value = meResponse.data;
+          _authController.user.refresh();
+        }
+      }
+      return response;
     } catch (e) {
       return ApiResponseModel(error: e.toString());
     }

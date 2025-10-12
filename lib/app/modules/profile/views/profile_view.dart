@@ -118,7 +118,7 @@ class ProfileView extends GetView<ProfileController> {
                       SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {
-                          // Handle tap
+                          controller.handleLogout();
                         },
                         child: Container(
                           decoration: BoxDecoration(

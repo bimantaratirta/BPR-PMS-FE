@@ -1,3 +1,4 @@
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,8 +10,12 @@ class MainView extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => IndexedStack(index: controller.currentActiveBottomNavigationIndex.value, children: controller.pages)),
+    return WillPopScope(
+      onWillPop: () async {
+        final didPop = await Get.rootDelegate.popRoute();
+        return !didPop;
+      },
+      child: Scaffold(body: GetRouterOutlet(initialRoute: Routes.HOME)),
     );
   }
 }

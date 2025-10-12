@@ -1,23 +1,16 @@
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
+import 'package:bpr_pms/app/modules/main/controllers/main_controller.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  final AuthController authController = Get.find<AuthController>();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void handleLogout() async {
+    final mainController = Get.find<MainController>();
+    mainController.stopListeners();
+    await authController.logout();
+    Get.delete<MainController>(force: true);
+    Get.offAllNamed(Routes.AUTH_LOGIN);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

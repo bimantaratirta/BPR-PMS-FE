@@ -88,43 +88,66 @@ class HomeView extends GetView<HomeController> {
                                     authController.user.value?.role ?? '-',
                                     style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70),
                                   ),
-                                  Divider(color: Colors.white30, height: 20),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Column(
+                                  authController.pickRole.value != UserRole.am
+                                      ? Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'SLO',
-                                              style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70, fontSize: 12),
-                                            ),
-                                            Text(
-                                              authController.user.value?.supervisor?.name ?? '-',
-                                              style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 14),
+                                            Divider(color: Colors.white30, height: 20),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        authController.pickRole.value == UserRole.lo
+                                                            ? "SLO"
+                                                            : authController.pickRole.value == UserRole.slo
+                                                            ? "AM"
+                                                            : "-",
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          color: Colors.white70,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        authController.user.value?.supervisor?.name ?? '-',
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(width: 1, height: 30, color: Colors.white30),
+                                                SizedBox(width: 15),
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        'Kantor',
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          color: Colors.white70,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        authController.user.value?.branch?.branch ?? '-',
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
-                                        ),
-                                      ),
-                                      Container(width: 1, height: 30, color: Colors.white30),
-                                      SizedBox(width: 15),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Kantor',
-                                              style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70, fontSize: 12),
-                                            ),
-                                            Text(
-                                              authController.user.value?.branch?.branch ?? '-',
-                                              style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 14),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                        )
+                                      : const SizedBox.shrink(),
                                 ],
                               ),
                             ),

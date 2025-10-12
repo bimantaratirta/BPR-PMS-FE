@@ -16,9 +16,17 @@ class AuthRepository {
     );
   }
 
+  Future<ApiResponseModel> register(Map<String, dynamic> body) async {
+    return await apiClient.post(ApiParams(path: AppConstants.registerEndpoint, body: body, fromJson: (json) => null));
+  }
+
   Future<ApiResponseModel<UserModel>> me() async {
     return await apiClient.get(
       ApiParams<UserModel>(path: AppConstants.meEndpoint, fromJson: (json) => UserModel.fromJson(json)),
     );
+  }
+
+  Future<ApiResponseModel> updateProfile(Map<String, dynamic> body) async {
+    return await apiClient.put(ApiParams(path: AppConstants.meEndpoint, body: body, fromJson: (json) => null));
   }
 }
