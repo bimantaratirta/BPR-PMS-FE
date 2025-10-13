@@ -18,6 +18,12 @@ class ReportRepository {
     );
   }
 
+  Future<ApiResponseModel<ReportModel>> getReportById(String id) async {
+    return await apiClient.get(
+      ApiParams(path: "${AppConstants.reportEndpoint}/$id", fromJson: (json) => ReportModel.fromJson(json)),
+    );
+  }
+
   Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
     return await apiClient.post(
       ApiParams(

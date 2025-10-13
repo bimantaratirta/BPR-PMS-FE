@@ -17,6 +17,14 @@ class ReportService {
     }
   }
 
+  Future<ApiResponseModel<ReportModel>> getReportById(String id) async {
+    try {
+      return await _reportRepository.getReportById(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
   Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
     try {
       return await _reportRepository.createReport(body);
