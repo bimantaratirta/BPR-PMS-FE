@@ -9,6 +9,15 @@ import 'package:dio/dio.dart';
 class ReportRepository {
   final Helper helper = Helper();
 
+  Future<ApiResponseModel<List<ReportModel>>> getAllReport(String paramsEncoded) async {
+    return await apiClient.get(
+      ApiParams<List<ReportModel>>(
+        path: "${AppConstants.reportEndpoint}$paramsEncoded",
+        fromJson: (json) => helper.listParser(json, ReportModel.fromJson),
+      ),
+    );
+  }
+
   Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
     return await apiClient.post(
       ApiParams(
