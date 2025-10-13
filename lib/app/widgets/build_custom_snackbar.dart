@@ -110,7 +110,7 @@ class _SnackbarOverlayState extends State<_SnackbarOverlay> with SingleTickerPro
             child: FadeTransition(
               opacity: _controller,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.6,
                 decoration: BoxDecoration(color: SecondaryColor.blackCharcoal, borderRadius: BorderRadius.circular(50)),
                 padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -126,7 +126,7 @@ class _SnackbarOverlayState extends State<_SnackbarOverlay> with SingleTickerPro
                       child: Text(
                         widget.message,
                         textAlign: TextAlign.center,
-                        style: Get.textTheme.labelLarge!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
+                        style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
