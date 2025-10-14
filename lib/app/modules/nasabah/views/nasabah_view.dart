@@ -124,120 +124,172 @@ class NasabahView extends GetView<NasabahController> {
             ),
             SizedBox(height: Get.size.height * 0.02),
             Expanded(
-              child: RefreshIndicator(
-                onRefresh: () => controller.getAllCustomer(context),
-                child: controller.isLoading.value
-                    ? Center(child: CircularProgressIndicator())
-                    : controller.customersData.value.isEmpty
-                    ? Center(
-                        child: Text(
-                          "Data Nasabah Kosong",
-                          style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
-                        ),
-                      )
-                    : ListView.builder(
-                        padding: EdgeInsets.only(bottom: 90),
-                        itemCount: controller.customersData.value.length,
-                        itemBuilder: (context, index) {
-                          final data = controller.customersData.value[index];
+              child: controller.isLoading.value
+                  ? Center(child: CircularProgressIndicator())
+                  : controller.customersData.value.isEmpty
+                  ? Center(
+                      child: Text(
+                        "Data Nasabah Kosong",
+                        style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                      ),
+                    )
+                  : NotificationListener<ScrollNotification>(
+                      onNotification: (ScrollNotification scrollInfo) {
+                        if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent &&
+                            controller.hasMoreData.value &&
+                            !controller.isPagingLoading.value) {
+                          controller.getAllCustomer(context);
+                          return true;
+                        }
+                        return false;
+                      },
+                      child: RefreshIndicator(
+                        onRefresh: () => controller.refreshData(context),
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(bottom: 90),
+                          itemCount: controller.customersData.value.length + (controller.isPagingLoading.value ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (index == controller.customersData.value.length) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                                child: Center(child: CircularProgressIndicator()),
+                              );
+                            }
 
-                          return Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
-                                  BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4)),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(24),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      data.name ?? "-",
-                                      style: Get.textTheme.titleMedium!.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                            final data = controller.customersData.value[index];
+
+                            return Padding(
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          blurRadius: 10,
+                                          offset: Offset(0, 4),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(height: 12),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: MainColor.blueLight,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(24),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          Text(
+                                            data.name ?? "-",
+                                            style: Get.textTheme.titleMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(height: 12),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: MainColor.blueLight,
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  "No Handphone",
-                                                  style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
+                                                Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "No Handphone",
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          fontWeight: FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        data.phoneNumber ?? "-",
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          fontWeight: FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                Text(
-                                                  data.phoneNumber ?? "-",
-                                                  style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
+                                                Divider(color: SecondaryColor.neutral300, height: 1),
+                                                Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "RT/RW",
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          fontWeight: FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        data.rtRw ?? "-",
+                                                        style: Get.textTheme.bodyMedium!.copyWith(
+                                                          fontWeight: FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Divider(color: SecondaryColor.neutral300, height: 1),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  "RT/RW",
-                                                  style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
+                                          SizedBox(height: 12),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.toNamed(Routes.nasabahDetail(data.id ?? ""));
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Padding(
+                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                                child: SizedBox(
+                                                  child: Text(
+                                                    "Detail",
+                                                    style: Get.textTheme.labelMedium!.copyWith(
+                                                      color: MainColor.blueNormal,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
                                                 ),
-                                                Text(
-                                                  data.rtRw ?? "-",
-                                                  style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500),
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 12),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(Routes.nasabahDetail(data.id ?? ""));
-                                      },
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                          child: SizedBox(
-                                            child: Text(
-                                              "Detail",
-                                              style: Get.textTheme.labelMedium!.copyWith(
-                                                color: MainColor.blueNormal,
-                                                fontWeight: FontWeight.bold,
+                                  ),
+
+                                  index == controller.customersData.value.length - 1 && controller.hasMoreData.isFalse
+                                      ? Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+                                            child: SizedBox(
+                                              child: Text(
+                                                "Anda telah mencapai akhir data",
+                                                style: Get.textTheme.labelMedium!.copyWith(
+                                                  color: SecondaryColor.neutral500,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                        )
+                                      : SizedBox.shrink(),
+                                ],
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-              ),
+                    ),
             ),
           ],
         ),

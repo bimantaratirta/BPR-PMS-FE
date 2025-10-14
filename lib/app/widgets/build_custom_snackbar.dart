@@ -21,31 +21,67 @@ class CustomSnackbar {
   CustomSnackbar({required this.message, required this.type});
 
   void show(BuildContext context) {
-    // Dismiss snackbar sebelumnya jika ada
-    _currentOverlay?.remove();
-    _currentOverlay = null;
+    // Tutup overlay aktif
+    dismiss();
 
-    final overlay = OverlayEntry(
-      builder: (context) => _SnackbarOverlay(message: message, type: type, onDismissed: () => _currentOverlay = null),
+    late OverlayEntry entry;
+    entry = OverlayEntry(
+      builder: (context) => _SnackbarOverlay(
+        message: message,
+        type: type,
+        onRemove: () {
+          if (entry.mounted) entry.remove();
+          if (identical(_currentOverlay, entry)) _currentOverlay = null;
+        },
+      ),
     );
 
-    _currentOverlay = overlay;
+    _currentOverlay = entry;
 
-    Overlay.of(context).insert(overlay);
+    // --- Cari OverlayState yang valid dengan fallback ---
+    OverlayState? overlayState =
+        Overlay.maybeOf(context, rootOverlay: true) ??
+        Navigator.of(context, rootNavigator: true).overlay ??
+        (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
+
+    if (overlayState == null) {
+      // Masih belum ada? Tunda sampai frame berikutnya.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final os =
+            Overlay.maybeOf(context, rootOverlay: true) ??
+            Navigator.of(context, rootNavigator: true).overlay ??
+            (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
+        os?.insert(entry);
+        if (os == null) {
+          // Gagal total: bersihkan state agar nggak nyangkut
+          _currentOverlay = null;
+        }
+      });
+    } else {
+      overlayState.insert(entry);
+    }
   }
 
   static void dismiss() {
-    _currentOverlay?.remove();
-    _currentOverlay = null;
+    final entry = _currentOverlay;
+    if (entry != null) {
+      try {
+        if (entry.mounted) entry.remove();
+      } catch (_) {
+        // ignore
+      } finally {
+        _currentOverlay = null;
+      }
+    }
   }
 }
 
 class _SnackbarOverlay extends StatefulWidget {
   final String message;
   final CustomSnackbarType type;
-  final VoidCallback onDismissed;
+  final VoidCallback onRemove;
 
-  const _SnackbarOverlay({required this.message, required this.type, required this.onDismissed});
+  const _SnackbarOverlay({required this.message, required this.type, required this.onRemove});
 
   @override
   State<_SnackbarOverlay> createState() => _SnackbarOverlayState();
@@ -69,13 +105,9 @@ class _SnackbarOverlayState extends State<_SnackbarOverlay> with SingleTickerPro
   }
 
   void _hide() {
-    if (!mounted) return; // Check if widget is still mounted
-
+    if (!mounted) return;
     _controller.reverse().then((_) {
-      widget.onDismissed();
-      if (mounted) {
-        Overlay.of(context).setState(() {}); // force rebuild to remove
-      }
+      widget.onRemove();
     });
   }
 
@@ -110,9 +142,9 @@ class _SnackbarOverlayState extends State<_SnackbarOverlay> with SingleTickerPro
             child: FadeTransition(
               opacity: _controller,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.6,
                 decoration: BoxDecoration(color: SecondaryColor.blackCharcoal, borderRadius: BorderRadius.circular(50)),
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -126,7 +158,7 @@ class _SnackbarOverlayState extends State<_SnackbarOverlay> with SingleTickerPro
                       child: Text(
                         widget.message,
                         textAlign: TextAlign.center,
-                        style: Get.textTheme.labelLarge!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
+                        style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],

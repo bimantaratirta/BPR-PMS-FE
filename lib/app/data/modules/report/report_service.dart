@@ -8,11 +8,38 @@ class ReportService {
   final ReportRepository _reportRepository = ReportRepository();
   final Helper helper = Helper();
 
+  Future<ApiResponseModel<List<ReportModel>>> getAllReport([Map<String, dynamic>? params]) async {
+    try {
+      final String paramsEncoded = helper.encodeQueryParams(params ?? {});
+      return await _reportRepository.getAllReport(paramsEncoded);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel<ReportModel>> getReportById(String id) async {
+    try {
+      return await _reportRepository.getReportById(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
   Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
     try {
       return await _reportRepository.createReport(body);
     } catch (e) {
       return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel> downloadReportXlsx(Map<String, dynamic>? params) async {
+    try {
+      final String paramsEncoded = helper.encodeQueryParams(params ?? {});
+
+      return await _reportRepository.downloadReportXlsx(paramsEncoded);
+    } catch (e) {
+      rethrow;
     }
   }
 }

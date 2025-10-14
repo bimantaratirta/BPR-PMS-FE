@@ -43,7 +43,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 Navigator.pop(context);
-                nasabahController.getAllCustomer(Get.context!);
+                nasabahController.refreshData(Get.context!);
               },
             ),
           ),

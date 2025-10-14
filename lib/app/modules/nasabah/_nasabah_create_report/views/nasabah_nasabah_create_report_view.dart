@@ -627,7 +627,7 @@ class NasabahNasabahCreateReportView extends GetView<NasabahNasabahCreateReportC
                           onTap: () => controller.showImageSourceDialog(context),
                           child: Container(
                             width: Get.size.width,
-                            height: 150,
+                            height: 150.h,
                             decoration: BoxDecoration(
                               color: SecondaryColor.neutral100,
                               borderRadius: BorderRadius.circular(8),
@@ -654,6 +654,7 @@ class NasabahNasabahCreateReportView extends GetView<NasabahNasabahCreateReportC
                         ),
                         SizedBox(height: 12),
                         GridView.builder(
+                          padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -699,6 +700,7 @@ class NasabahNasabahCreateReportView extends GetView<NasabahNasabahCreateReportC
                             );
                           },
                         ),
+                        SizedBox(height: 12),
                         Text("Penilaian", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                         SizedBox(height: 12),
                         Obx(() {
