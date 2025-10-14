@@ -175,7 +175,7 @@ class HomeView extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'LO',
+                              'Nasabah',
                               style: Get.textTheme.titleMedium!.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: MainColor.greyLightActive,
@@ -188,11 +188,14 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                          decoration: BoxDecoration(color: MainColor.greyLight, borderRadius: BorderRadius.circular(99)),
+                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                          decoration: BoxDecoration(
+                            color: SecondaryColor.neutral100,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
                           child: DropdownButton<String>(
                             value: 'Minggu',
-                            icon: Icon(Icons.arrow_drop_down),
+                            icon: Icon(Icons.keyboard_arrow_down),
                             underline: SizedBox(),
                             onChanged: (String? newValue) {},
                             items: <String>['Minggu', 'Bulan', 'Tahun'].map<DropdownMenuItem<String>>((String value) {
@@ -213,8 +216,8 @@ class HomeView extends GetView<HomeController> {
                       alignment: Alignment.center,
                       child: const Text('Grafik Batang', style: TextStyle(color: Colors.black54)),
                     ),
-                    const SizedBox(height: 20000),
                     // --- Ringkasan Statistik ---
+                    SizedBox(height: 2000),
                   ],
                 ),
               ),

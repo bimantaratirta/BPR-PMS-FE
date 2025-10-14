@@ -30,6 +30,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/report/_report_detail/bindings/report_report_detail_binding.dart';
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
+import '../modules/report/_report_slo_review/bindings/report_report_slo_review_binding.dart';
+import '../modules/report/_report_slo_review/views/report_report_slo_review_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
 import '../modules/slo/_slo_detail/bindings/slo_slo_detail_binding.dart';
@@ -90,6 +92,11 @@ class AppPages {
           binding: ReportBinding(),
           children: [
             GetPage(name: "/:id", page: () => const ReportReportDetailView(), binding: ReportReportDetailBinding()),
+            GetPage(
+              name: '/:id/slo-review',
+              page: () => const ReportReportSloReviewView(),
+              binding: ReportReportSloReviewBinding(),
+            ),
           ],
         ),
         GetPage(
