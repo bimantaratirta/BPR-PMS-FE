@@ -68,7 +68,7 @@ class LoLoDetailView extends GetView<LoLoDetailController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ...List.generate(
-                      5,
+                      10,
                       (index) => Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: GestureDetector(

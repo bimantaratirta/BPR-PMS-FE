@@ -1,5 +1,6 @@
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/main/api/api_response_model.dart';
+import 'package:bpr_pms/app/data/modules/report/model/report_review_customer_model.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/report_repository.dart';
 import 'package:dio/dio.dart';
@@ -28,6 +29,14 @@ class ReportService {
   Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
     try {
       return await _reportRepository.createReport(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel<ReportReviewCustomerModel>> createReportReviewCustomer(Map<String, dynamic> body) async {
+    try {
+      return await _reportRepository.createReportReviewCustomer(body);
     } catch (e) {
       return ApiResponseModel(error: e.toString());
     }

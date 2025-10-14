@@ -3,6 +3,7 @@ import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/modules/report/controllers/report_controller.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
+import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -172,7 +173,11 @@ class ReportCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                     ),
                     onPressed: () {
-                      Get.toNamed(Routes.reportDetail(reportData.id ?? ""));
+                      if (reportData.process == "REVIEW_SLO") {
+                        Get.toNamed(Routes.reportSloReview(reportData.id ?? ""));
+                      } else {
+                        CustomSnackbar(message: "Data proses tidak valid.", type: CustomSnackbarType.warning).show(context);
+                      }
                     },
                     child: Text(
                       "Review",
