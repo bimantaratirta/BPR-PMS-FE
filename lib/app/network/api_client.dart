@@ -26,7 +26,7 @@ class ApiClient {
     final jsonString = json.encode(jsonBody);
 
     try {
-      final ApiResponseModel<T> result = apiResponseModelFromJson<T>(jsonString, (jsonMap) => param.fromJson(jsonMap));
+      final ApiResponseModel<T> result = apiResponseModelFromJson<T>(jsonString, (jsonMap) => param.fromJson!(jsonMap));
 
       return result;
     } catch (e) {
@@ -193,6 +193,29 @@ class ApiClient {
       );
       final ApiResponseModel<T> result = await _responseHandler<T>(response, param);
       return result;
+    } on DioException catch (e) {
+      final ApiResponseModel<T> error = await _errorHandler(e);
+      return error;
+    }
+  }
+
+  Future<ApiResponseModel<T>> getRaw<T>(ApiParams<T> param) async {
+    try {
+      _dio.options.baseUrl = param.baseUrl != null ? param.baseUrl! : AppConstants.baseApiUrl;
+
+      final response = await _dio.get(param.path, queryParameters: param.queryParameters, options: param.options);
+
+      if (response.statusCode != 200) {
+        return await _responseHandler<T>(response, param);
+      }
+
+      return ApiResponseModel<T>(
+        code: response.statusCode,
+        status: 'OK',
+        message: 'Raw data fetched successfully',
+        data: null,
+        dataraw: response,
+      );
     } on DioException catch (e) {
       final ApiResponseModel<T> error = await _errorHandler(e);
       return error;

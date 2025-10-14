@@ -25,8 +25,11 @@ class ReportView extends GetView<ReportController> {
             style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
+          scrolledUnderElevation: 0.0,
+          forceMaterialTransparency: true,
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: IconButton(
@@ -90,25 +93,32 @@ class ReportView extends GetView<ReportController> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: SvgPicture.asset(height: 18.h, IconAssets.uploadFile, color: SecondaryColor.neutral500),
+                  GestureDetector(
+                    onTap: () => controller.handleDownloadReport(context),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: SvgPicture.asset(
+                                  height: 18.h,
+                                  IconAssets.uploadFile,
+                                  color: SecondaryColor.neutral500,
+                                ),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          Text("Export", style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral500)),
-                        ],
+                            SizedBox(width: 8),
+                            Text("Export", style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral500)),
+                          ],
+                        ),
                       ),
                     ),
                   ),

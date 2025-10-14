@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+
 ApiResponseModel<T> apiResponseModelFromJson<T>(String str, T Function(dynamic) fromJsonT) =>
     ApiResponseModel.fromJson(json.decode(str), fromJsonT);
 
@@ -14,8 +16,18 @@ class ApiResponseModel<T> {
   T? data;
   dynamic errors;
   dynamic error;
+  Response<dynamic>? dataraw;
 
-  ApiResponseModel({this.code, this.status, this.message, this.pagination, this.data, this.errors, this.error});
+  ApiResponseModel({
+    this.code,
+    this.status,
+    this.message,
+    this.pagination,
+    this.data,
+    this.errors,
+    this.error,
+    this.dataraw,
+  });
 
   factory ApiResponseModel.fromJson(Map<String, dynamic> json, T Function(dynamic) fromJsonT) {
     final rawData = json["data"];

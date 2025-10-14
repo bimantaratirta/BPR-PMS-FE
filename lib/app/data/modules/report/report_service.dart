@@ -32,4 +32,14 @@ class ReportService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel> downloadReportXlsx(Map<String, dynamic>? params) async {
+    try {
+      final String paramsEncoded = helper.encodeQueryParams(params ?? {});
+
+      return await _reportRepository.downloadReportXlsx(paramsEncoded);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

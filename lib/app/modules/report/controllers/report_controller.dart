@@ -1,13 +1,18 @@
+import 'dart:typed_data';
+
+import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/report_service.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:open_filex/open_filex.dart';
 
 class ReportController extends GetxController {
+  final Helper helper = Helper();
   final AuthController authController = Get.find<AuthController>();
-
   final ReportService reportService = ReportService();
 
   final TextEditingController searchController = TextEditingController();
@@ -155,6 +160,68 @@ class ReportController extends GetxController {
       hasMoreData.value = false;
       message.value = e.toString();
       CustomSnackbar(message: message.value, type: CustomSnackbarType.error).show(context);
+    }
+  }
+
+  Future<void> handleDownloadReport(BuildContext context) async {
+    message.value = '';
+    isLoading.value = true;
+
+    CustomSnackbar(message: "Downloading report...", type: CustomSnackbarType.loading).show(context);
+
+    try {
+      final params = {'search': searchController.text.trim()};
+
+      final response = await reportService.downloadReportXlsx(params);
+
+      CustomSnackbar.dismiss();
+
+      if (response.dataraw?.data is! List<int>) {
+        throw Exception("Invalid response format, expected file bytes.");
+      }
+
+      final Uint8List fileBytes = Uint8List.fromList(response.dataraw!.data as List<int>);
+
+      String fileName = "Laporan_Nasabah_${DateTime.now().millisecondsSinceEpoch}.xlsx";
+
+      final String extension = fileName.split('.').last;
+
+      final MimeType mimeType = MimeType.values.firstWhere((e) => e.name == extension, orElse: () => MimeType.other);
+
+      final String path = await FileSaver.instance.saveFile(
+        name: fileName.replaceAll('.$extension', ''),
+        bytes: fileBytes,
+        fileExtension: extension,
+        mimeType: mimeType,
+      );
+
+      if (path.isEmpty) {
+        message.value = "Penyimpanan file dibatalkan atau gagal.";
+        isLoading.value = false;
+        CustomSnackbar(message: message.value, type: CustomSnackbarType.warning).show(context);
+        return;
+      }
+
+      isLoading.value = false;
+      message.value = "File $fileName berhasil diunduh dan disimpan.";
+      CustomSnackbar(message: message.value, type: CustomSnackbarType.success).show(context);
+
+      final result = await OpenFilex.open(path);
+
+      if (result.type != ResultType.done) {
+        CustomSnackbar(
+          message: "Gagal membuka file. Pastikan Anda memiliki aplikasi pembaca XLSX.",
+          type: CustomSnackbarType.warning,
+        ).show(context);
+        debugPrint('OpenFilex Error: ${result.message}');
+      }
+    } catch (e) {
+      message.value = e.toString();
+      isLoading.value = false;
+      CustomSnackbar(message: message.value, type: CustomSnackbarType.error).show(context);
+      Future.delayed(const Duration(seconds: 1), () {
+        CustomSnackbar.dismiss();
+      });
     }
   }
 }
