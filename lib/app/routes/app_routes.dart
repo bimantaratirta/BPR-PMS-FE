@@ -26,6 +26,7 @@ abstract class Routes {
   // Report Nested Routes
   static String reportDetail(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id';
   static String reportSloReview(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-review';
+  static String reportSloEvaluation(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-evaluation';
 
   // LO Nested Routes
   static String loDetail(String id) => '${_Paths.MAIN}${_Paths.LO}/$id';
