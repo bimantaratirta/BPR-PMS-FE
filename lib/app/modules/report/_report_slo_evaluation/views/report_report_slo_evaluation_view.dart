@@ -142,7 +142,9 @@ class ReportReportSloEvaluationView extends GetView<ReportReportSloEvaluationCon
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.handleEvaluationSloSubmit(context);
+                      },
                       child: Text(
                         "Submit",
                         style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),

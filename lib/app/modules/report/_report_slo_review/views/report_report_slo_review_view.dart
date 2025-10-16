@@ -4,7 +4,6 @@ import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/modules/report/controllers/report_controller.dart';
 import 'package:bpr_pms/app/modules/report/widgets/report_select_status.dart';
-import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -733,33 +732,10 @@ class ReportReportSloReviewView extends GetView<ReportReportSloReviewController>
                           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                         ),
                         onPressed: () {
-                          controller.createCustomerReport(context);
+                          controller.handleSloReviewSubmit(context);
                         },
                         child: Text(
                           "Submit",
-                          style: Get.textTheme.labelMedium!.copyWith(
-                            color: SecondaryColor.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: Get.size.width * 0.80,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: MainColor.blueNormal,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routes.reportSloEvaluation(itemId ?? ''));
-                        },
-                        child: Text(
-                          "Evaluation",
                           style: Get.textTheme.labelMedium!.copyWith(
                             color: SecondaryColor.white,
                             fontWeight: FontWeight.bold,
