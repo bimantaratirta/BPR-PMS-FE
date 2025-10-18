@@ -13,6 +13,7 @@ class AppConstants {
   static const String customerEndpoint = "/customer";
   static const String reportEndpoint = "/report";
   static const String reportReviewCustomerEndpoint = "/review-customer";
+  static const String reportEvaluationSloEndpoint = "/evaluation";
 
   // Storage Keys
   static const String userKey = "user_data";

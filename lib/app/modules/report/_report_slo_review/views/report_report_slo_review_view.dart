@@ -3,6 +3,7 @@ import 'package:bpr_pms/app/common/constant/app_constants.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/modules/report/controllers/report_controller.dart';
+import 'package:bpr_pms/app/modules/report/widgets/report_select_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -170,79 +171,9 @@ class ReportReportSloReviewView extends GetView<ReportReportSloReviewController>
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () => controller.selectIdentityStatus(false),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedIdentityStatus.value == false;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Tidak Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                                SizedBox(width: 28.w),
-                                GestureDetector(
-                                  onTap: () => controller.selectIdentityStatus(true),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedIdentityStatus.value == true;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  ReportSelectStatus(
+                    onSelect: (value) => controller.selectIdentityStatus(value),
+                    selectedStatus: controller.selectedIdentityStatus,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
@@ -352,79 +283,9 @@ class ReportReportSloReviewView extends GetView<ReportReportSloReviewController>
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () => controller.selectDomicileStatus(false),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedDomicileStatus.value == false;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Tidak Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                                SizedBox(width: 28.w),
-                                GestureDetector(
-                                  onTap: () => controller.selectDomicileStatus(true),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedDomicileStatus.value == true;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  ReportSelectStatus(
+                    onSelect: (value) => controller.selectDomicileStatus(value),
+                    selectedStatus: controller.selectedDomicileStatus,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
@@ -793,79 +654,9 @@ class ReportReportSloReviewView extends GetView<ReportReportSloReviewController>
                           ],
                         )
                       : SizedBox.shrink(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () => controller.selectedWorkStatus(false),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedWorkStatus.value == false;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Tidak Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                                SizedBox(width: 28.w),
-                                GestureDetector(
-                                  onTap: () => controller.selectedWorkStatus(true),
-                                  child: Obx(() {
-                                    final isActive = controller.selectedWorkStatus.value == true;
-
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: BoxDecoration(
-                                            color: isActive ? MainColor.blueNormal : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(4),
-                                            border: Border.all(color: SecondaryColor.neutral300, width: 2),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Text(
-                                          "Sesuai",
-                                          style: Get.textTheme.labelMedium!.copyWith(
-                                            color: isActive ? SecondaryColor.neutral600 : SecondaryColor.neutral500,
-                                            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  ReportSelectStatus(
+                    onSelect: (value) => controller.selectWorkStatus(value),
+                    selectedStatus: controller.selectedWorkStatus,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
@@ -941,7 +732,7 @@ class ReportReportSloReviewView extends GetView<ReportReportSloReviewController>
                           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                         ),
                         onPressed: () {
-                          controller.createCustomerReport(context);
+                          controller.handleSloReviewSubmit(context);
                         },
                         child: Text(
                           "Submit",

@@ -173,7 +173,7 @@ class ReportCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                     ),
                     onPressed: () {
-                      if (reportData.process == "REVIEW_SLO") {
+                      if (reportData.process == "REVIEW_SLO" || reportData.process == "EVALUATION_SLO") {
                         Get.toNamed(Routes.reportSloReview(reportData.id ?? ""));
                       } else {
                         CustomSnackbar(message: "Data proses tidak valid.", type: CustomSnackbarType.warning).show(context);
