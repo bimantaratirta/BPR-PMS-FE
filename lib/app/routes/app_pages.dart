@@ -28,6 +28,8 @@ import '../modules/profile/_profile_detail/bindings/profile_profile_detail_bindi
 import '../modules/profile/_profile_detail/views/profile_profile_detail_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/report/_report_am_evaluation_review/bindings/report_report_am_evaluation_review_binding.dart';
+import '../modules/report/_report_am_evaluation_review/views/report_report_am_evaluation_review_view.dart';
 import '../modules/report/_report_detail/bindings/report_report_detail_binding.dart';
 import '../modules/report/_report_detail/views/report_report_detail_view.dart';
 import '../modules/report/_report_slo_evaluation/bindings/report_report_slo_evaluation_binding.dart';
@@ -103,6 +105,11 @@ class AppPages {
               name: '/:id/slo-evaluation',
               page: () => const ReportReportSloEvaluationView(),
               binding: ReportReportSloEvaluationBinding(),
+            ),
+            GetPage(
+              name: '/:id/am-evaluation-review',
+              page: () => const ReportReportAmEvaluationReviewView(),
+              binding: ReportReportAmEvaluationReviewBinding(),
             ),
           ],
         ),

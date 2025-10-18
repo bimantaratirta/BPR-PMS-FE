@@ -50,6 +50,15 @@ class ReportReportDetailController extends GetxController {
         : null;
   }
 
+  @override
+  void onClose() {
+    characterController.dispose();
+    capacityController.dispose();
+    conditionController.dispose();
+    capitalController.dispose();
+    super.onClose();
+  }
+
   Future<ReportModel?> getReportById(BuildContext context, String id) async {
     try {
       isLoading.value = true;
