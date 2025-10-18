@@ -3,6 +3,8 @@ import 'package:bpr_pms/app/common/constant/app_constants.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/modules/report/controllers/report_controller.dart';
+import 'package:bpr_pms/app/modules/report/widgets/report_select_status.dart';
+import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,7 +32,7 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Form Detail Laporan',
+            'Detail Laporan',
             style: Get.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, color: Colors.black, fontSize: 18),
           ),
           centerTitle: true,
@@ -142,6 +144,33 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: Get.size.width * 0.30,
+                          child: Text(
+                            "No Handphone",
+                            style: Get.textTheme.labelMedium!.copyWith(
+                              color: SecondaryColor.neutral500,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: Get.size.width * 0.02),
+                        Expanded(
+                          child: Text(
+                            controller.reportData.value?.customerSnapshot?.phoneNumber ?? "-",
+                            style: Get.textTheme.labelMedium!.copyWith(
+                              color: SecondaryColor.neutral500,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 12),
                   Text("Alamat Domisili", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                   SizedBox(height: 12),
@@ -217,36 +246,6 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                         Expanded(
                           child: Text(
                             controller.reportData.value?.customerSnapshot?.address ?? "-",
-                            style: Get.textTheme.labelMedium!.copyWith(
-                              color: SecondaryColor.neutral500,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Text("Data Kontak", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
-                  SizedBox(height: 12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: Get.size.width * 0.30,
-                          child: Text(
-                            "No Handphone",
-                            style: Get.textTheme.labelMedium!.copyWith(
-                              color: SecondaryColor.neutral500,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: Get.size.width * 0.02),
-                        Expanded(
-                          child: Text(
-                            controller.reportData.value?.customerSnapshot?.phoneNumber ?? "-",
                             style: Get.textTheme.labelMedium!.copyWith(
                               color: SecondaryColor.neutral500,
                               fontWeight: FontWeight.w600,
@@ -661,6 +660,83 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                           },
                         )
                       : SizedBox.shrink(),
+                  SizedBox(height: 12),
+                  Text("Karakter", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                  SizedBox(height: 12),
+                  BuildCustomTextFormField(
+                    hintText: "Tambahkan penilaian...",
+                    controller: controller.characterController,
+                    maxLines: 6,
+                    isReadOnly: true,
+                    isEnable: false,
+                    withInputFormatter: false,
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  ReportSelectStatus(
+                    trueLabel: "Good",
+                    falseLabel: "Bad",
+                    onSelect: (value) => {},
+                    selectedStatus: controller.selectedCharacterStatus,
+                    falseColor: SecondaryColor.danger600,
+                    trueColor: SecondaryColor.success600,
+                  ),
+                  Text("Kapasitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                  SizedBox(height: 12),
+                  BuildCustomTextFormField(
+                    hintText: "Tambahkan penilaian...",
+                    controller: controller.capacityController,
+                    maxLines: 6,
+                    isReadOnly: true,
+                    isEnable: false,
+                    withInputFormatter: false,
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  ReportSelectStatus(
+                    trueLabel: "Good",
+                    falseLabel: "Bad",
+                    onSelect: (value) => {},
+                    selectedStatus: controller.selectedCapacityStatus,
+                    falseColor: SecondaryColor.danger600,
+                    trueColor: SecondaryColor.success600,
+                  ),
+                  Text("Kondisi", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                  SizedBox(height: 12),
+                  BuildCustomTextFormField(
+                    hintText: "Tambahkan penilaian...",
+                    controller: controller.conditionController,
+                    maxLines: 6,
+                    isReadOnly: true,
+                    isEnable: false,
+                    withInputFormatter: false,
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  ReportSelectStatus(
+                    trueLabel: "Good",
+                    falseLabel: "Bad",
+                    onSelect: (value) => {},
+                    selectedStatus: controller.selectedConditionStatus,
+                    falseColor: SecondaryColor.danger600,
+                    trueColor: SecondaryColor.success600,
+                  ),
+                  Text("Kapital", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
+                  SizedBox(height: 12),
+                  BuildCustomTextFormField(
+                    hintText: "Tambahkan penilaian...",
+                    controller: controller.capitalController,
+                    maxLines: 6,
+                    isReadOnly: true,
+                    isEnable: false,
+                    withInputFormatter: false,
+                    contentPadding: EdgeInsets.all(16),
+                  ),
+                  ReportSelectStatus(
+                    trueLabel: "Good",
+                    falseLabel: "Bad",
+                    onSelect: (value) => {},
+                    selectedStatus: controller.selectedCapitalStatus,
+                    falseColor: SecondaryColor.danger600,
+                    trueColor: SecondaryColor.success600,
+                  ),
                 ],
               ),
             ),

@@ -130,10 +130,19 @@ class ReportView extends GetView<ReportController> {
               child: controller.isLoading.isTrue
                   ? Center(child: CircularProgressIndicator())
                   : controller.reportsData.value.isEmpty
-                  ? Center(
-                      child: Text(
-                        "Data Laporan Kosong",
-                        style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                  ? RefreshIndicator(
+                      onRefresh: () => controller.refreshData(context),
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: Get.size.height - kToolbarHeight - Get.size.height * 0.3),
+                          child: Center(
+                            child: Text(
+                              "Data Laporan Kosong",
+                              style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                            ),
+                          ),
+                        ),
                       ),
                     )
                   : NotificationListener<ScrollNotification>(
