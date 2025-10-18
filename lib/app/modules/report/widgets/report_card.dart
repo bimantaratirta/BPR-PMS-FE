@@ -175,6 +175,8 @@ class ReportCard extends StatelessWidget {
                     onPressed: () {
                       if (reportData.process == "REVIEW_SLO" || reportData.process == "EVALUATION_SLO") {
                         Get.toNamed(Routes.reportSloReview(reportData.id ?? ""));
+                      } else if (reportData.process == "REVIEW_AM") {
+                        Get.toNamed(Routes.reportAmEvaluationReview(reportData.id ?? ""));
                       } else {
                         CustomSnackbar(message: "Data proses tidak valid.", type: CustomSnackbarType.warning).show(context);
                       }

@@ -2,6 +2,7 @@ import 'package:bpr_pms/app/common/constant/app_constants.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/main/api/api_params_model.dart';
 import 'package:bpr_pms/app/data/main/api/api_response_model.dart';
+import 'package:bpr_pms/app/data/modules/report/model/report_evaluation_review_model.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_evaluation_slo_model.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_review_customer_model.dart';
@@ -53,6 +54,16 @@ class ReportRepository {
         path: AppConstants.reportEvaluationSloEndpoint,
         body: body,
         fromJson: (json) => ReportEvaluationSloModel.fromJson(json),
+      ),
+    );
+  }
+
+  Future<ApiResponseModel<ReportEvaluationReviewModel>> createReportEvaluationReview(Map<String, dynamic> body) async {
+    return await apiClient.post(
+      ApiParams(
+        path: AppConstants.reportEvaluationReviewEndpoint,
+        body: body,
+        fromJson: (json) => ReportEvaluationReviewModel.fromJson(json),
       ),
     );
   }

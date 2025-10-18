@@ -7,14 +7,14 @@ import 'package:bpr_pms/app/modules/report/widgets/report_select_status.dart';
 import 'package:bpr_pms/app/widgets/build_custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/report_report_detail_controller.dart';
+import '../controllers/report_report_am_evaluation_review_controller.dart';
 
-class ReportReportDetailView extends GetView<ReportReportDetailController> {
-  const ReportReportDetailView({super.key});
+class ReportReportAmEvaluationReviewView extends GetView<ReportReportAmEvaluationReviewController> {
+  const ReportReportAmEvaluationReviewView({super.key});
   @override
   Widget build(BuildContext context) {
     final ReportController reportController = Get.find<ReportController>();
@@ -705,7 +705,7 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                   ReportSelectStatus(
                     trueLabel: "Good",
                     falseLabel: "Bad",
-                    onSelect: (value) => {},
+                    onSelect: (value) => controller.selectCharacterStatus(value),
                     selectedStatus: controller.selectedCharacterStatus,
                     falseColor: SecondaryColor.danger600,
                     trueColor: SecondaryColor.success600,
@@ -724,7 +724,7 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                   ReportSelectStatus(
                     trueLabel: "Good",
                     falseLabel: "Bad",
-                    onSelect: (value) => {},
+                    onSelect: (value) => controller.selectCapacityStatus(value),
                     selectedStatus: controller.selectedCapacityStatus,
                     falseColor: SecondaryColor.danger600,
                     trueColor: SecondaryColor.success600,
@@ -743,7 +743,7 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                   ReportSelectStatus(
                     trueLabel: "Good",
                     falseLabel: "Bad",
-                    onSelect: (value) => {},
+                    onSelect: (value) => controller.selectConditionStatus(value),
                     selectedStatus: controller.selectedConditionStatus,
                     falseColor: SecondaryColor.danger600,
                     trueColor: SecondaryColor.success600,
@@ -762,10 +762,34 @@ class ReportReportDetailView extends GetView<ReportReportDetailController> {
                   ReportSelectStatus(
                     trueLabel: "Good",
                     falseLabel: "Bad",
-                    onSelect: (value) => {},
+                    onSelect: (value) => controller.selectCapitalStatus(value),
                     selectedStatus: controller.selectedCapitalStatus,
                     falseColor: SecondaryColor.danger600,
                     trueColor: SecondaryColor.success600,
+                  ),
+                  SizedBox(height: 20),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: SizedBox(
+                      width: Get.size.width * 0.3,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MainColor.blueNormal,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                        ),
+                        onPressed: () {
+                          controller.handleEvaluationReviewSubmit(context);
+                        },
+                        child: Text(
+                          "Submit",
+                          style: Get.textTheme.labelMedium!.copyWith(
+                            color: SecondaryColor.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
