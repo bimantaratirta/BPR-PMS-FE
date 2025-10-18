@@ -127,10 +127,19 @@ class NasabahView extends GetView<NasabahController> {
               child: controller.isLoading.value
                   ? Center(child: CircularProgressIndicator())
                   : controller.customersData.value.isEmpty
-                  ? Center(
-                      child: Text(
-                        "Data Nasabah Kosong",
-                        style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                  ? RefreshIndicator(
+                      onRefresh: () => controller.refreshData(context),
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: Get.size.height - kToolbarHeight - Get.size.height * 0.3),
+                          child: Center(
+                            child: Text(
+                              "Data Nasabah Kosong",
+                              style: Get.textTheme.bodyMedium!.copyWith(color: SecondaryColor.neutral500),
+                            ),
+                          ),
+                        ),
                       ),
                     )
                   : NotificationListener<ScrollNotification>(
