@@ -1,8 +1,11 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
+import 'package:bpr_pms/app/widgets/build_custom_dropdown.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
+import 'package:bpr_pms/app/widgets/chart/lo_nasabah_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -187,37 +190,147 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                          decoration: BoxDecoration(
-                            color: SecondaryColor.neutral100,
-                            borderRadius: BorderRadius.circular(99),
-                          ),
-                          child: DropdownButton<String>(
-                            value: 'Minggu',
-                            icon: Icon(Icons.keyboard_arrow_down),
-                            underline: SizedBox(),
-                            onChanged: (String? newValue) {},
-                            items: <String>['Minggu', 'Bulan', 'Tahun'].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value, style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.greyNormal)),
-                              );
-                            }).toList(),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: BuildDropdown(
+                              hintText: "Filter nasabah...",
+                              selectedValue: controller.selectedLoNasabahDisplayFilter.value,
+                              selectedLabel:
+                                  controller.itemsSelectLoNasabahDisplayFilter.value.firstWhereOrNull(
+                                    (item) => item["value"] == controller.selectedLoNasabahDisplayFilter.value,
+                                  )?["label"] ??
+                                  '',
+                              itemDropdown: controller.itemsSelectLoNasabahDisplayFilter.value,
+                              onChanged: (value) => {
+                                if (value != null) {controller.changeSelectedLoNasabahDisplayFilter(value)},
+                              },
+                              buttonWidth: 100.w,
+                              buttonBorderRadius: 99,
+                              buttonBackgroundColor: SecondaryColor.neutral100,
+                              buttonTextColor: Colors.black,
+                              buttonFocusedBorderColor: Colors.black,
+                            ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    // --- Placeholder untuk Grafik Batang ---
-                    Container(
-                      height: 200,
-                      decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-                      alignment: Alignment.center,
-                      child: const Text('Grafik Batang', style: TextStyle(color: Colors.black54)),
-                    ),
-                    // --- Ringkasan Statistik ---
-                    SizedBox(height: 2000),
+
+                    // --- Grafik ---
+                    authController.pickRole.value == UserRole.lo
+                        ? Column(
+                            children: [
+                              LoNasabahChart(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 32.h),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Minggu Ini',
+                                          style: Get.textTheme.titleMedium!.copyWith(
+                                            color: SecondaryColor.neutral500,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "18",
+                                              style: Get.textTheme.titleLarge!.copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(width: 5.w),
+                                            Text(
+                                              "Orang",
+                                              style: Get.textTheme.titleSmall!.copyWith(
+                                                color: SecondaryColor.neutral500,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp),
+                                            SizedBox(width: 3.w),
+                                            Text(
+                                              "+11.1%",
+                                              style: Get.textTheme.labelLarge!.copyWith(
+                                                color: Colors.green,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Bulan Ini',
+                                          style: Get.textTheme.titleMedium!.copyWith(
+                                            color: SecondaryColor.neutral500,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "18",
+                                              style: Get.textTheme.titleLarge!.copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(width: 5.w),
+                                            Text(
+                                              "Orang",
+                                              style: Get.textTheme.titleSmall!.copyWith(
+                                                color: SecondaryColor.neutral500,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                                            SizedBox(width: 3.w),
+                                            Text(
+                                              "-10.1%",
+                                              style: Get.textTheme.labelLarge!.copyWith(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 20.h),
+                            ],
+                          )
+                        : Container(
+                            height: 200,
+                            decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
+                            alignment: Alignment.center,
+                            child: const Text('Grafik Batang', style: TextStyle(color: Colors.black54)),
+                          ),
+
+                    const SizedBox(height: 500),
                   ],
                 ),
               ),

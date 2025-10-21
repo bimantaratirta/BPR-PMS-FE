@@ -1,23 +1,13 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  RxString selectedLoNasabahDisplayFilter = 'minggu'.obs;
+  Rx<List<Map<String, String>>> itemsSelectLoNasabahDisplayFilter = Rx<List<Map<String, String>>>([
+    {"value": "minggu", "label": "Minggu"},
+    {"value": "bulan", "label": "Bulan"},
+  ]);
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void changeSelectedLoNasabahDisplayFilter(String value) {
+    selectedLoNasabahDisplayFilter.value = value;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
