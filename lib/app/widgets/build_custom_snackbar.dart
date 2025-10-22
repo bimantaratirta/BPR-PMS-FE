@@ -24,41 +24,46 @@ class CustomSnackbar {
     // Tutup overlay aktif
     dismiss();
 
-    late OverlayEntry entry;
-    entry = OverlayEntry(
-      builder: (context) => _SnackbarOverlay(
-        message: message,
-        type: type,
-        onRemove: () {
-          if (entry.mounted) entry.remove();
-          if (identical(_currentOverlay, entry)) _currentOverlay = null;
-        },
-      ),
-    );
+    try {
+      late OverlayEntry entry;
+      entry = OverlayEntry(
+        builder: (context) => _SnackbarOverlay(
+          message: message,
+          type: type,
+          onRemove: () {
+            if (entry.mounted) entry.remove();
+            if (identical(_currentOverlay, entry)) _currentOverlay = null;
+          },
+        ),
+      );
 
-    _currentOverlay = entry;
+      _currentOverlay = entry;
 
-    // --- Cari OverlayState yang valid dengan fallback ---
-    OverlayState? overlayState =
-        Overlay.maybeOf(context, rootOverlay: true) ??
-        Navigator.of(context, rootNavigator: true).overlay ??
-        (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
+      // --- Cari OverlayState yang valid dengan fallback ---
+      OverlayState? overlayState =
+          Overlay.maybeOf(context, rootOverlay: true) ??
+          Navigator.of(context, rootNavigator: true).overlay ??
+          (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
 
-    if (overlayState == null) {
-      // Masih belum ada? Tunda sampai frame berikutnya.
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        final os =
-            Overlay.maybeOf(context, rootOverlay: true) ??
-            Navigator.of(context, rootNavigator: true).overlay ??
-            (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
-        os?.insert(entry);
-        if (os == null) {
-          // Gagal total: bersihkan state agar nggak nyangkut
-          _currentOverlay = null;
-        }
-      });
-    } else {
-      overlayState.insert(entry);
+      if (overlayState == null) {
+        // Masih belum ada? Tunda sampai frame berikutnya.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final os =
+              Overlay.maybeOf(context, rootOverlay: true) ??
+              Navigator.of(context, rootNavigator: true).overlay ??
+              (Get.overlayContext != null ? Overlay.maybeOf(Get.overlayContext!, rootOverlay: true) : null);
+          os?.insert(entry);
+          if (os == null) {
+            // Gagal total: bersihkan state agar nggak nyangkut
+            _currentOverlay = null;
+          }
+        });
+      } else {
+        overlayState.insert(entry);
+      }
+    } catch (e) {
+      // Jika terjadi error, bersihkan state agar nggak nyangkut
+      _currentOverlay = null;
     }
   }
 

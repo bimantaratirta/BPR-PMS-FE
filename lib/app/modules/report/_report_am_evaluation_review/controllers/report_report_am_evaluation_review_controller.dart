@@ -106,7 +106,7 @@ class ReportReportAmEvaluationReviewController extends GetxController {
           Navigator.pop(context);
           FocusScope.of(context).unfocus();
           Navigator.pop(context);
-          reportController.refreshData(Get.context!);
+          reportController.refreshData(context);
         },
         onFalsePressed: () {
           FocusScope.of(context).unfocus();
