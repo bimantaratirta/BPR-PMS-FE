@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/widgets/build_custom_dropdown.dart';
+import 'package:bpr_pms/app/widgets/build_dynamic_progress_bar.dart';
 import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:bpr_pms/app/widgets/chart/lo_nasabah_chart.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,9 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
+
+    final int maxValueLoNasabahInt = controller.loNasabahChartData.map((item) => item['value'] as int).reduce(max);
+    final int maxValueSloNasabahInt = controller.sloNasabahChartData.map((item) => item['value'] as int).reduce(max);
 
     Widget buildBlueHeader() {
       return Container(
@@ -215,7 +221,13 @@ class HomeView extends GetView<HomeController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Nasabah',
+                          authController.pickRole.value == UserRole.lo
+                              ? 'Nasabah'
+                              : authController.pickRole.value == UserRole.slo
+                              ? 'LO'
+                              : authController.pickRole.value == UserRole.am
+                              ? 'SLO'
+                              : '-',
                           style: Get.textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.w600,
                             color: MainColor.greyLightActive,
@@ -252,120 +264,180 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                  child: Divider(color: SecondaryColor.neutral300),
+                ),
 
                 // --- Grafik ---
                 authController.pickRole.value == UserRole.lo
+                    ? Column(children: [LoNasabahChart()])
+                    : authController.pickRole.value == UserRole.slo
                     ? Column(
                         children: [
-                          LoNasabahChart(),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 32.h),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Minggu Ini',
-                                      style: Get.textTheme.titleMedium!.copyWith(
-                                        color: SecondaryColor.neutral500,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "18",
-                                          style: Get.textTheme.titleLarge!.copyWith(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        Text(
-                                          "Orang",
-                                          style: Get.textTheme.titleSmall!.copyWith(
-                                            color: SecondaryColor.neutral500,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp),
-                                        SizedBox(width: 3.w),
-                                        Text(
-                                          "+11.1%",
-                                          style: Get.textTheme.labelLarge!.copyWith(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Bulan Ini',
-                                      style: Get.textTheme.titleMedium!.copyWith(
-                                        color: SecondaryColor.neutral500,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "18",
-                                          style: Get.textTheme.titleLarge!.copyWith(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        Text(
-                                          "Orang",
-                                          style: Get.textTheme.titleSmall!.copyWith(
-                                            color: SecondaryColor.neutral500,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
-                                        SizedBox(width: 3.w),
-                                        Text(
-                                          "-10.1%",
-                                          style: Get.textTheme.labelLarge!.copyWith(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 20.h),
+                          ...controller.loNasabahChartData.map((item) {
+                            final String label = item['label'] as String;
+                            final int value = item['value'] as int;
+                            final dynamic barColor;
+
+                            if (value == maxValueLoNasabahInt) {
+                              barColor = LinearGradient(
+                                colors: [MainColor.blue2, MainColor.blue3],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              );
+                            } else {
+                              barColor = Color(0xFF8A8A8A);
+                            }
+
+                            return BuildDynamicProgressBar(
+                              label: label,
+                              value: value,
+                              maxValue: maxValueLoNasabahInt.toDouble(),
+                              barColor: barColor,
+                            );
+                          }).toList(),
                         ],
                       )
-                    : Container(
-                        height: 200,
-                        decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-                        alignment: Alignment.center,
-                        child: const Text('Grafik Batang', style: TextStyle(color: Colors.black54)),
+                    : authController.pickRole.value == UserRole.am
+                    ? Column(
+                        children: [
+                          ...controller.sloNasabahChartData.map((item) {
+                            final String label = item['label'] as String;
+                            final int value = item['value'] as int;
+                            final dynamic barColor;
+
+                            if (value == maxValueSloNasabahInt) {
+                              barColor = LinearGradient(
+                                colors: [MainColor.blue2, MainColor.blue3],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              );
+                            } else {
+                              barColor = Color(0xFF8A8A8A);
+                            }
+
+                            return BuildDynamicProgressBar(
+                              label: label,
+                              value: value,
+                              maxValue: maxValueSloNasabahInt.toDouble(),
+                              barColor: barColor,
+                            );
+                          }).toList(),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                  child: Divider(color: SecondaryColor.neutral300),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'Minggu Ini',
+                            style: Get.textTheme.titleMedium!.copyWith(
+                              color: SecondaryColor.neutral500,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 5.h),
+                          Row(
+                            children: [
+                              Text(
+                                "18",
+                                style: Get.textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(width: 5.w),
+                              Text(
+                                "Orang",
+                                style: Get.textTheme.titleSmall!.copyWith(
+                                  color: SecondaryColor.neutral500,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5.h),
+                          Row(
+                            children: [
+                              Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp),
+                              SizedBox(width: 3.w),
+                              Text(
+                                "+11.1%",
+                                style: Get.textTheme.labelLarge!.copyWith(color: Colors.green, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
+                      Column(
+                        children: [
+                          Text(
+                            'Bulan Ini',
+                            style: Get.textTheme.titleMedium!.copyWith(
+                              color: SecondaryColor.neutral500,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 5.h),
+                          Row(
+                            children: [
+                              Text(
+                                "18",
+                                style: Get.textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(width: 5.w),
+                              Text(
+                                "Orang",
+                                style: Get.textTheme.titleSmall!.copyWith(
+                                  color: SecondaryColor.neutral500,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5.h),
+                          Row(
+                            children: [
+                              Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                              SizedBox(width: 3.w),
+                              Text(
+                                "-10.1%",
+                                style: Get.textTheme.labelLarge!.copyWith(color: Colors.red, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: Get.size.width * 0.5,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MainColor.blueNormal,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "Detail",
+                        style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

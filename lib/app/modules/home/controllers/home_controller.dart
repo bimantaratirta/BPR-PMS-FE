@@ -7,6 +7,20 @@ class HomeController extends GetxController {
     {"value": "bulan", "label": "Bulan"},
   ]);
 
+  final List<Map<String, dynamic>> loNasabahChartData = [
+    {'label': 'LO 1', 'value': 12},
+    {'label': 'LO 2', 'value': 22},
+    {'label': 'LO 3', 'value': 1},
+    {'label': 'LO 4', 'value': 4},
+  ];
+
+  final List<Map<String, dynamic>> sloNasabahChartData = [
+    {'label': 'LO 1', 'value': 12},
+    {'label': 'LO 2', 'value': 22},
+    {'label': 'LO 3', 'value': 1},
+    {'label': 'LO 4', 'value': 4},
+  ];
+
   void changeSelectedLoNasabahDisplayFilter(String value) {
     selectedLoNasabahDisplayFilter.value = value;
   }
