@@ -41,7 +41,10 @@ class OfficeCard extends StatelessWidget {
                         style: Get.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                       SizedBox(height: 4),
-                      Text('(Unknown) Kantor Kas', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white)),
+                      Text(
+                        '${regionData.branchCount ?? 0} Kantor Kas',
+                        style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white),
+                      ),
                       SizedBox(height: 8),
                     ],
                   ),

@@ -12,27 +12,30 @@ class BranchModel {
   String? id;
   String? branch;
   String? regionId;
+  String? address;
   DateTime? createdAt;
   DateTime? updatedAt;
-  dynamic deletedAt;
+  DateTime? deletedAt;
 
-  BranchModel({this.id, this.branch, this.regionId, this.createdAt, this.updatedAt, this.deletedAt});
+  BranchModel({this.id, this.branch, this.regionId, this.address, this.createdAt, this.updatedAt, this.deletedAt});
 
   factory BranchModel.fromJson(Map<String, dynamic> json) => BranchModel(
     id: json["id"],
     branch: json["branch"],
     regionId: json["region_id"],
+    address: json["address"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-    deletedAt: json["deleted_at"],
+    deletedAt: json["deleted_at"] == null ? null : DateTime.parse(json["deleted_at"]),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "branch": branch,
     "region_id": regionId,
+    "address": address,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
-    "deleted_at": deletedAt,
+    "deleted_at": deletedAt?.toIso8601String(),
   };
 }

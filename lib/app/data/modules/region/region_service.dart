@@ -12,4 +12,12 @@ class RegionService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel<RegionModel>> getRegionById(String id) async {
+    try {
+      return await _regionRepository.getRegionById(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }
