@@ -34,4 +34,10 @@ class UserRepository {
       ),
     );
   }
+
+  Future<ApiResponseModel<UserModel>> getUserById(String id) async {
+    return await apiClient.get(
+      ApiParams(path: "${AppConstants.userEndpoint}/$id", fromJson: (json) => UserModel.fromJson(json)),
+    );
+  }
 }

@@ -35,4 +35,12 @@ class UserService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel<UserModel>> getUserById(String id) async {
+    try {
+      return await _userRepository.getUserById(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }

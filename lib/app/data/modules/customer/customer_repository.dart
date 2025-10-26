@@ -17,6 +17,15 @@ class CustomerRepository {
     );
   }
 
+  Future<ApiResponseModel<List<CustomerModel>>> getAllCustomerByLo(String id, String paramsEncoded) async {
+    return await apiClient.get(
+      ApiParams<List<CustomerModel>>(
+        path: "${AppConstants.customerByLoEndpoint}/$id$paramsEncoded",
+        fromJson: (json) => helper.listParser(json, CustomerModel.fromJson),
+      ),
+    );
+  }
+
   Future<ApiResponseModel<CustomerModel>> getCustomerById(String id) async {
     return await apiClient.get(
       ApiParams(path: "${AppConstants.customerEndpoint}/$id", fromJson: (json) => CustomerModel.fromJson(json)),

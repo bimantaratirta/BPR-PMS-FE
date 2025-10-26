@@ -16,6 +16,19 @@ class CustomerService {
     }
   }
 
+  Future<ApiResponseModel<List<CustomerModel>>> getAllCustomerByLo({
+    required String id,
+    Map<String, dynamic>? params,
+  }) async {
+    try {
+      final Map<String, dynamic> queryParams = params ?? {};
+      final String paramsEncoded = helper.encodeQueryParams(queryParams);
+      return await _customerRepository.getAllCustomerByLo(id, paramsEncoded);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
   Future<ApiResponseModel<CustomerModel>> getCustomerById(String id) async {
     try {
       return await _customerRepository.getCustomerById(id);
