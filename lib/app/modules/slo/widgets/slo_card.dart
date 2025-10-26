@@ -1,23 +1,27 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
-import 'package:bpr_pms/app/data/modules/customer/models/customer_model.dart';
+import 'package:bpr_pms/app/data/modules/user/models/user_model.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NasabahCard extends StatelessWidget {
-  final CustomerModel customerData;
+class SloCard extends StatelessWidget {
+  final UserModel userData;
 
-  const NasabahCard({super.key, required this.customerData});
+  const SloCard({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.nasabahDetail(customerData.id ?? ""));
+        Get.toNamed(Routes.sloDetail(userData.id ?? ""));
       },
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(color: MainColor.blueLight1, borderRadius: BorderRadius.circular(8)),
+        decoration: BoxDecoration(
+          color: MainColor.blueLight1,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4))],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(18),
           child: Row(
@@ -37,11 +41,11 @@ class NasabahCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      customerData.name ?? 'Unknown',
+                      userData.name ?? 'Unknown',
                       style: Get.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.black),
                     ),
                     SizedBox(height: 4),
-                    Text(customerData.phoneNumber ?? '-', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.black54)),
+                    Text('SLO', style: Get.textTheme.bodyMedium!.copyWith(color: Colors.black45)),
                     SizedBox(height: 8),
                   ],
                 ),

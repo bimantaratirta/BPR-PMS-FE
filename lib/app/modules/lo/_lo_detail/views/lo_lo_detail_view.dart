@@ -14,16 +14,10 @@ class LoLoDetailView extends GetView<LoLoDetailController> {
   const LoLoDetailView({super.key});
   @override
   Widget build(BuildContext context) {
-    final LoController loController = Get.find<LoController>();
-
-    final String? itemId = Get.parameters['id'];
-
-    if (itemId != null && controller.id.value != itemId) {
-      controller.id.value = itemId;
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        controller.userData.value = await controller.getUserById(Get.context!, itemId);
-        await controller.getAllCustomerByLo(Get.context!, itemId, isInitialLoad: true);
-      });
+    final bool isLoControllerRegistered = Get.isRegistered<LoController>();
+    LoController? loController;
+    if (isLoControllerRegistered) {
+      loController = Get.find<LoController>();
     }
 
     return Obx(() {
@@ -47,7 +41,7 @@ class LoLoDetailView extends GetView<LoLoDetailController> {
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 Navigator.pop(context);
-                loController.refreshData(Get.context!);
+                loController?.refreshData(Get.context!);
               },
             ),
           ),

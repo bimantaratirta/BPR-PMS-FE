@@ -20,6 +20,20 @@ class LoLoDetailController extends GetxController {
   final int limit = 5;
   final isPagingLoading = false.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    final String? itemId = Get.parameters['id'];
+
+    if (itemId != null) {
+      id.value = itemId;
+      Future.microtask(() async {
+        userData.value = await getUserById(Get.context!, itemId);
+        await getAllCustomerByLo(Get.context!, itemId, isInitialLoad: true);
+      });
+    }
+  }
+
   Future<void> refreshData(BuildContext context) async {
     currentPage.value = 1;
     hasMoreData.value = true;
