@@ -122,8 +122,8 @@ class AuthLoginView extends GetView<AuthLoginController> {
                           children: [
                             if (controller.isLoading.value)
                               SizedBox(
-                                width: 20,
-                                height: 20,
+                                width: 16,
+                                height: 16,
                                 child: const CircularProgressIndicator(color: SecondaryColor.white, strokeWidth: 2),
                               )
                             else

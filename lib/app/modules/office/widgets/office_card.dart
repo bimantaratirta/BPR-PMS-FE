@@ -1,6 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/data/modules/region/models/region_model.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,9 @@ class OfficeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(Routes.officeDetail(regionData.id ?? ''));
+      },
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
