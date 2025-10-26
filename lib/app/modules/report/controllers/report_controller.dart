@@ -87,6 +87,8 @@ class ReportController extends GetxController {
         return false;
       case UserRole.lo:
         return false;
+      case UserRole.direksi:
+        return false;
       default:
         return false;
     }

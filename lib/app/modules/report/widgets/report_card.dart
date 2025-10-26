@@ -1,6 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/modules/report/controllers/report_controller.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
@@ -15,8 +16,9 @@ class ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ReportController reportController = Get.find<ReportController>();
+    final AuthController authController = Get.find<AuthController>();
 
-    if (reportController.isReportCanBeReviewed(reportData) == false) {
+    if (reportController.isReportCanBeReviewed(reportData) == false && authController.pickRole.value != UserRole.direksi) {
       return Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -173,7 +175,9 @@ class ReportCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                     ),
                     onPressed: () {
-                      if (reportData.process == "REVIEW_SLO" || reportData.process == "EVALUATION_SLO") {
+                      if (authController.pickRole.value == UserRole.direksi) {
+                        Get.toNamed(Routes.reportDetail(reportData.id ?? ""));
+                      } else if (reportData.process == "REVIEW_SLO" || reportData.process == "EVALUATION_SLO") {
                         Get.toNamed(Routes.reportSloReview(reportData.id ?? ""));
                       } else if (reportData.process == "REVIEW_AM") {
                         Get.toNamed(Routes.reportAmEvaluationReview(reportData.id ?? ""));
@@ -182,7 +186,7 @@ class ReportCard extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      "Review",
+                      authController.pickRole.value == UserRole.direksi ? "Detail" : "Review",
                       style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
                     ),
                   ),

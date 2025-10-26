@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 enum UserRole {
   lo(value: "LO"),
   slo(value: "SLO"),
-  am(value: "AM");
+  am(value: "AM"),
+  direksi(value: "Direksi");
 
   final String value;
 
@@ -23,7 +24,7 @@ enum UserRole {
 
 class AuthController extends GetxController {
   Rx<UserModel?> user = Rx<UserModel?>(null);
-  Rx<List<UserRole>> roles = Rx<List<UserRole>>([UserRole.lo, UserRole.slo, UserRole.am]);
+  Rx<List<UserRole>> roles = Rx<List<UserRole>>([UserRole.lo, UserRole.slo, UserRole.am, UserRole.direksi]);
   Rx<UserRole?> pickRole = Rx<UserRole?>(null);
 
   void changePickRole(UserRole? value) {

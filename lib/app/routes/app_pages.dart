@@ -22,6 +22,8 @@ import '../modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.d
 import '../modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
+import '../modules/office/bindings/office_binding.dart';
+import '../modules/office/views/office_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
 import '../modules/profile/_profile_change_password/views/profile_profile_change_password_view.dart';
 import '../modules/profile/_profile_detail/bindings/profile_profile_detail_binding.dart';
@@ -125,6 +127,7 @@ class AppPages {
           binding: SloBinding(),
           children: [GetPage(name: "/:id", page: () => const SloSloDetailView(), binding: SloSloDetailBinding())],
         ),
+        GetPage(name: _Paths.OFFICE, page: () => const OfficeView(), binding: OfficeBinding()),
       ],
     ),
   ];

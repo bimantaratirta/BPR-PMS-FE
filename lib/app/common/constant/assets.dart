@@ -14,6 +14,7 @@ class IconAssets {
   static const String plus = "assets/icons/icon_plus.svg";
   static const String imagePlus = "assets/icons/icon_image_plus.svg";
   static const String peopleDocument = "assets/icons/icon_people_document.svg";
+  static const String office = "assets/icons/icon_office.svg";
   static const String success = "assets/icons/icon_success.svg";
   static const String warning = "assets/icons/icon_warning.svg";
   static const String danger = "assets/icons/icon_danger.svg";

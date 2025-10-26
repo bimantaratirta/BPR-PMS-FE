@@ -23,6 +23,7 @@ class MainController extends GetxController {
   static const int PROFILE_INDEX = 3;
   static const int LO_INDEX = 2; // untuk SLO role, urutan berbeda
   static const int SLO_INDEX = 2; // untuk AM role, urutan berbeda
+  static const int OFFICE_INDEX = 2; // untuk Direksi role, urutan berbeda
 
   // ====== ROUTE MAPS per role (child dari /main) ======
   // Urutan list = urutan tab di bottom nav untuk role tsb.
@@ -37,6 +38,9 @@ class MainController extends GetxController {
       case UserRole.am:
         // [Home, Report, SLO, Profile]
         return [Routes.HOME, Routes.REPORT, Routes.SLO, Routes.PROFILE];
+      case UserRole.direksi:
+        // [Home, Report, Office, Profile]
+        return [Routes.HOME, Routes.REPORT, Routes.OFFICE, Routes.PROFILE];
       default:
         return [];
     }
@@ -121,6 +125,28 @@ class MainController extends GetxController {
             iconPath: IconAssets.peopleDocument,
             iconColor: MainColor.blueNormal,
             label: 'SLO',
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+          ),
+        ]);
+        break;
+
+      case UserRole.direksi:
+        // [Laporan, Office]
+        items.addAll([
+          BottomNavigationItemModel(
+            onTap: () => changePage(1),
+            index: 1,
+            iconPath: IconAssets.report,
+            iconColor: MainColor.blueNormal,
+            label: 'Laporan',
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+          ),
+          BottomNavigationItemModel(
+            onTap: () => changePage(2),
+            index: 2,
+            iconPath: IconAssets.office,
+            iconColor: MainColor.blueNormal,
+            label: 'Kantor',
             labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
           ),
         ]);
