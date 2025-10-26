@@ -16,4 +16,10 @@ class RegionRepository {
       ),
     );
   }
+
+  Future<ApiResponseModel<RegionModel>> getRegionById(String id) async {
+    return await apiClient.get(
+      ApiParams(path: "${AppConstants.regionEndpoint}/$id", fromJson: (json) => RegionModel.fromJson(json)),
+    );
+  }
 }
