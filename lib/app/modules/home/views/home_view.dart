@@ -436,7 +436,7 @@ class HomeView extends GetView<HomeController> {
                                             : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
                                         SizedBox(width: 3.w),
                                         Text(
-                                          "${controller.totalWeekPercentageChange.value >= 0 ? '+' : '-'}${controller.totalWeekPercentageChange.value.toStringAsFixed(2)}%",
+                                          "${controller.totalWeekPercentageChange.value >= 0 ? '+' : ''}${controller.totalWeekPercentageChange.value.toStringAsFixed(2)}%",
                                           style: Get.textTheme.labelLarge!.copyWith(
                                             color: controller.totalWeekPercentageChange.value >= 0
                                                 ? Colors.green
@@ -485,7 +485,7 @@ class HomeView extends GetView<HomeController> {
                                             : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
                                         SizedBox(width: 3.w),
                                         Text(
-                                          "${controller.totalMonthPercentageChange.value >= 0 ? '+' : '-'}${controller.totalMonthPercentageChange.value.toStringAsFixed(2)}%",
+                                          "${controller.totalMonthPercentageChange.value >= 0 ? '+' : ''}${controller.totalMonthPercentageChange.value.toStringAsFixed(2)}%",
                                           style: Get.textTheme.labelLarge!.copyWith(
                                             color: controller.totalMonthPercentageChange.value >= 0
                                                 ? Colors.green

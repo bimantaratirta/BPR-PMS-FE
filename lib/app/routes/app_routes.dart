@@ -38,6 +38,7 @@ abstract class Routes {
 
   // Office Nested Routes
   static String officeDetail(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/$id';
+  static String officeDetailEmployee(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/$id/employee';
 }
 
 abstract class _Paths {

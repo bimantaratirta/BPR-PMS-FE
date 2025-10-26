@@ -24,6 +24,8 @@ import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
 import '../modules/office/_office_detail/bindings/office_office_detail_binding.dart';
 import '../modules/office/_office_detail/views/office_office_detail_view.dart';
+import '../modules/office/_office_detail_employee/bindings/office_office_detail_employee_binding.dart';
+import '../modules/office/_office_detail_employee/views/office_office_detail_employee_view.dart';
 import '../modules/office/bindings/office_binding.dart';
 import '../modules/office/views/office_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
@@ -135,6 +137,11 @@ class AppPages {
           binding: OfficeBinding(),
           children: [
             GetPage(name: "/:id", page: () => const OfficeOfficeDetailView(), binding: OfficeOfficeDetailBinding()),
+            GetPage(
+              name: '/:id/employee',
+              page: () => const OfficeOfficeDetailEmployeeView(),
+              binding: OfficeOfficeDetailEmployeeBinding(),
+            ),
           ],
         ),
       ],

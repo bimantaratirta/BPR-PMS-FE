@@ -1,6 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/data/modules/region/models/region_model.dart';
+import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,7 +16,7 @@ class BranchCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Get.toNamed(Routes.officeDetail(branchData.id ?? ''));
+        Get.toNamed(Routes.officeDetailEmployee(branchData.id ?? ''));
       },
       child: Container(
         padding: EdgeInsets.all(12.w),
