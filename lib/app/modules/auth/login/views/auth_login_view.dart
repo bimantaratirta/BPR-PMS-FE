@@ -27,7 +27,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                   SizedBox(height: 64),
                   Text(
                     "Masuk",
-                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blue5),
+                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blueLight3),
                   ),
                   SizedBox(height: 32),
                   Column(
@@ -122,8 +122,8 @@ class AuthLoginView extends GetView<AuthLoginController> {
                           children: [
                             if (controller.isLoading.value)
                               SizedBox(
-                                width: 20,
-                                height: 20,
+                                width: 16,
+                                height: 16,
                                 child: const CircularProgressIndicator(color: SecondaryColor.white, strokeWidth: 2),
                               )
                             else
@@ -145,7 +145,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                     children: [
                       Text("Belum punya akun? ", style: Get.textTheme.bodyMedium!),
                       GestureDetector(
-                        child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blue5)),
+                        child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueLight3)),
                         onTap: () {
                           Get.toNamed(Routes.AUTH_REGISTER);
                         },

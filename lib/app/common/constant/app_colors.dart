@@ -6,6 +6,7 @@ class MainColor {
   static const Color blue3 = Color(0xff336DFF);
   static const Color blue4 = Color(0xff2C68FF);
   static const Color blue5 = Color(0xff0544E5);
+  static const Color blue6 = Color(0xff5082FF);
   static const Color blueLight1 = Color(0xffDDE6FF);
   static const Color blueLight2 = Color(0xffE4F2FE);
   static const Color blueLight3 = Color(0xff007CFF);
@@ -29,6 +30,8 @@ class MainColor {
   static const Color orangeDarkHover = Color(0xff994c00);
   static const Color orangeDarkActive = Color(0xff733900);
   static const Color orangeDarker = Color(0xff592c00);
+  static const Color grey1 = Color(0xff1D1D1D);
+  static const Color greyLight1 = Color(0xff838383);
   static const Color greyLight = Color(0xffeaeaea);
   static const Color greyLightHover = Color(0xffe0e0e0);
   static const Color greyLightActive = Color(0xffbfbfbf);

@@ -35,6 +35,9 @@ abstract class Routes {
 
   // SLO Nested Routes
   static String sloDetail(String id) => '${_Paths.MAIN}${_Paths.SLO}/$id';
+
+  // Office Nested Routes
+  static String officeDetail(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/$id';
 }
 
 abstract class _Paths {

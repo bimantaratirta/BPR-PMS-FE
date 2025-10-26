@@ -15,6 +15,7 @@ class IconAssets {
   static const String imagePlus = "assets/icons/icon_image_plus.svg";
   static const String peopleDocument = "assets/icons/icon_people_document.svg";
   static const String office = "assets/icons/icon_office.svg";
+  static const String office2 = "assets/icons/icon_office_2.svg";
   static const String success = "assets/icons/icon_success.svg";
   static const String warning = "assets/icons/icon_warning.svg";
   static const String danger = "assets/icons/icon_danger.svg";
@@ -26,4 +27,5 @@ class IconAssets {
 class ImageAssets {
   static const String logoBpr = "assets/images/Logo-BPR.png";
   static const String logoBprSahabatSejatiTransparant = "assets/images/logo_bpr_sahabat_sejati_transparant.png";
+  static const String officeBackground = "assets/images/img_office_background.jpg";
 }
