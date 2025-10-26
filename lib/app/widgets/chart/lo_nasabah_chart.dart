@@ -5,6 +5,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+enum ChartType { weekly, monthly }
+
 class ChartData {
   final String label; // Misalnya: 'Sen', 'Sel', 'Rab'
   final double value; // Nilai numerik
@@ -14,7 +16,14 @@ class ChartData {
 }
 
 class LoNasabahChart extends StatefulWidget {
-  LoNasabahChart({super.key});
+  final List<double> values;
+  final ChartType type;
+
+  LoNasabahChart({
+    super.key,
+    required this.values,
+    this.type = ChartType.weekly, // Default ke 'weekly'
+  });
 
   final Color barBackgroundColor = Colors.white.withOpacity(0.3);
   final Color barColor = Colors.white;
@@ -28,40 +37,55 @@ class LoNasabahChartState extends State<LoNasabahChart> {
   final Duration animDuration = const Duration(milliseconds: 250);
   final RxInt touchedIndex = (-1).obs;
 
-  final List<ChartData> data = [
-    ChartData(0, 'Sen', 5.0),
-    ChartData(1, 'Sel', 6.5),
-    ChartData(2, 'Rab', 5.0),
-    ChartData(3, 'Kam', 7.5),
-    ChartData(4, 'Jum', 9.0),
-    ChartData(5, 'Sab', 11.5),
-    ChartData(6, 'Min', 6.5),
-  ];
+  static const List<String> _weeklyLabels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+  static const List<String> _monthlyLabels = ['Ming 1', 'Ming 2', 'Ming 3', 'Ming 4'];
 
-  // Hitung nilai Y maksimum untuk menentukan batas atas grafik
+  List<ChartData> get chartDataList {
+    final List<String> labels = (widget.type == ChartType.weekly) ? _weeklyLabels : _monthlyLabels;
+
+    final List<double> values = widget.values;
+
+    List<ChartData> generatedData = [];
+    for (int i = 0; i < values.length; i++) {
+      String label = (i < labels.length) ? labels[i] : 'Data ${i + 1}';
+      generatedData.add(ChartData(i, label, values[i]));
+    }
+    return generatedData;
+  }
+
   double get maxY {
-    double maxValue = data.map((d) => d.value).reduce(max);
-    // Kita tambahkan buffer 20% agar bar tidak menempel di batas atas
+    if (chartDataList.isEmpty) return 2.0;
+
+    double maxValue = chartDataList.map((d) => d.value).reduce(max);
+
+    if (maxValue == 0) return 2.0;
+
     return (maxValue * 1.2).ceilToDouble();
   }
 
-  // Hitung interval untuk label sumbu Y (agar lebih rapi, misal kelipatan 5, 10, atau 20)
   double get yAxisInterval {
-    // Menentukan interval yang bagus berdasarkan maxY
     if (maxY <= 10) return 2.0;
     if (maxY <= 25) return 5.0;
     if (maxY <= 50) return 10.0;
-    return (maxY / 5).ceilToDouble(); // Ambil 5 garis utama
+    return (maxY / 5).ceilToDouble();
   }
 
-  // BarChartGroupData yang dibuat secara dinamis dari list data
-  List<BarChartGroupData> get barGroups => data.map((item) {
+  List<BarChartGroupData> get barGroups => chartDataList.map((item) {
     bool isTouched = item.x == touchedIndex.value;
     return makeGroupData(item.x, item.value, barColor: SecondaryColor.neutral400, isTouched: isTouched);
   }).toList();
 
   @override
   Widget build(BuildContext context) {
+    if (chartDataList.isEmpty) {
+      return AspectRatio(
+        aspectRatio: 1,
+        child: Center(
+          child: Text('Tidak ada data', style: Get.textTheme.bodyMedium?.copyWith(color: Colors.grey)),
+        ),
+      );
+    }
+
     return AspectRatio(
       aspectRatio: 1,
       child: Stack(
@@ -73,6 +97,7 @@ class LoNasabahChartState extends State<LoNasabahChart> {
                 child: BarChart(
                   BarChartData(
                     alignment: BarChartAlignment.spaceBetween,
+                    maxY: maxY,
                     barTouchData: BarTouchData(
                       enabled: true,
                       touchTooltipData: BarTouchTooltipData(
@@ -80,7 +105,7 @@ class LoNasabahChartState extends State<LoNasabahChart> {
                         tooltipHorizontalAlignment: FLHorizontalAlignment.center,
                         tooltipMargin: 8,
                         getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                          String weekDay = data[group.x].label;
+                          String weekDay = chartDataList[group.x].label;
                           return BarTooltipItem(
                             '$weekDay\n',
                             Get.textTheme.labelLarge!.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
@@ -113,9 +138,9 @@ class LoNasabahChartState extends State<LoNasabahChart> {
                       leftTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
-                          reservedSize: 30, // Tambah reservedSize agar label yang lebih panjang muat
-                          interval: yAxisInterval, // Menggunakan interval yang dihitung
-                          getTitlesWidget: leftTitles, // Menggunakan fungsi leftTitles yang dinamis
+                          reservedSize: 30,
+                          interval: yAxisInterval,
+                          getTitlesWidget: leftTitles,
                         ),
                       ),
                       topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -123,7 +148,6 @@ class LoNasabahChartState extends State<LoNasabahChart> {
                     ),
                     gridData: FlGridData(
                       show: true,
-                      // Garis Horizontal mengikuti interval yang dihitung
                       checkToShowHorizontalLine: (value) => value % yAxisInterval == 0,
                       getDrawingHorizontalLine: (value) =>
                           FlLine(color: SecondaryColor.neutral400, strokeWidth: 1, dashArray: [5, 5]),
@@ -156,7 +180,7 @@ class LoNasabahChartState extends State<LoNasabahChart> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 28,
+    double width = 28, // Anda bisa sesuaikan ini jika bar-nya terlalu lebar/tipis
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;
@@ -164,8 +188,7 @@ class LoNasabahChartState extends State<LoNasabahChart> {
       x: x,
       barRods: [
         BarChartRodData(
-          // Tambahkan 1 ke y HANYA saat disentuh untuk visual effect
-          toY: isTouched ? y + 1 : y,
+          toY: (y == 0 && !isTouched) ? 0.1 : (isTouched ? y + 1 : y),
           color: isTouched ? MainColor.blue5 : barColor,
           width: width,
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
@@ -176,24 +199,22 @@ class LoNasabahChartState extends State<LoNasabahChart> {
     );
   }
 
-  // --- 2. LEFT TITLES DINAMIS ---
   Widget leftTitles(double value, TitleMeta meta) {
     const style = TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 14);
 
-    // Pastikan label hanya ditampilkan pada interval yang ditentukan
+    if (value == 0) {
+      return Container();
+    }
+
     if (value % yAxisInterval != 0) {
       return Container();
     }
 
-    // Format label (misal: 10.0, 20.0, dsb.)
-    // Anda bisa menambahkan format 'K' di sini jika nilai Anda dalam ribuan.
-    // Misalnya, jika nilai 10.0 sebenarnya adalah 10.000, ubah seperti di bawah.
-    String text = value.toStringAsFixed(0); // Contoh: "10", "20"
+    String text = value.toStringAsFixed(0);
 
-    // Contoh untuk menambahkan format "K" jika nilainya besar
     if (value >= 1000) {
       text = '${(value / 1000).toStringAsFixed(1)}K';
-    } else if (value > 0) {
+    } else {
       text = '${value.toStringAsFixed(0)}';
     }
 
@@ -204,11 +225,9 @@ class LoNasabahChartState extends State<LoNasabahChart> {
     );
   }
 
-  // --- 3. BOTTOM TITLES DINAMIS ---
   Widget bottomTitles(double value, TitleMeta meta) {
-    final titles = data.map((d) => d.label).toList();
+    final titles = chartDataList.map((d) => d.label).toList();
 
-    // Pastikan index value ada dalam batas array data
     if (value.toInt() < 0 || value.toInt() >= titles.length) {
       return Container();
     }

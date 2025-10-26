@@ -20,10 +20,6 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
 
-    final int maxValueLoNasabahInt = controller.loNasabahChartData.map((item) => item['value'] as int).reduce(max);
-    final int maxValueSloNasabahInt = controller.sloNasabahChartData.map((item) => item['value'] as int).reduce(max);
-    final int maxValueRegionNasabahInt = controller.regionNasabahChartData.map((item) => item['value'] as int).reduce(max);
-
     Widget buildBlueHeader() {
       return Container(
         decoration: BoxDecoration(
@@ -273,202 +269,259 @@ class HomeView extends GetView<HomeController> {
                   padding: EdgeInsets.symmetric(vertical: 8.0.h),
                   child: Divider(color: SecondaryColor.neutral300),
                 ),
-
-                // --- Grafik ---
-                authController.pickRole.value == UserRole.lo
-                    ? Column(children: [LoNasabahChart()])
-                    : authController.pickRole.value == UserRole.slo
-                    ? Column(
-                        children: [
-                          ...controller.loNasabahChartData.map((item) {
-                            final String label = item['label'] as String;
-                            final int value = item['value'] as int;
-                            final dynamic barColor;
-
-                            if (value == maxValueLoNasabahInt) {
-                              barColor = LinearGradient(
-                                colors: [MainColor.blue2, MainColor.blue3],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              );
-                            } else {
-                              barColor = Color(0xFF8A8A8A);
-                            }
-
-                            return BuildDynamicProgressBar(
-                              label: label,
-                              value: value,
-                              maxValue: maxValueLoNasabahInt.toDouble(),
-                              barColor: barColor,
-                            );
-                          }).toList(),
-                        ],
+                controller.isLoading.value
+                    ? Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 50.h),
+                          child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(MainColor.blue5)),
+                        ),
                       )
-                    : authController.pickRole.value == UserRole.am
-                    ? Column(
+                    : Column(
                         children: [
-                          ...controller.sloNasabahChartData.map((item) {
-                            final String label = item['label'] as String;
-                            final int value = item['value'] as int;
-                            final dynamic barColor;
+                          authController.pickRole.value == UserRole.lo
+                              ? Column(
+                                  children: [
+                                    LoNasabahChart(
+                                      type: controller.selectedLoNasabahDisplayFilter.value == 'minggu'
+                                          ? ChartType.weekly
+                                          : ChartType.monthly,
+                                      values: controller.dashboardLoData.value?.customers ?? [],
+                                    ),
+                                  ],
+                                )
+                              : authController.pickRole.value == UserRole.slo
+                              ? Obx(() {
+                                  final int maxValueLoNasabahInt = controller.loNasabahChartData.isEmpty
+                                      ? 0
+                                      : controller.loNasabahChartData.map((item) => item['value'] as int).reduce(max);
 
-                            if (value == maxValueSloNasabahInt) {
-                              barColor = LinearGradient(
-                                colors: [MainColor.blue2, MainColor.blue3],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              );
-                            } else {
-                              barColor = Color(0xFF8A8A8A);
-                            }
+                                  return Column(
+                                    children: [
+                                      ...controller.loNasabahChartData.map((item) {
+                                        final String label = item['label'] as String;
+                                        final int value = item['value'] as int;
+                                        final dynamic barColor;
 
-                            return BuildDynamicProgressBar(
-                              label: label,
-                              value: value,
-                              maxValue: maxValueSloNasabahInt.toDouble(),
-                              barColor: barColor,
-                            );
-                          }).toList(),
-                        ],
-                      )
-                    : authController.pickRole.value == UserRole.direksi
-                    ? Column(
-                        children: [
-                          ...controller.regionNasabahChartData.map((item) {
-                            final String label = item['label'] as String;
-                            final int value = item['value'] as int;
-                            final dynamic barColor;
+                                        if (value == maxValueLoNasabahInt && value != 0) {
+                                          barColor = LinearGradient(
+                                            colors: [MainColor.blue2, MainColor.blue3],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight,
+                                          );
+                                        } else {
+                                          barColor = Color(0xFF8A8A8A);
+                                        }
 
-                            if (value == maxValueRegionNasabahInt) {
-                              barColor = LinearGradient(
-                                colors: [MainColor.blue2, MainColor.blue3],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              );
-                            } else {
-                              barColor = Color(0xFF8A8A8A);
-                            }
+                                        return BuildDynamicProgressBar(
+                                          label: label,
+                                          value: value,
+                                          maxValue: maxValueLoNasabahInt.toDouble(),
+                                          barColor: barColor,
+                                        );
+                                      }).toList(),
+                                    ],
+                                  );
+                                })
+                              : authController.pickRole.value == UserRole.am
+                              ? Obx(() {
+                                  final int maxValueSloNasabahInt = controller.sloNasabahChartData.isEmpty
+                                      ? 0
+                                      : controller.sloNasabahChartData.map((item) => item['value'] as int).reduce(max);
 
-                            return BuildDynamicProgressBar(
-                              label: label,
-                              value: value,
-                              maxValue: maxValueRegionNasabahInt.toDouble(),
-                              barColor: barColor,
-                            );
-                          }).toList(),
-                        ],
-                      )
-                    : SizedBox.shrink(),
+                                  return Column(
+                                    children: [
+                                      ...controller.sloNasabahChartData.map((item) {
+                                        final String label = item['label'] as String;
+                                        final int value = item['value'] as int;
+                                        final dynamic barColor;
 
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0.h),
-                  child: Divider(color: SecondaryColor.neutral300),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 8.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Minggu Ini',
-                            style: Get.textTheme.titleMedium!.copyWith(
-                              color: SecondaryColor.neutral500,
-                              fontWeight: FontWeight.bold,
+                                        if (value == maxValueSloNasabahInt && value != 0) {
+                                          barColor = LinearGradient(
+                                            colors: [MainColor.blue2, MainColor.blue3],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight,
+                                          );
+                                        } else {
+                                          barColor = Color(0xFF8A8A8A);
+                                        }
+
+                                        return BuildDynamicProgressBar(
+                                          label: label,
+                                          value: value,
+                                          maxValue: maxValueSloNasabahInt.toDouble(),
+                                          barColor: barColor,
+                                        );
+                                      }).toList(),
+                                    ],
+                                  );
+                                })
+                              : authController.pickRole.value == UserRole.direksi
+                              ? Obx(() {
+                                  final int maxValueRegionNasabahInt = controller.regionNasabahChartData.isEmpty
+                                      ? 0
+                                      : controller.regionNasabahChartData.map((item) => item['value'] as int).reduce(max);
+
+                                  return Column(
+                                    children: [
+                                      ...controller.regionNasabahChartData.map((item) {
+                                        final String label = item['label'] as String;
+                                        final int value = item['value'] as int;
+                                        final dynamic barColor;
+
+                                        if (value == maxValueRegionNasabahInt && value != 0) {
+                                          barColor = LinearGradient(
+                                            colors: [MainColor.blue2, MainColor.blue3],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight,
+                                          );
+                                        } else {
+                                          barColor = Color(0xFF8A8A8A);
+                                        }
+
+                                        return BuildDynamicProgressBar(
+                                          label: label,
+                                          value: value,
+                                          maxValue: maxValueRegionNasabahInt.toDouble(),
+                                          barColor: barColor,
+                                        );
+                                      }).toList(),
+                                    ],
+                                  );
+                                })
+                              : SizedBox.shrink(),
+
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                            child: Divider(color: SecondaryColor.neutral300),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 8.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      'Minggu Ini',
+                                      style: Get.textTheme.titleMedium!.copyWith(
+                                        color: SecondaryColor.neutral500,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.h),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          controller.totalWeekCurrentPeriod.value.toString(),
+                                          style: Get.textTheme.titleLarge!.copyWith(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(width: 5.w),
+                                        Text(
+                                          "Orang",
+                                          style: Get.textTheme.titleSmall!.copyWith(
+                                            color: SecondaryColor.neutral500,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5.h),
+                                    Row(
+                                      children: [
+                                        controller.totalWeekPercentageChange.value >= 0
+                                            ? Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp)
+                                            : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                                        SizedBox(width: 3.w),
+                                        Text(
+                                          "${controller.totalWeekPercentageChange.value >= 0 ? '+' : '-'}${controller.totalWeekPercentageChange.value.toStringAsFixed(2)}%",
+                                          style: Get.textTheme.labelLarge!.copyWith(
+                                            color: controller.totalWeekPercentageChange.value >= 0
+                                                ? Colors.green
+                                                : Colors.red,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'Bulan Ini',
+                                      style: Get.textTheme.titleMedium!.copyWith(
+                                        color: SecondaryColor.neutral500,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.h),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          controller.totalMonthCurrentPeriod.value.toString(),
+                                          style: Get.textTheme.titleLarge!.copyWith(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(width: 5.w),
+                                        Text(
+                                          "Orang",
+                                          style: Get.textTheme.titleSmall!.copyWith(
+                                            color: SecondaryColor.neutral500,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5.h),
+                                    Row(
+                                      children: [
+                                        controller.totalMonthPercentageChange.value >= 0
+                                            ? Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp)
+                                            : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                                        SizedBox(width: 3.w),
+                                        Text(
+                                          "${controller.totalMonthPercentageChange.value >= 0 ? '+' : '-'}${controller.totalMonthPercentageChange.value.toStringAsFixed(2)}%",
+                                          style: Get.textTheme.labelLarge!.copyWith(
+                                            color: controller.totalMonthPercentageChange.value >= 0
+                                                ? Colors.green
+                                                : Colors.red,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Text(
-                                "18",
-                                style: Get.textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(width: 5.w),
-                              Text(
-                                "Orang",
-                                style: Get.textTheme.titleSmall!.copyWith(
-                                  color: SecondaryColor.neutral500,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp),
-                              SizedBox(width: 3.w),
-                              Text(
-                                "+11.1%",
-                                style: Get.textTheme.labelLarge!.copyWith(color: Colors.green, fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
+                          SizedBox(height: 12.h),
                         ],
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            'Bulan Ini',
-                            style: Get.textTheme.titleMedium!.copyWith(
-                              color: SecondaryColor.neutral500,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Text(
-                                "18",
-                                style: Get.textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(width: 5.w),
-                              Text(
-                                "Orang",
-                                style: Get.textTheme.titleSmall!.copyWith(
-                                  color: SecondaryColor.neutral500,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
-                              SizedBox(width: 3.w),
-                              Text(
-                                "-10.1%",
-                                style: Get.textTheme.labelLarge!.copyWith(color: Colors.red, fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 12.h),
-                Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: Get.size.width * 0.5,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: MainColor.blue5,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        "Detail",
-                        style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
+
+                // Align(
+                //   alignment: Alignment.center,
+                //   child: SizedBox(
+                //     width: Get.size.width * 0.5,
+                //     child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //         backgroundColor: MainColor.blue5,
+                //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                //         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                //       ),
+                //       onPressed: () {},
+                //       child: Text(
+                //         "Detail",
+                //         style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.white, fontWeight: FontWeight.bold),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

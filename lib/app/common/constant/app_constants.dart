@@ -19,6 +19,10 @@ class AppConstants {
   static const String userEndpoint = "/user";
   static const String userLoBySloEndpoint = "/user/lo-by-slo";
   static const String userSloByAmEndpoint = "/user/slo-by-am";
+  static const String dashboardLoEndpoint = "/dashboard/lo";
+  static const String dashboardSloEndpoint = "/dashboard/slo";
+  static const String dashboardAmEndpoint = "/dashboard/am";
+  static const String dashboardDireksiEndpoint = "/dashboard/direksi";
 
   // Storage Keys
   static const String userKey = "user_data";

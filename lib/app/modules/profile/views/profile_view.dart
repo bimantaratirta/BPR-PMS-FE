@@ -81,41 +81,41 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.profileChangePassword());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: SecondaryColor.neutral100,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: Get.size.width * 0.15,
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: SvgPicture.asset(height: 24.h, IconAssets.lock, color: Colors.black),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "Ganti Password",
-                                    style: Get.textTheme.labelMedium!.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // SizedBox(height: 10),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Get.toNamed(Routes.profileChangePassword());
+                      //   },
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //       color: SecondaryColor.neutral100,
+                      //       borderRadius: BorderRadius.circular(8),
+                      //     ),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                      //       child: Row(
+                      //         children: [
+                      //           SizedBox(
+                      //             width: Get.size.width * 0.15,
+                      //             child: Align(
+                      //               alignment: Alignment.centerLeft,
+                      //               child: SvgPicture.asset(height: 24.h, IconAssets.lock, color: Colors.black),
+                      //             ),
+                      //           ),
+                      //           Expanded(
+                      //             child: Text(
+                      //               "Ganti Password",
+                      //               style: Get.textTheme.labelMedium!.copyWith(
+                      //                 color: Colors.black,
+                      //                 fontWeight: FontWeight.w600,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {
