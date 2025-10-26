@@ -27,7 +27,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                   SizedBox(height: 64),
                   Text(
                     "Masuk",
-                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blueNormal),
+                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blue5),
                   ),
                   SizedBox(height: 32),
                   Column(
@@ -110,7 +110,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                       onPressed: action,
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: MainColor.blueNormal,
+                        backgroundColor: MainColor.blue5,
                         disabledBackgroundColor: SecondaryColor.neutral500,
                         minimumSize: Size(double.infinity, 40),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -145,7 +145,7 @@ class AuthLoginView extends GetView<AuthLoginController> {
                     children: [
                       Text("Belum punya akun? ", style: Get.textTheme.bodyMedium!),
                       GestureDetector(
-                        child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
+                        child: Text("Daftar", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blue5)),
                         onTap: () {
                           Get.toNamed(Routes.AUTH_REGISTER);
                         },

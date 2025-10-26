@@ -22,6 +22,7 @@ class HomeView extends GetView<HomeController> {
 
     final int maxValueLoNasabahInt = controller.loNasabahChartData.map((item) => item['value'] as int).reduce(max);
     final int maxValueSloNasabahInt = controller.sloNasabahChartData.map((item) => item['value'] as int).reduce(max);
+    final int maxValueRegionNasabahInt = controller.regionNasabahChartData.map((item) => item['value'] as int).reduce(max);
 
     Widget buildBlueHeader() {
       return Container(
@@ -330,6 +331,33 @@ class HomeView extends GetView<HomeController> {
                           }).toList(),
                         ],
                       )
+                    : authController.pickRole.value == UserRole.direksi
+                    ? Column(
+                        children: [
+                          ...controller.regionNasabahChartData.map((item) {
+                            final String label = item['label'] as String;
+                            final int value = item['value'] as int;
+                            final dynamic barColor;
+
+                            if (value == maxValueRegionNasabahInt) {
+                              barColor = LinearGradient(
+                                colors: [MainColor.blue2, MainColor.blue3],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              );
+                            } else {
+                              barColor = Color(0xFF8A8A8A);
+                            }
+
+                            return BuildDynamicProgressBar(
+                              label: label,
+                              value: value,
+                              maxValue: maxValueRegionNasabahInt.toDouble(),
+                              barColor: barColor,
+                            );
+                          }).toList(),
+                        ],
+                      )
                     : SizedBox.shrink(),
 
                 Padding(
@@ -429,7 +457,7 @@ class HomeView extends GetView<HomeController> {
                     width: Get.size.width * 0.5,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: MainColor.blueNormal,
+                        backgroundColor: MainColor.blue5,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                       ),

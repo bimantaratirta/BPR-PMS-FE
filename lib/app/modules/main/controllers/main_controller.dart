@@ -56,9 +56,9 @@ class MainController extends GetxController {
         onTap: () => changePage(0),
         index: 0,
         iconPath: IconAssets.home,
-        iconColor: MainColor.blueNormal,
+        iconColor: MainColor.blue5,
         label: 'Beranda',
-        labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+        labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
       ),
     );
 
@@ -71,17 +71,17 @@ class MainController extends GetxController {
             onTap: () => changePage(1),
             index: 1,
             iconPath: IconAssets.nasabah,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Nasabah',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
           BottomNavigationItemModel(
             onTap: () => changePage(2),
             index: 2,
             iconPath: IconAssets.report,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Laporan',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
         ]);
         break;
@@ -93,17 +93,17 @@ class MainController extends GetxController {
             onTap: () => changePage(1),
             index: 1,
             iconPath: IconAssets.report,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Laporan',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
           BottomNavigationItemModel(
             onTap: () => changePage(2),
             index: 2,
             iconPath: IconAssets.peopleDocument,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'LO',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
         ]);
         break;
@@ -115,17 +115,17 @@ class MainController extends GetxController {
             onTap: () => changePage(1),
             index: 1,
             iconPath: IconAssets.report,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Laporan',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
           BottomNavigationItemModel(
             onTap: () => changePage(2),
             index: 2,
             iconPath: IconAssets.peopleDocument,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'SLO',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
         ]);
         break;
@@ -137,17 +137,17 @@ class MainController extends GetxController {
             onTap: () => changePage(1),
             index: 1,
             iconPath: IconAssets.report,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Laporan',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
           BottomNavigationItemModel(
             onTap: () => changePage(2),
             index: 2,
             iconPath: IconAssets.office,
-            iconColor: MainColor.blueNormal,
+            iconColor: MainColor.blue5,
             label: 'Kantor',
-            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+            labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
           ),
         ]);
         break;
@@ -162,9 +162,9 @@ class MainController extends GetxController {
         onTap: () => changePage(3),
         index: 3,
         iconPath: IconAssets.profile,
-        iconColor: MainColor.blueNormal,
+        iconColor: MainColor.blue5,
         label: 'Profil',
-        labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blueNormal),
+        labelStyle: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w500, color: MainColor.blue5),
       ),
     );
 

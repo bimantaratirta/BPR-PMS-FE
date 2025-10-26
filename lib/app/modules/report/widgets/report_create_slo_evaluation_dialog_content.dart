@@ -27,7 +27,7 @@ class ReportCreateSloEvaluationDialogContent extends StatelessWidget {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: MainColor.blueNormal,
+                  backgroundColor: MainColor.blue5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                   minimumSize: Size(100.w, 48.h),

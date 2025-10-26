@@ -37,7 +37,7 @@ class ReportCard extends StatelessWidget {
               ),
               SizedBox(height: 12),
               Container(
-                decoration: BoxDecoration(color: MainColor.blueLight, borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: MainColor.blue5.withOpacity(0.15), borderRadius: BorderRadius.circular(8)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -54,7 +54,7 @@ class ReportCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(color: SecondaryColor.neutral300, height: 1),
+                    Divider(color: Colors.white, height: 1),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       child: Row(
@@ -83,7 +83,7 @@ class ReportCard extends StatelessWidget {
                     child: SizedBox(
                       child: Text(
                         "Detail",
-                        style: Get.textTheme.labelMedium!.copyWith(color: MainColor.blueNormal, fontWeight: FontWeight.bold),
+                        style: Get.textTheme.labelMedium!.copyWith(color: MainColor.blue5, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -97,7 +97,14 @@ class ReportCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(color: MainColor.blueNormal, borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [MainColor.blue1, MainColor.blue2],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -170,7 +177,7 @@ class ReportCard extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: MainColor.blueNormalActive,
+                      backgroundColor: MainColor.blue4,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                     ),

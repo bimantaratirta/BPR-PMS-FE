@@ -166,7 +166,7 @@ class LoNasabahChartState extends State<LoNasabahChart> {
         BarChartRodData(
           // Tambahkan 1 ke y HANYA saat disentuh untuk visual effect
           toY: isTouched ? y + 1 : y,
-          color: isTouched ? MainColor.blueNormal : barColor,
+          color: isTouched ? MainColor.blue5 : barColor,
           width: width,
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
           backDrawRodData: BackgroundBarChartRodData(show: false),
