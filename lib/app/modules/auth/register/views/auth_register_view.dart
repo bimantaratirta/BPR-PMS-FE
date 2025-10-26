@@ -27,7 +27,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                   SizedBox(height: 64),
                   Text(
                     "Daftar",
-                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blueNormal),
+                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blue5),
                   ),
                   SizedBox(height: 32),
                   Column(
@@ -106,7 +106,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                                           : Icons.radio_button_off,
                                       size: 20,
                                       color: (controller.pickTypeAccount.value == data)
-                                          ? MainColor.blueNormal
+                                          ? MainColor.blue5
                                           : SecondaryColor.blackCharcoal,
                                     ),
                                     SizedBox(width: 10),
@@ -244,7 +244,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                       onPressed: action,
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: MainColor.blueNormal,
+                        backgroundColor: MainColor.blue5,
                         disabledBackgroundColor: SecondaryColor.neutral500,
                         minimumSize: Size(double.infinity, 40),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -279,7 +279,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                     children: [
                       Text("Sudah punya akun? ", style: Get.textTheme.bodyMedium!),
                       GestureDetector(
-                        child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueNormal)),
+                        child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blue5)),
                         onTap: () {
                           Get.back();
                         },

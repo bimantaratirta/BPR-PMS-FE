@@ -48,7 +48,7 @@ class BuildDropdown extends StatelessWidget {
     final double radius = (buttonBorderRadius ?? 8).toDouble();
     final double bw = (buttonBorderWidth ?? 2).toDouble();
     final Color nonFocusColor = buttonBorderColor ?? Colors.transparent;
-    final Color focusColor = buttonFocusedBorderColor ?? MainColor.blueNormal;
+    final Color focusColor = buttonFocusedBorderColor ?? MainColor.blueLight3;
     final double _iconSize = (iconSize ?? 24);
     // final double _iconRightGap = (iconRightGap ?? 12);
 
@@ -65,7 +65,7 @@ class BuildDropdown extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: Get.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.normal,
-              color: onChanged == null ? MainColor.blueNormal : SecondaryColor.neutral500,
+              color: onChanged == null ? MainColor.blueLight3 : SecondaryColor.neutral500,
             ),
           ),
           items: itemDropdown.map((item) {
@@ -94,7 +94,7 @@ class BuildDropdown extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.normal,
-                        color: onChanged != null ? buttonTextColor ?? MainColor.blueNormal : SecondaryColor.neutral500,
+                        color: onChanged != null ? buttonTextColor ?? MainColor.blueLight3 : SecondaryColor.neutral500,
                       ),
                     ),
                   ),
@@ -108,7 +108,7 @@ class BuildDropdown extends StatelessWidget {
             height: buttonHeight ?? 40.h,
             padding: buttonPadding ?? const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
-              color: onChanged != null ? buttonBackgroundColor ?? MainColor.blueLight : SecondaryColor.neutral200,
+              color: onChanged != null ? buttonBackgroundColor ?? MainColor.blueLight2 : SecondaryColor.neutral200,
               borderRadius: BorderRadius.circular(radius),
               border: Border.all(color: nonFocusColor, width: bw),
             ),

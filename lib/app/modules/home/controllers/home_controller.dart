@@ -21,6 +21,13 @@ class HomeController extends GetxController {
     {'label': 'LO 4', 'value': 4},
   ];
 
+  final List<Map<String, dynamic>> regionNasabahChartData = [
+    {'label': 'Utara', 'value': 12},
+    {'label': 'Selatan', 'value': 22},
+    {'label': 'Timur', 'value': 1},
+    {'label': 'Barat', 'value': 4},
+  ];
+
   void changeSelectedLoNasabahDisplayFilter(String value) {
     selectedLoNasabahDisplayFilter.value = value;
   }

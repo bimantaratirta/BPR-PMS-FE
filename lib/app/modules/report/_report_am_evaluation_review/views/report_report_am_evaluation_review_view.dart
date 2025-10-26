@@ -41,7 +41,7 @@ class ReportReportAmEvaluationReviewView extends GetView<ReportReportAmEvaluatio
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: IconButton(
-              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
+              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blue5),
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 Navigator.pop(context);
@@ -774,7 +774,7 @@ class ReportReportAmEvaluationReviewView extends GetView<ReportReportAmEvaluatio
                       width: Get.size.width * 0.3,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: MainColor.blueNormal,
+                          backgroundColor: MainColor.blue5,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                         ),

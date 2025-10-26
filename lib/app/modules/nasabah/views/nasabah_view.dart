@@ -33,7 +33,7 @@ class NasabahView extends GetView<NasabahController> {
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: IconButton(
-              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
+              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blue5),
               onPressed: () {
                 mainController.navigateToHome();
               },
@@ -199,7 +199,7 @@ class NasabahView extends GetView<NasabahController> {
                                           SizedBox(height: 12),
                                           Container(
                                             decoration: BoxDecoration(
-                                              color: MainColor.blueLight,
+                                              color: MainColor.blue5.withOpacity(0.15),
                                               borderRadius: BorderRadius.circular(8),
                                             ),
                                             child: Column(
@@ -225,7 +225,7 @@ class NasabahView extends GetView<NasabahController> {
                                                     ],
                                                   ),
                                                 ),
-                                                Divider(color: SecondaryColor.neutral300, height: 1),
+                                                Divider(color: Colors.white, height: 1),
                                                 Padding(
                                                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                                                   child: Row(
@@ -262,7 +262,7 @@ class NasabahView extends GetView<NasabahController> {
                                                   child: Text(
                                                     "Detail",
                                                     style: Get.textTheme.labelMedium!.copyWith(
-                                                      color: MainColor.blueNormal,
+                                                      color: MainColor.blue5,
                                                       fontWeight: FontWeight.bold,
                                                     ),
                                                   ),

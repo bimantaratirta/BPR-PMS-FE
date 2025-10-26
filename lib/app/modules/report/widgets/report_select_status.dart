@@ -31,7 +31,7 @@ class _StatusOption extends StatelessWidget {
             height: 24.w,
             decoration: BoxDecoration(
               color: isSelected
-                  ? (value ? (trueColor ?? MainColor.blueNormal) : (falseColor ?? MainColor.blueNormal))
+                  ? (value ? (trueColor ?? MainColor.blue5) : (falseColor ?? MainColor.blue5))
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(5),
               border: Border.all(color: SecondaryColor.neutral300, width: 2),

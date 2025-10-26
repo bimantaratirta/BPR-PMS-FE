@@ -30,7 +30,7 @@ class SloView extends GetView<SloController> {
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: IconButton(
-              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blueNormal),
+              icon: SvgPicture.asset(height: 16.h, IconAssets.chevronLeft, color: MainColor.blue5),
               onPressed: () {
                 mainController.navigateToHome();
               },
