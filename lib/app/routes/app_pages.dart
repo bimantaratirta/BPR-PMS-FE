@@ -22,6 +22,8 @@ import '../modules/nasabah/_nasabah_edit/bindings/nasabah_nasabah_edit_binding.d
 import '../modules/nasabah/_nasabah_edit/views/nasabah_nasabah_edit_view.dart';
 import '../modules/nasabah/bindings/nasabah_binding.dart';
 import '../modules/nasabah/views/nasabah_view.dart';
+import '../modules/office/bindings/office_binding.dart';
+import '../modules/office/views/office_view.dart';
 import '../modules/profile/_profile_change_password/bindings/profile_profile_change_password_binding.dart';
 import '../modules/profile/_profile_change_password/views/profile_profile_change_password_view.dart';
 import '../modules/profile/_profile_detail/bindings/profile_profile_detail_binding.dart';
@@ -53,10 +55,22 @@ class AppPages {
   static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
-    GetPage(name: _Paths.HOME, page: () => const HomeView(), binding: HomeBinding()),
-    GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
-    GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
+    GetPage(
+        name: _Paths.HOME,
+        page: () => const HomeView(),
+        binding: HomeBinding()),
+    GetPage(
+        name: _Paths.SPLASH_SCREEN,
+        page: () => const SplashScreenView(),
+        binding: SplashScreenBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.LOGIN,
+        page: () => const AuthLoginView(),
+        binding: AuthLoginBinding()),
+    GetPage(
+        name: _Paths.AUTH + _Paths.REGISTER,
+        page: () => const AuthRegisterView(),
+        binding: AuthRegisterBinding()),
     GetPage(
       name: _Paths.MAIN,
       page: () => const MainView(),
@@ -72,7 +86,10 @@ class AppPages {
               page: () => const ProfileProfileChangePasswordView(),
               binding: ProfileProfileChangePasswordBinding(),
             ),
-            GetPage(name: "/detail", page: () => const ProfileProfileDetailView(), binding: ProfileProfileDetailBinding()),
+            GetPage(
+                name: "/detail",
+                page: () => const ProfileProfileDetailView(),
+                binding: ProfileProfileDetailBinding()),
           ],
         ),
         GetPage(
@@ -80,14 +97,23 @@ class AppPages {
           page: () => const NasabahView(),
           binding: NasabahBinding(),
           children: [
-            GetPage(name: "/create", page: () => const NasabahNasabahCreateView(), binding: NasabahNasabahCreateBinding()),
-            GetPage(name: '/:id', page: () => const NasabahNasabahDetailView(), binding: NasabahNasabahDetailBinding()),
+            GetPage(
+                name: "/create",
+                page: () => const NasabahNasabahCreateView(),
+                binding: NasabahNasabahCreateBinding()),
+            GetPage(
+                name: '/:id',
+                page: () => const NasabahNasabahDetailView(),
+                binding: NasabahNasabahDetailBinding()),
             GetPage(
               name: '/:id/report',
               page: () => const NasabahNasabahCreateReportView(),
               binding: NasabahNasabahCreateReportBinding(),
             ),
-            GetPage(name: '/:id/edit', page: () => const NasabahNasabahEditView(), binding: NasabahNasabahEditBinding()),
+            GetPage(
+                name: '/:id/edit',
+                page: () => const NasabahNasabahEditView(),
+                binding: NasabahNasabahEditBinding()),
           ],
         ),
         GetPage(
@@ -95,7 +121,10 @@ class AppPages {
           page: () => const ReportView(),
           binding: ReportBinding(),
           children: [
-            GetPage(name: "/:id", page: () => const ReportReportDetailView(), binding: ReportReportDetailBinding()),
+            GetPage(
+                name: "/:id",
+                page: () => const ReportReportDetailView(),
+                binding: ReportReportDetailBinding()),
             GetPage(
               name: '/:id/slo-review',
               page: () => const ReportReportSloReviewView(),
@@ -117,15 +146,30 @@ class AppPages {
           name: _Paths.LO,
           page: () => const LoView(),
           binding: LoBinding(),
-          children: [GetPage(name: "/:id", page: () => const LoLoDetailView(), binding: LoLoDetailBinding())],
+          children: [
+            GetPage(
+                name: "/:id",
+                page: () => const LoLoDetailView(),
+                binding: LoLoDetailBinding())
+          ],
         ),
         GetPage(
           name: _Paths.SLO,
           page: () => const SloView(),
           binding: SloBinding(),
-          children: [GetPage(name: "/:id", page: () => const SloSloDetailView(), binding: SloSloDetailBinding())],
+          children: [
+            GetPage(
+                name: "/:id",
+                page: () => const SloSloDetailView(),
+                binding: SloSloDetailBinding())
+          ],
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.OFFICE,
+      page: () => const OfficeView(),
+      binding: OfficeBinding(),
     ),
   ];
 }

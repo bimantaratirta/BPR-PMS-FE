@@ -126,7 +126,8 @@ class HomeView extends GetView<HomeController> {
                                 authController.user.value?.role ?? '-',
                                 style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white70),
                               ),
-                              authController.pickRole.value != UserRole.am
+                              authController.pickRole.value != UserRole.am &&
+                                      authController.pickRole.value != UserRole.direksi
                                   ? Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -227,6 +228,8 @@ class HomeView extends GetView<HomeController> {
                               ? 'LO'
                               : authController.pickRole.value == UserRole.am
                               ? 'SLO'
+                              : authController.pickRole.value == UserRole.direksi
+                              ? 'Direksi'
                               : '-',
                           style: Get.textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.w600,

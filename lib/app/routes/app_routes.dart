@@ -14,26 +14,34 @@ abstract class Routes {
   static const SLO = _Paths.SLO;
 
   // Nasabah Nested Routes
-  static String nasabahDetail(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id';
-  static String nasabahEdit(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id/edit';
-  static String nasabahReport(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id/report';
+  static String nasabahDetail(String id) =>
+      '${_Paths.MAIN}${_Paths.NASABAH}/$id';
+  static String nasabahEdit(String id) =>
+      '${_Paths.MAIN}${_Paths.NASABAH}/$id/edit';
+  static String nasabahReport(String id) =>
+      '${_Paths.MAIN}${_Paths.NASABAH}/$id/report';
   static String nasabahCreate() => '${_Paths.MAIN}${_Paths.NASABAH}/create';
 
   // Profile Nested Routes
   static String profileDetail() => '${_Paths.MAIN}${_Paths.PROFILE}/detail';
-  static String profileChangePassword() => '${_Paths.MAIN}${_Paths.PROFILE}/change-password';
+  static String profileChangePassword() =>
+      '${_Paths.MAIN}${_Paths.PROFILE}/change-password';
 
   // Report Nested Routes
   static String reportDetail(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id';
-  static String reportSloReview(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-review';
-  static String reportSloEvaluation(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-evaluation';
-  static String reportAmEvaluationReview(String id) => '${_Paths.MAIN}${_Paths.REPORT}/$id/am-evaluation-review';
+  static String reportSloReview(String id) =>
+      '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-review';
+  static String reportSloEvaluation(String id) =>
+      '${_Paths.MAIN}${_Paths.REPORT}/$id/slo-evaluation';
+  static String reportAmEvaluationReview(String id) =>
+      '${_Paths.MAIN}${_Paths.REPORT}/$id/am-evaluation-review';
 
   // LO Nested Routes
   static String loDetail(String id) => '${_Paths.MAIN}${_Paths.LO}/$id';
 
   // SLO Nested Routes
   static String sloDetail(String id) => '${_Paths.MAIN}${_Paths.SLO}/$id';
+  static const OFFICE = _Paths.OFFICE;
 }
 
 abstract class _Paths {
@@ -49,4 +57,5 @@ abstract class _Paths {
   static const REPORT = '/report';
   static const LO = '/lo';
   static const SLO = '/slo';
+  static const OFFICE = '/office';
 }

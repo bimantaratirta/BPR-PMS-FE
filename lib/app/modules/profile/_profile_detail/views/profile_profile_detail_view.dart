@@ -47,7 +47,11 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: Get.size.height * 0.02),
-                  CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://placehold.co/150')),
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: MainColor.blueNormalActive,
+                    child: Icon(Icons.person, size: 60, color: Colors.white),
+                  ),
                   SizedBox(height: Get.size.height * 0.04),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +167,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                           ),
                         ),
                       ),
-                      authController.pickRole.value != UserRole.am
+                      authController.pickRole.value != UserRole.am && authController.pickRole.value != UserRole.direksi
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -211,7 +215,7 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                               ],
                             )
                           : const SizedBox.shrink(),
-                      authController.pickRole.value != UserRole.am
+                      authController.pickRole.value != UserRole.am && authController.pickRole.value != UserRole.direksi
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -259,42 +263,54 @@ class ProfileProfileDetailView extends GetView<ProfileProfileDetailController> {
                               ],
                             )
                           : const SizedBox.shrink(),
-                      SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(color: SecondaryColor.neutral100, borderRadius: BorderRadius.circular(8)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: Get.size.width * 0.2,
-                                child: Text(
-                                  "Wilayah",
-                                  style: Get.textTheme.labelMedium!.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600,
+                      authController.pickRole.value != UserRole.direksi
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: SecondaryColor.neutral100,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.size.width * 0.2,
+                                          child: Text(
+                                            "Wilayah",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.size.width * 0.02),
+                                        Expanded(
+                                          child: TextField(
+                                            readOnly: true,
+                                            enabled: false,
+                                            controller: controller.districtController,
+                                            decoration: InputDecoration(
+                                              hintText: "Masukkan Wilayah...",
+                                              hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                color: SecondaryColor.neutral400,
+                                              ),
+                                              border: InputBorder.none,
+                                              isDense: true,
+                                            ),
+                                            style: Get.textTheme.labelMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(width: Get.size.width * 0.02),
-                              Expanded(
-                                child: TextField(
-                                  readOnly: true,
-                                  enabled: false,
-                                  controller: controller.districtController,
-                                  decoration: InputDecoration(
-                                    hintText: "Masukkan Wilayah...",
-                                    hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
-                                    border: InputBorder.none,
-                                    isDense: true,
-                                  ),
-                                  style: Get.textTheme.labelMedium,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       SizedBox(height: 20),
                       Align(
                         alignment: Alignment.center,
