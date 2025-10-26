@@ -17,7 +17,9 @@ class BuildDropdown extends StatelessWidget {
   final Color? buttonFocusedBorderColor;
   final double? buttonBorderRadius;
   final Color? buttonBackgroundColor;
+  final Color? buttonTextColor;
   final double? buttonHeight;
+  final double? buttonWidth;
   final double? iconSize;
   final double? iconRightGap;
 
@@ -35,8 +37,10 @@ class BuildDropdown extends StatelessWidget {
     this.buttonBorderRadius,
     this.buttonBackgroundColor,
     this.buttonHeight,
+    this.buttonWidth,
     this.iconSize,
     this.iconRightGap,
+    this.buttonTextColor,
   });
 
   @override
@@ -49,7 +53,7 @@ class BuildDropdown extends StatelessWidget {
     // final double _iconRightGap = (iconRightGap ?? 12);
 
     return SizedBox(
-      width: double.infinity,
+      width: buttonWidth ?? double.infinity,
       height: buttonHeight ?? 50.h,
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
@@ -90,7 +94,7 @@ class BuildDropdown extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.normal,
-                        color: onChanged != null ? MainColor.blueNormal : SecondaryColor.neutral500,
+                        color: onChanged != null ? buttonTextColor ?? MainColor.blueNormal : SecondaryColor.neutral500,
                       ),
                     ),
                   ),

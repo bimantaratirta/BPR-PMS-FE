@@ -15,7 +15,11 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
   const NasabahNasabahDetailView({super.key});
   @override
   Widget build(BuildContext context) {
-    final NasabahController nasabahController = Get.find<NasabahController>();
+    final bool isNasabahControllerRegistered = Get.isRegistered<NasabahController>();
+    NasabahController? nasabahController;
+    if (isNasabahControllerRegistered) {
+      nasabahController = Get.find<NasabahController>();
+    }
 
     final String? itemId = Get.parameters['id'];
 
@@ -43,7 +47,7 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 Navigator.pop(context);
-                nasabahController.refreshData(Get.context!);
+                nasabahController?.refreshData(Get.context!);
               },
             ),
           ),
@@ -67,34 +71,40 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.nasabahEdit(controller.id.value));
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(left: 8),
-                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(color: SecondaryColor.neutral300),
-                                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 5)],
-                                ),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset(height: 16.h, IconAssets.pencil, color: SecondaryColor.neutral500),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      "Edit",
-                                      style: Get.textTheme.labelMedium!.copyWith(
-                                        color: SecondaryColor.neutral500,
-                                        fontWeight: FontWeight.w400,
+                            isNasabahControllerRegistered
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(Routes.nasabahEdit(controller.id.value));
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 8),
+                                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(color: SecondaryColor.neutral300),
+                                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 5)],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            height: 16.h,
+                                            IconAssets.pencil,
+                                            color: SecondaryColor.neutral500,
+                                          ),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            "Edit",
+                                            style: Get.textTheme.labelMedium!.copyWith(
+                                              color: SecondaryColor.neutral500,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                  )
+                                : SizedBox.shrink(),
                           ],
                         ),
                         SizedBox(height: 12),
@@ -647,29 +657,31 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                               )
                             : SizedBox.shrink(),
                         SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.center,
-                          child: SizedBox(
-                            width: Get.size.width * 0.80,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: MainColor.blueNormal,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-                              ),
-                              onPressed: () {
-                                Get.toNamed(Routes.nasabahReport(controller.id.value));
-                              },
-                              child: Text(
-                                "Buat Laporan",
-                                style: Get.textTheme.labelMedium!.copyWith(
-                                  color: SecondaryColor.white,
-                                  fontWeight: FontWeight.bold,
+                        isNasabahControllerRegistered
+                            ? Align(
+                                alignment: Alignment.center,
+                                child: SizedBox(
+                                  width: Get.size.width * 0.80,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: MainColor.blueNormal,
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                                    ),
+                                    onPressed: () {
+                                      Get.toNamed(Routes.nasabahReport(controller.id.value));
+                                    },
+                                    child: Text(
+                                      "Buat Laporan",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        color: SecondaryColor.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
+                              )
+                            : SizedBox.shrink(),
                       ],
                     ),
                   ),

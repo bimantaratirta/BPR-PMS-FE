@@ -28,7 +28,11 @@ class ProfileView extends GetView<ProfileController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://placehold.co/150')),
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: MainColor.blueNormalActive,
+                    child: Icon(Icons.person, size: 60, color: Colors.white),
+                  ),
                   SizedBox(height: 25),
                   Text(
                     authController.user.value?.name ?? '',

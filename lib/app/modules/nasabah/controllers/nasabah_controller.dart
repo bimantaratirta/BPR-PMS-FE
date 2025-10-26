@@ -65,6 +65,9 @@ class NasabahController extends GetxController {
       final params = {
         'search': searchController.text.trim(),
         'pagination': {'page': currentPage.value, 'limit': limit},
+        'order_by': [
+          {'field': 'created_at', 'direction': 'desc'},
+        ],
       };
 
       final response = await customerService.getAllCustomer(params);

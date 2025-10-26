@@ -49,14 +49,6 @@ class NasabahNasabahCreateReportController extends GetxController {
                 pickImage(ImageSource.camera);
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Galeri'),
-              onTap: () {
-                Get.back();
-                pickImage(ImageSource.gallery);
-              },
-            ),
           ],
         ),
       ),

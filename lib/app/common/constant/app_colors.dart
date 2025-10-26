@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MainColor {
+  static const Color blue1 = Color(0xff0249FE);
+  static const Color blue2 = Color(0xff1A5BFF);
+  static const Color blue3 = Color(0xff336DFF);
+  static const Color blue4 = Color(0xff2C68FF);
+  static const Color blueLight1 = Color(0xffDDE6FF);
   static const Color blueLight = Color(0xffe6f5ff);
   static const Color blueLightHover = Color(0xffd9f0ff);
   static const Color blueLightActive = Color(0xffb0e1ff);

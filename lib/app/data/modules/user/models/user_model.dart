@@ -16,8 +16,12 @@ class UserModel {
   Region? region;
   Branch? branch;
   Supervisor? supervisor;
+  String? regionId;
+  String? branchId;
+  String? supervisorId;
   DateTime? createdAt;
   DateTime? updatedAt;
+  DateTime? deletedAt;
 
   UserModel({
     this.id,
@@ -27,8 +31,12 @@ class UserModel {
     this.region,
     this.branch,
     this.supervisor,
+    this.regionId,
+    this.branchId,
+    this.supervisorId,
     this.createdAt,
     this.updatedAt,
+    this.deletedAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -39,8 +47,12 @@ class UserModel {
     region: json["region"] == null ? null : Region.fromJson(json["region"]),
     branch: json["branch"] == null ? null : Branch.fromJson(json["branch"]),
     supervisor: json["supervisor"] == null ? null : Supervisor.fromJson(json["supervisor"]),
+    regionId: json["region_id"],
+    branchId: json["branch_id"],
+    supervisorId: json["supervisor_id"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    deletedAt: json["deleted_at"] == null ? null : DateTime.parse(json["deleted_at"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -51,8 +63,12 @@ class UserModel {
     "region": region?.toJson(),
     "branch": branch?.toJson(),
     "supervisor": supervisor?.toJson(),
+    "region_id": regionId,
+    "branch_id": branchId,
+    "supervisor_id": supervisorId,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
+    "deleted_at": deletedAt?.toIso8601String(),
   };
 }
 

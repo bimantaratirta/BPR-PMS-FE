@@ -117,6 +117,9 @@ class ReportController extends GetxController {
         'search': searchController.text.trim(),
         'pagination': {'page': currentPage.value, 'limit': limit},
         'include_relation': ["lo", 'slo', "am", "report_photo", "review_customer", "evaluation"],
+        'order_by': [
+          {'field': 'created_at', 'direction': 'desc'},
+        ],
       };
 
       final response = await reportService.getAllReport(params);
