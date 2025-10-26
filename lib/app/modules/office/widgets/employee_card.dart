@@ -1,5 +1,6 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/data/modules/user/models/user_model.dart';
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,13 @@ class EmployeeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.sloDetail(userData.id ?? ""));
+        if (userData.role == UserRole.slo.value) {
+          Get.toNamed(Routes.officeDetailEmployeeSlo(userData.id ?? ""));
+          return;
+        } else if (userData.role == UserRole.lo.value) {
+          Get.toNamed(Routes.officeDetailEmployeeLo(userData.id ?? ""));
+          return;
+        }
       },
       child: Container(
         width: double.infinity,
