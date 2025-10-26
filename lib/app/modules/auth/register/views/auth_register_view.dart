@@ -27,7 +27,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                   SizedBox(height: 64),
                   Text(
                     "Daftar",
-                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blue5),
+                    style: Get.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w600, color: MainColor.blueLight3),
                   ),
                   SizedBox(height: 32),
                   Column(
@@ -279,7 +279,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                     children: [
                       Text("Sudah punya akun? ", style: Get.textTheme.bodyMedium!),
                       GestureDetector(
-                        child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blue5)),
+                        child: Text("Masuk", style: Get.textTheme.bodyMedium!.copyWith(color: MainColor.blueLight3)),
                         onTap: () {
                           Get.back();
                         },
