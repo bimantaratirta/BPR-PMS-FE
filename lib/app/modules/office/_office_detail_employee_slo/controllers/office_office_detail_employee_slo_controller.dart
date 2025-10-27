@@ -16,11 +16,15 @@ class OfficeOfficeDetailEmployeeSloController extends GetxController {
     {"value": "bulan", "label": "Bulan"},
   ]);
 
+  final TextEditingController searchController = TextEditingController();
+  final RxString searchQuery = ''.obs;
+
   final RxString id = ''.obs;
   final Rx<DashboardSloModel?> dashboardSloData = Rx<DashboardSloModel?>(null);
   final Rx<UserModel?> userData = Rx<UserModel?>(null);
   final Rx<List<UserModel>> usersLoData = Rx<List<UserModel>>([]);
   final isLoading = false.obs;
+  final isGetUsersLoLoading = false.obs;
   final RxString message = ''.obs;
   final RxInt currentPage = 1.obs;
   final RxBool hasMoreData = true.obs;
@@ -52,6 +56,17 @@ class OfficeOfficeDetailEmployeeSloController extends GetxController {
         await getDashboardSlo(Get.context!);
       });
     }
+
+    searchController.addListener(() {
+      searchQuery.value = searchController.text;
+    });
+
+    debounce(searchQuery, (_) async {
+      currentPage.value = 1;
+      hasMoreData.value = true;
+      usersLoData.value = [];
+      await getAllLoBySlo(Get.context!, id.value, isInitialLoad: true);
+    }, time: const Duration(milliseconds: 1000));
   }
 
   void _updateLoNasabahChart(DashboardSloModel? data) {
@@ -82,14 +97,14 @@ class OfficeOfficeDetailEmployeeSloController extends GetxController {
   }
 
   Future<void> getAllLoBySlo(BuildContext context, String id, {bool isInitialLoad = false}) async {
-    if ((isInitialLoad && isLoading.value) ||
-        (!isInitialLoad && (isLoading.value || isPagingLoading.value || !hasMoreData.value))) {
+    if ((isInitialLoad && isLoading.value && isGetUsersLoLoading.value) ||
+        (!isInitialLoad && (isLoading.value || isPagingLoading.value || !hasMoreData.value || isGetUsersLoLoading.value))) {
       return;
     }
 
     try {
       if (isInitialLoad) {
-        isLoading.value = true;
+        isGetUsersLoLoading.value = true;
         message.value = '';
       } else {
         isPagingLoading.value = true;
@@ -97,12 +112,13 @@ class OfficeOfficeDetailEmployeeSloController extends GetxController {
 
       final params = {
         'pagination': {'page': currentPage.value, 'limit': limit},
+        'search': searchController.text.trim(),
       };
 
       final response = await userService.getAllLoBySlo(id: id, params: params);
 
       if (isInitialLoad) {
-        isLoading.value = false;
+        isGetUsersLoLoading.value = false;
       } else {
         isPagingLoading.value = false;
       }
@@ -135,7 +151,7 @@ class OfficeOfficeDetailEmployeeSloController extends GetxController {
         CustomSnackbar(message: errorMsg, type: CustomSnackbarType.warning).show(context);
       }
     } catch (e) {
-      isLoading.value = false;
+      isGetUsersLoLoading.value = false;
       isPagingLoading.value = false;
       hasMoreData.value = false;
       message.value = e.toString();

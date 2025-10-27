@@ -182,6 +182,114 @@ class OfficeOfficeDetailView extends GetView<OfficeOfficeDetailController> {
                         child: Divider(color: SecondaryColor.neutral300),
                       ),
 
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 8.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'Minggu Ini',
+                                  style: Get.textTheme.titleMedium!.copyWith(
+                                    color: SecondaryColor.neutral500,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    Text(
+                                      controller.totalWeekCurrentPeriod.value.toString(),
+                                      style: Get.textTheme.titleLarge!.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    Text(
+                                      "Orang",
+                                      style: Get.textTheme.titleSmall!.copyWith(
+                                        color: SecondaryColor.neutral500,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    controller.totalWeekPercentageChange.value >= 0
+                                        ? Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp)
+                                        : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                                    SizedBox(width: 3.w),
+                                    Text(
+                                      "${controller.totalWeekPercentageChange.value >= 0 ? '+' : ''}${controller.totalWeekPercentageChange.value.toStringAsFixed(2)}%",
+                                      style: Get.textTheme.labelLarge!.copyWith(
+                                        color: controller.totalWeekPercentageChange.value >= 0 ? Colors.green : Colors.red,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'Bulan Ini',
+                                  style: Get.textTheme.titleMedium!.copyWith(
+                                    color: SecondaryColor.neutral500,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    Text(
+                                      controller.totalMonthCurrentPeriod.value.toString(),
+                                      style: Get.textTheme.titleLarge!.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    Text(
+                                      "Orang",
+                                      style: Get.textTheme.titleSmall!.copyWith(
+                                        color: SecondaryColor.neutral500,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    controller.totalMonthPercentageChange.value >= 0
+                                        ? Icon(Icons.arrow_circle_up, color: Colors.green, size: 24.sp)
+                                        : Icon(Icons.arrow_circle_down, color: Colors.red, size: 24.sp),
+                                    SizedBox(width: 3.w),
+                                    Text(
+                                      "${controller.totalMonthPercentageChange.value >= 0 ? '+' : ''}${controller.totalMonthPercentageChange.value.toStringAsFixed(2)}%",
+                                      style: Get.textTheme.labelLarge!.copyWith(
+                                        color: controller.totalMonthPercentageChange.value >= 0 ? Colors.green : Colors.red,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                        child: Divider(color: SecondaryColor.neutral300),
+                      ),
+
                       Text(
                         'List Kantor Kas',
                         style: Get.textTheme.titleMedium!.copyWith(
