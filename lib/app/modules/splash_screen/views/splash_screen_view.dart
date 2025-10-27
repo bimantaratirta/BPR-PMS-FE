@@ -12,7 +12,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
   Widget build(BuildContext context) {
     final _ = Get.put(SplashScreenController());
     return Scaffold(
-      body: SafeArea(child: Center(child: Image.asset(ImageAssets.logoBpr, scale: 10))),
+      body: SafeArea(child: Center(child: Image.asset(ImageAssets.logoBpr, scale: 3))),
     );
   }
 }

@@ -23,7 +23,7 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(alignment: Alignment.topCenter, child: Image.asset(ImageAssets.logoBpr, scale: 12)),
+                  Align(alignment: Alignment.topCenter, child: Image.asset(ImageAssets.logoBpr, scale: 4)),
                   SizedBox(height: 64),
                   Text(
                     "Daftar",
