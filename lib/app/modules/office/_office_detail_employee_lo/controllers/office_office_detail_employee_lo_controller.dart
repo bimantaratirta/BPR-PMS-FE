@@ -19,11 +19,15 @@ class OfficeOfficeDetailEmployeeLoController extends GetxController {
     {"value": "bulan", "label": "Bulan"},
   ]);
 
+  final TextEditingController searchController = TextEditingController();
+  final RxString searchQuery = ''.obs;
+
   final RxString id = ''.obs;
   final Rx<DashboardLoModel?> dashboardLoData = Rx<DashboardLoModel?>(null);
   final Rx<UserModel?> userData = Rx<UserModel?>(null);
   final Rx<List<CustomerModel>> customersData = Rx<List<CustomerModel>>([]);
   final isLoading = false.obs;
+  final isGetCustomerLoading = false.obs;
   final RxString message = ''.obs;
   final RxInt currentPage = 1.obs;
   final RxBool hasMoreData = true.obs;
@@ -54,6 +58,17 @@ class OfficeOfficeDetailEmployeeLoController extends GetxController {
         await getDashboardLo(Get.context!);
       });
     }
+
+    searchController.addListener(() {
+      searchQuery.value = searchController.text;
+    });
+
+    debounce(searchQuery, (_) async {
+      currentPage.value = 1;
+      hasMoreData.value = true;
+      customersData.value = [];
+      await getAllCustomerByLo(Get.context!, id.value, isInitialLoad: true);
+    }, time: const Duration(milliseconds: 1000));
   }
 
   Future<void> refreshData(BuildContext context) async {
@@ -64,14 +79,14 @@ class OfficeOfficeDetailEmployeeLoController extends GetxController {
   }
 
   Future<void> getAllCustomerByLo(BuildContext context, String id, {bool isInitialLoad = false}) async {
-    if ((isInitialLoad && isLoading.value) ||
-        (!isInitialLoad && (isLoading.value || isPagingLoading.value || !hasMoreData.value))) {
+    if ((isInitialLoad && isLoading.value && isGetCustomerLoading.value) ||
+        (!isInitialLoad && (isLoading.value || isPagingLoading.value || !hasMoreData.value || isGetCustomerLoading.value))) {
       return;
     }
 
     try {
       if (isInitialLoad) {
-        isLoading.value = true;
+        isGetCustomerLoading.value = true;
         message.value = '';
       } else {
         isPagingLoading.value = true;
@@ -82,12 +97,13 @@ class OfficeOfficeDetailEmployeeLoController extends GetxController {
         'order_by': [
           {'field': 'created_at', 'direction': 'desc'},
         ],
+        'search': searchController.text.trim(),
       };
 
       final response = await customerService.getAllCustomerByLo(id: id, params: params);
 
       if (isInitialLoad) {
-        isLoading.value = false;
+        isGetCustomerLoading.value = false;
       } else {
         isPagingLoading.value = false;
       }
@@ -120,7 +136,7 @@ class OfficeOfficeDetailEmployeeLoController extends GetxController {
         CustomSnackbar(message: errorMsg, type: CustomSnackbarType.warning).show(context);
       }
     } catch (e) {
-      isLoading.value = false;
+      isGetCustomerLoading.value = false;
       isPagingLoading.value = false;
       hasMoreData.value = false;
       message.value = e.toString();

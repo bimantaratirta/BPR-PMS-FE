@@ -1,7 +1,6 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/modules/office/widgets/employee_card.dart';
-import 'package:bpr_pms/app/widgets/build_navigation/build_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -161,7 +160,6 @@ class OfficeOfficeDetailEmployeeView extends GetView<OfficeOfficeDetailEmployeeC
             ),
           ],
         ),
-        bottomNavigationBar: BuildBottomNavigationBar(),
       );
     });
   }

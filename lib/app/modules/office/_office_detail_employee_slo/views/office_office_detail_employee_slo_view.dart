@@ -324,6 +324,60 @@ class OfficeOfficeDetailEmployeeSloView extends GetView<OfficeOfficeDetailEmploy
                                     ),
                                   ),
                                   SizedBox(height: 14.h),
+
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(8),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black.withOpacity(0.2),
+                                                blurRadius: 10,
+                                                offset: Offset(0, 4),
+                                              ),
+                                            ],
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: Get.size.width * 0.1,
+                                                  child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: SvgPicture.asset(
+                                                      height: 18.h,
+                                                      IconAssets.search,
+                                                      color: SecondaryColor.neutral500,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: TextField(
+                                                    controller: controller.searchController,
+                                                    decoration: InputDecoration(
+                                                      hintText: "Cari LO...",
+                                                      hintStyle: Get.textTheme.labelMedium!.copyWith(
+                                                        color: SecondaryColor.neutral500,
+                                                      ),
+                                                      border: InputBorder.none,
+                                                      isDense: true,
+                                                    ),
+                                                    style: Get.textTheme.labelMedium,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 14.h),
+
                                   ...(controller.usersLoData.value.isEmpty
                                       ? [
                                           Center(
