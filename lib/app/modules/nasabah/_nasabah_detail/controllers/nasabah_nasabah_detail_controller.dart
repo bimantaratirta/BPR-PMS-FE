@@ -11,6 +11,11 @@ class NasabahNasabahDetailController extends GetxController {
   final isLoading = false.obs;
   final RxString message = ''.obs;
   final Rx<CustomerModel?> customerData = Rx<CustomerModel?>(null);
+  var isHistoryExpanded = false.obs;
+
+  void toggleHistoryExpansion() {
+    isHistoryExpanded.value = !isHistoryExpanded.value;
+  }
 
   Future<CustomerModel?> getCustomerById(BuildContext context, String id) async {
     try {

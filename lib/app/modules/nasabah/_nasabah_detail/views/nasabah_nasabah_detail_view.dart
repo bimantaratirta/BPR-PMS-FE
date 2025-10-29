@@ -1,6 +1,7 @@
 import 'package:bpr_pms/app/common/constant/app_colors.dart';
 import 'package:bpr_pms/app/common/constant/assets.dart';
 import 'package:bpr_pms/app/common/utils/helper.dart';
+import 'package:bpr_pms/app/modules/nasabah/_nasabah_detail/widgets/nasabah_changes_item.dart';
 import 'package:bpr_pms/app/modules/nasabah/controllers/nasabah_controller.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -656,6 +657,56 @@ class NasabahNasabahDetailView extends GetView<NasabahNasabahDetailController> {
                                 ],
                               )
                             : SizedBox.shrink(),
+                        SizedBox(height: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () => controller.toggleHistoryExpansion(),
+                              behavior: HitTestBehavior.opaque,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    controller.isHistoryExpanded.value
+                                        ? "Tutup Histori Perubahan Data"
+                                        : "Lihat Histori Perubahan Data",
+                                    style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Icon(controller.isHistoryExpanded.value ? Icons.expand_less : Icons.expand_more, size: 20),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: controller.isHistoryExpanded.value,
+                              child: AnimatedCrossFade(
+                                crossFadeState: controller.isHistoryExpanded.value
+                                    ? CrossFadeState.showFirst
+                                    : CrossFadeState.showSecond,
+                                duration: Duration(milliseconds: 300),
+                                secondChild: SizedBox.shrink(),
+                                firstChild: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 12),
+                                    controller.customerData.value?.updateLogs != null &&
+                                            controller.customerData.value!.updateLogs!.isNotEmpty
+                                        ? Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: controller.customerData.value!.updateLogs!
+                                                .map((log) => NasabahChangesItem(log: log))
+                                                .toList(),
+                                          )
+                                        : Text(
+                                            "Tidak ada histori perubahan data.",
+                                            style: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral500),
+                                          ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         SizedBox(height: 20),
                         isNasabahControllerRegistered
                             ? Align(

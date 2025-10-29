@@ -25,8 +25,8 @@ class NasabahNasabahCreateController extends GetxController {
   RxString selectedItemTypeJob = ''.obs;
   Rx<List<Map<String, String>>> itemsTypeJob = Rx<List<Map<String, String>>>([
     {"value": "", "label": "Pilih tipe pekerjaan"},
-    {"value": "businessman", "label": "Pengusaha"},
-    {"value": "permanentEmployee", "label": "Karyawan Tetap"},
+    {"value": "businessman", "label": "Wirausaha"},
+    {"value": "employee", "label": "Karyawan"},
     {"value": "freelancer", "label": "Pekerja Lepas"},
   ]);
   final TextEditingController detailTypeJob = TextEditingController();
@@ -141,7 +141,7 @@ class NasabahNasabahCreateController extends GetxController {
                 detailTypeJob.text.isNotEmpty &&
                 totalEmployees.text.isNotEmpty &&
                 jobIncome.text.isNotEmpty) ||
-            (selectedItemTypeJob.value == 'permanentEmployee' &&
+            (selectedItemTypeJob.value == 'employee' &&
                 jobName.text.isNotEmpty &&
                 jobCompanyName.text.isNotEmpty &&
                 jobAddress.text.isNotEmpty &&
@@ -211,10 +211,10 @@ class NasabahNasabahCreateController extends GetxController {
           "village": villageController.text,
           "rt_rw": neighborhoodUnitController.text,
           "address": addressController.text,
-          "work_type": selectedItemTypeJob.value == 'permanentEmployee'
-              ? 'Karyawan Tetap'
+          "work_type": selectedItemTypeJob.value == 'employee'
+              ? 'Karyawan'
               : selectedItemTypeJob.value == 'businessman'
-              ? 'Pengusaha'
+              ? 'Wirausaha'
               : selectedItemTypeJob.value == 'freelancer'
               ? 'Pekerja Lepas'
               : '',
@@ -234,7 +234,7 @@ class NasabahNasabahCreateController extends GetxController {
               "revenue": int.tryParse(jobIncome.text.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0,
             },
 
-          if (selectedItemTypeJob.value == 'permanentEmployee')
+          if (selectedItemTypeJob.value == 'employee')
             'employee': {
               "work": jobName.text,
               "company_name": jobCompanyName.text,

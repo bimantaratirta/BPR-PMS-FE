@@ -24,6 +24,7 @@ class CustomerModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   DateTime? deletedAt;
+  List<UpdateLog>? updateLogs;
   Employee? employee;
   NonEmployee? nonEmployee;
   Business? business;
@@ -45,6 +46,7 @@ class CustomerModel {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
+    this.updateLogs,
     this.employee,
     this.nonEmployee,
     this.business,
@@ -67,6 +69,9 @@ class CustomerModel {
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     deletedAt: json["deleted_at"] == null ? null : DateTime.parse(json["deleted_at"]),
+    updateLogs: json["update_logs"] == null
+        ? []
+        : List<UpdateLog>.from(json["update_logs"]!.map((x) => UpdateLog.fromJson(x))),
     employee: json["employee"] == null ? null : Employee.fromJson(json["employee"]),
     nonEmployee: json["non_employee"] == null ? null : NonEmployee.fromJson(json["non_employee"]),
     business: json["business"] == null ? null : Business.fromJson(json["business"]),
@@ -89,6 +94,7 @@ class CustomerModel {
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "deleted_at": deletedAt?.toIso8601String(),
+    "update_logs": updateLogs == null ? [] : List<dynamic>.from(updateLogs!.map((x) => x.toJson())),
     "employee": employee?.toJson(),
     "non_employee": nonEmployee?.toJson(),
     "business": business?.toJson(),
@@ -209,5 +215,31 @@ class NonEmployee {
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "deleted_at": deletedAt?.toIso8601String(),
+  };
+}
+
+class UpdateLog {
+  String? id;
+  String? customerId;
+  String? updatedBy;
+  DateTime? updatedAt;
+  String? changes;
+
+  UpdateLog({this.id, this.customerId, this.updatedBy, this.updatedAt, this.changes});
+
+  factory UpdateLog.fromJson(Map<String, dynamic> json) => UpdateLog(
+    id: json["id"],
+    customerId: json["customer_id"],
+    updatedBy: json["updated_by"],
+    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    changes: json["changes"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "customer_id": customerId,
+    "updated_by": updatedBy,
+    "updated_at": updatedAt?.toIso8601String(),
+    "changes": changes,
   };
 }

@@ -71,15 +71,7 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
-                            Text(
-                              " *",
-                              style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.red),
-                            ),
-                          ],
-                        ),
+                        Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                         SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
@@ -95,12 +87,23 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                               children: [
                                 SizedBox(
                                   width: Get.size.width * 0.25,
-                                  child: Text(
-                                    "Nama",
-                                    style: Get.textTheme.labelMedium!.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Nama",
+                                        style: Get.textTheme.labelMedium!.copyWith(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      Text(
+                                        "*",
+                                        style: Get.textTheme.labelMedium!.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(width: Get.size.width * 0.02),
@@ -246,7 +249,7 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                                     controller: controller.phoneNumberController,
                                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))],
                                     decoration: InputDecoration(
-                                      hintText: "Masukkan nomor handphone...",
+                                      hintText: "Cth: 62xxxxxxxxxxx...",
                                       hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                       border: InputBorder.none,
                                       isDense: true,
@@ -367,12 +370,23 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                               children: [
                                 SizedBox(
                                   width: Get.size.width * 0.25,
-                                  child: Text(
-                                    "Alamat",
-                                    style: Get.textTheme.labelMedium!.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Alamat",
+                                        style: Get.textTheme.labelMedium!.copyWith(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      Text(
+                                        "*",
+                                        style: Get.textTheme.labelMedium!.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(width: Get.size.width * 0.02),
@@ -599,7 +613,7 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                                     ),
                                   ],
                                 )
-                              : controller.selectedItemTypeJob.value == 'permanentEmployee'
+                              : controller.selectedItemTypeJob.value == 'employee'
                               ? Column(
                                   children: [
                                     SizedBox(height: 10),
@@ -722,7 +736,7 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                                             SizedBox(
                                               width: Get.size.width * 0.25,
                                               child: Text(
-                                                "No Handphone",
+                                                "No Handphone Perusahaan",
                                                 style: Get.textTheme.labelMedium!.copyWith(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w400,
@@ -735,7 +749,7 @@ class NasabahNasabahEditView extends GetView<NasabahNasabahEditController> {
                                                 controller: controller.jobPhoneNumber,
                                                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))],
                                                 decoration: InputDecoration(
-                                                  hintText: "Masukkan no handphone perusahaan...",
+                                                  hintText: "Cth: 62xxxxxxxxxxx...",
                                                   hintStyle: Get.textTheme.labelMedium!.copyWith(
                                                     color: SecondaryColor.neutral400,
                                                   ),
