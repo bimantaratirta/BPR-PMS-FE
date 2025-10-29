@@ -344,7 +344,7 @@ class ReportReportAmEvaluationReviewView extends GetView<ReportReportAmEvaluatio
                             ),
                           ],
                         )
-                      : controller.reportData.value?.customerSnapshot?.workType == "Pengusaha"
+                      : controller.reportData.value?.customerSnapshot?.workType == "Wirausaha"
                       ? Column(
                           children: [
                             Padding(
@@ -430,7 +430,7 @@ class ReportReportAmEvaluationReviewView extends GetView<ReportReportAmEvaluatio
                             ),
                           ],
                         )
-                      : controller.reportData.value?.customerSnapshot?.workType == "Karyawan Tetap"
+                      : controller.reportData.value?.customerSnapshot?.workType == "Karyawan"
                       ? Column(
                           children: [
                             Padding(

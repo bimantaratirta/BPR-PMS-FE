@@ -61,15 +61,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
-                          Text(
-                            " *",
-                            style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600, color: Colors.red),
-                          ),
-                        ],
-                      ),
+                      Text("Data Identitas", style: Get.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w600)),
                       SizedBox(height: 10),
                       Container(
                         decoration: BoxDecoration(
@@ -83,12 +75,23 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                             children: [
                               SizedBox(
                                 width: Get.size.width * 0.25,
-                                child: Text(
-                                  "Nama",
-                                  style: Get.textTheme.labelMedium!.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Nama",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Text(
+                                      "*",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               SizedBox(width: Get.size.width * 0.02),
@@ -343,12 +346,23 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                             children: [
                               SizedBox(
                                 width: Get.size.width * 0.25,
-                                child: Text(
-                                  "Alamat",
-                                  style: Get.textTheme.labelMedium!.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Alamat",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Text(
+                                      "*",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               SizedBox(width: Get.size.width * 0.02),
@@ -562,7 +576,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                                   ),
                                 ],
                               )
-                            : controller.selectedItemTypeJob.value == 'permanentEmployee'
+                            : controller.selectedItemTypeJob.value == 'employee'
                             ? Column(
                                 children: [
                                   SizedBox(height: 10),
