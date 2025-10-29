@@ -231,7 +231,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                                   controller: controller.phoneNumberController,
                                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))],
                                   decoration: InputDecoration(
-                                    hintText: "Masukkan nomor handphone...",
+                                    hintText: "Cth: 62xxxxxxxxxxx...",
                                     hintStyle: Get.textTheme.labelMedium!.copyWith(color: SecondaryColor.neutral400),
                                     border: InputBorder.none,
                                     isDense: true,
@@ -687,7 +687,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                                           SizedBox(
                                             width: Get.size.width * 0.25,
                                             child: Text(
-                                              "No Handphone",
+                                              "No Handphone Perusahaan",
                                               style: Get.textTheme.labelMedium!.copyWith(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w400,
@@ -700,7 +700,7 @@ class NasabahNasabahCreateView extends GetView<NasabahNasabahCreateController> {
                                               controller: controller.jobPhoneNumber,
                                               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))],
                                               decoration: InputDecoration(
-                                                hintText: "Masukkan no handphone perusahaan...",
+                                                hintText: "Cth: 62xxxxxxxxxxx...",
                                                 hintStyle: Get.textTheme.labelMedium!.copyWith(
                                                   color: SecondaryColor.neutral400,
                                                 ),
