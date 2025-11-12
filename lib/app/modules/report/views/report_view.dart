@@ -94,7 +94,7 @@ class ReportView extends GetView<ReportController> {
                   ),
                   SizedBox(width: 10),
                   GestureDetector(
-                    onTap: () => controller.handleDownloadReport(context),
+                    onTap: () => controller.onTapDownloadReport(context),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,

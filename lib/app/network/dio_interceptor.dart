@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bpr_pms/app/common/constant/app_constants.dart';
 import 'package:bpr_pms/app/data/storage/storage_client.dart';
 import 'package:bpr_pms/app/routes/app_pages.dart';
@@ -31,7 +33,17 @@ class DioInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (kDebugMode) {
       print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
-      print('Response Data: ${response.data}');
+
+      if (response.data is List<int>) {
+        try {
+          final dataString = utf8.decode(response.data as List<int>);
+          print('Response Data (decoded as text): $dataString');
+        } catch (e) {
+          print('Response Data: Received ${response.data.length} bytes (binary file).');
+        }
+      } else {
+        print('Response Data: ${response.data}');
+      }
     }
 
     return super.onResponse(response, handler);
@@ -41,7 +53,13 @@ class DioInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (kDebugMode) {
       print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
-      print('Error Data: ${err.response?.data}');
+
+      if (err.response?.data is List<int>) {
+        final dataString = utf8.decode(err.response?.data as List<int>);
+        print('Error Data (decoded): $dataString');
+      } else {
+        print('Error Data: ${err.response?.data ?? err.response ?? err}');
+      }
     }
 
     await _handleJWTError(err, handler);

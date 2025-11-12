@@ -4,9 +4,12 @@ import 'package:bpr_pms/app/common/utils/helper.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/report_service.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
+import 'package:bpr_pms/app/modules/report/widgets/report_export_xlsx_dialog_content.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
+import 'package:bpr_pms/app/widgets/dialog/build_custom_dialog.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:open_filex/open_filex.dart';
 
@@ -94,6 +97,41 @@ class ReportController extends GetxController {
     }
   }
 
+  Future<void> onTapDownloadReport(BuildContext context) async {
+    BuildCustomDialog.show(
+      context: context,
+      content: ReportExportXlsxDialogContent(
+        isLoading: isLoading,
+        onTruePressed: (int year, int month) async {
+          if (year <= 0 || month <= 0) {
+            CustomSnackbar(
+              message: "Tahun dan bulan harus dipilih dengan benar.",
+              type: CustomSnackbarType.warning,
+            ).show(context);
+            return;
+          }
+
+          if (month < 1 || month > 12) {
+            CustomSnackbar(message: "Bulan harus antara 1 hingga 12.", type: CustomSnackbarType.warning).show(context);
+            return;
+          }
+
+          await handleDownloadReport(context, year, month);
+          FocusManager.instance.primaryFocus?.unfocus();
+          Get.back();
+        },
+        onFalsePressed: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+          Get.back();
+        },
+      ),
+      height: null,
+      width: Get.size.width * 0.85,
+      padding: EdgeInsets.symmetric(horizontal: 42.w, vertical: 20.h),
+      borderRadius: 15,
+    );
+  }
+
   Future<void> refreshData(BuildContext context) async {
     currentPage.value = 1;
     hasMoreData.value = true;
@@ -168,18 +206,22 @@ class ReportController extends GetxController {
     }
   }
 
-  Future<void> handleDownloadReport(BuildContext context) async {
+  Future<void> handleDownloadReport(BuildContext context, int year, int month) async {
     message.value = '';
     isLoading.value = true;
 
     CustomSnackbar(message: "Downloading report...", type: CustomSnackbarType.loading).show(context);
 
     try {
-      final params = {'search': searchController.text.trim()};
+      final Map<String, dynamic> params = {'year': year, 'month': month};
 
       final response = await reportService.downloadReportXlsx(params);
 
       CustomSnackbar.dismiss();
+
+      if (response.code == 400) {
+        throw Exception(response.message);
+      }
 
       if (response.dataraw?.data is! List<int>) {
         throw Exception("Invalid response format, expected file bytes.");

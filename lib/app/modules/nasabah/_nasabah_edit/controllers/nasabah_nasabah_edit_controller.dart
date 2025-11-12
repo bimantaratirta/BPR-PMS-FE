@@ -128,30 +128,7 @@ class NasabahNasabahEditController extends GetxController {
   }
 
   void _updateFormValid() {
-    isFormValid.value =
-        nameController.text.isNotEmpty &&
-        identityNumberController.text.isNotEmpty &&
-        dobController.text.isNotEmpty &&
-        phoneNumberController.text.isNotEmpty &&
-        villageController.text.isNotEmpty &&
-        neighborhoodUnitController.text.isNotEmpty &&
-        addressController.text.isNotEmpty &&
-        selectedItemTypeJob.value != '' &&
-        ((selectedItemTypeJob.value == 'freelancer' &&
-                jobName.text.isNotEmpty &&
-                jobIncome.text.isNotEmpty &&
-                selectedItemTypeIncomeJob.value != '') ||
-            (selectedItemTypeJob.value == 'businessman' &&
-                detailTypeJob.text.isNotEmpty &&
-                totalEmployees.text.isNotEmpty &&
-                jobIncome.text.isNotEmpty) ||
-            (selectedItemTypeJob.value == 'employee' &&
-                jobName.text.isNotEmpty &&
-                jobCompanyName.text.isNotEmpty &&
-                jobAddress.text.isNotEmpty &&
-                jobPhoneNumber.text.isNotEmpty &&
-                jobPosition.text.isNotEmpty &&
-                jobIncome.text.isNotEmpty));
+    isFormValid.value = nameController.text.isNotEmpty && addressController.text.isNotEmpty;
   }
 
   void initializeForm() {

@@ -22,6 +22,21 @@ class ApiClient {
   }
 
   Future<ApiResponseModel<T>> _responseHandler<T>(Response response, ApiParams<T> param) async {
+    if (param.options?.responseType == ResponseType.bytes) {
+      if (response.data != null && response.data is List<int>) {
+        final dataString = utf8.decode(response.data as List<int>);
+        final dataJson = jsonDecode(dataString);
+
+        return ApiResponseModel<T>(
+          code: response.statusCode,
+          status: response.statusMessage ?? 'OK',
+          message: 'File downloaded successfully',
+          data: dataJson,
+          dataraw: response,
+        );
+      }
+    }
+
     final jsonBody = response.data is String ? json.decode(response.data) : response.data;
     final jsonString = json.encode(jsonBody);
 
@@ -46,7 +61,15 @@ class ApiClient {
     dynamic apiErrors; // Untuk field 'errors' (jamak) dari API
     dynamic manualError; // Untuk field 'error' (tunggal) manual
 
-    if (e.response != null && e.response!.data != null) {
+    if (e.response != null && e.response?.data != null && e.response!.data is List<int>) {
+      final dataString = utf8.decode(e.response?.data as List<int>);
+      final dataJson = jsonDecode(dataString);
+
+      if (dataJson is Map<String, dynamic>) {
+        message = dataJson['message'] ?? dataJson['status'] ?? 'Terjadi kesalahan server';
+        apiErrors = dataJson['errors'] ?? dataJson['error'];
+      }
+    } else if (e.response != null && e.response!.data != null) {
       dynamic responseData = e.response!.data;
 
       // Pastikan responseData adalah Map

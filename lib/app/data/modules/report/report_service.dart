@@ -5,9 +5,12 @@ import 'package:bpr_pms/app/data/modules/report/model/report_evaluation_slo_mode
 import 'package:bpr_pms/app/data/modules/report/model/report_review_customer_model.dart';
 import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/report_repository.dart';
-import 'package:dio/dio.dart';
+import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:get/get.dart';
 
 class ReportService {
+  final AuthController authController = Get.find<AuthController>();
   final ReportRepository _reportRepository = ReportRepository();
   final Helper helper = Helper();
 
@@ -28,7 +31,7 @@ class ReportService {
     }
   }
 
-  Future<ApiResponseModel<ReportModel>> createReport(FormData body) async {
+  Future<ApiResponseModel<ReportModel>> createReport(dio.FormData body) async {
     try {
       return await _reportRepository.createReport(body);
     } catch (e) {
@@ -64,9 +67,11 @@ class ReportService {
     try {
       final String paramsEncoded = helper.encodeQueryParams(params ?? {});
 
-      return await _reportRepository.downloadReportXlsx(paramsEncoded);
+      final String path = authController.pickRole.value == UserRole.direksi ? 'generate-xlsx-direksi' : 'generate-xlsx';
+
+      return await _reportRepository.downloadReportXlsx(paramsEncoded, path);
     } catch (e) {
-      rethrow;
+      return ApiResponseModel(error: e.toString());
     }
   }
 }

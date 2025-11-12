@@ -13,6 +13,7 @@ class AppConstants {
   static const String customerEndpoint = "/customer";
   static const String customerByLoEndpoint = "/customer/customer-by-lo";
   static const String reportEndpoint = "/report";
+  static const String generateReportEndpoint = "/generate-report";
   static const String reportReviewCustomerEndpoint = "/review-customer";
   static const String reportEvaluationSloEndpoint = "/evaluation";
   static const String reportEvaluationReviewEndpoint = "/review-evaluation";
