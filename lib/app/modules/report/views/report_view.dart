@@ -82,9 +82,20 @@ class ReportView extends GetView<ReportController> {
                             ),
                             SizedBox(
                               width: Get.size.width * 0.1,
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: SvgPicture.asset(height: 18.h, IconAssets.filter, color: SecondaryColor.neutral500),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.showFilterDialog(context);
+                                },
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: SvgPicture.asset(
+                                    height: 18.h,
+                                    IconAssets.filter,
+                                    color: controller.isFilterActive.value
+                                        ? MainColor.blueLight3
+                                        : SecondaryColor.neutral500,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
