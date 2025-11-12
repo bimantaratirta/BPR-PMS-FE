@@ -5,6 +5,7 @@ import 'package:bpr_pms/app/data/modules/report/model/report_model.dart';
 import 'package:bpr_pms/app/data/modules/report/report_service.dart';
 import 'package:bpr_pms/app/modules/auth/controllers/auth_controller.dart';
 import 'package:bpr_pms/app/modules/report/widgets/report_export_xlsx_dialog_content.dart';
+import 'package:bpr_pms/app/modules/report/widgets/report_filter_dialog_content.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
 import 'package:bpr_pms/app/widgets/dialog/build_custom_dialog.dart';
 import 'package:file_saver/file_saver.dart';
@@ -29,6 +30,11 @@ class ReportController extends GetxController {
   final int limit = 5;
   final isPagingLoading = false.obs;
 
+  final Rx<String?> selectedStatus = Rx<String?>(null);
+  final Rx<DateTime?> startDate = Rx<DateTime?>(null);
+  final Rx<DateTime?> endDate = Rx<DateTime?>(null);
+  final RxBool isFilterActive = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -50,6 +56,55 @@ class ReportController extends GetxController {
   void onClose() {
     searchController.dispose();
     super.onClose();
+  }
+
+  void applyFilters(BuildContext context, String? status, DateTime? start, DateTime? end) {
+    selectedStatus.value = status;
+    startDate.value = start;
+    endDate.value = end;
+
+    isFilterActive.value = status != null || start != null || end != null;
+
+    Get.back();
+    refreshData(context);
+  }
+
+  void resetFilters(BuildContext context) {
+    selectedStatus.value = null;
+    startDate.value = null;
+    endDate.value = null;
+    isFilterActive.value = false;
+
+    Get.back();
+    refreshData(context);
+  }
+
+  void showFilterDialog(BuildContext context) {
+    BuildCustomDialog.show(
+      context: context,
+      content: ReportFilterDialogContent(
+        initialStatus: selectedStatus.value,
+        initialStartDate: startDate.value,
+        initialEndDate: endDate.value,
+
+        onApply: (status, start, end) {
+          applyFilters(context, status, start, end);
+        },
+
+        onReset: () {
+          resetFilters(context);
+        },
+      ),
+      height: null,
+      width: Get.size.width * 0.85,
+      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 24.h),
+      borderRadius: 15,
+    );
+  }
+
+  String? _formatDate(DateTime? date) {
+    if (date == null) return null;
+    return "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
   }
 
   String getReportProcessDisplayName(String? reportProcess) {
@@ -160,6 +215,19 @@ class ReportController extends GetxController {
         'order_by': [
           {'field': 'created_at', 'direction': 'desc'},
         ],
+        'filter': {
+          ...{
+            if (authController.pickRole.value == UserRole.lo) 'lo_id': authController.user.value?.id,
+            if (authController.pickRole.value == UserRole.slo) 'slo_id': authController.user.value?.id,
+            if (authController.pickRole.value == UserRole.am) 'am_id': authController.user.value?.id,
+          },
+          if (selectedStatus.value != null) 'status': selectedStatus.value,
+          if (startDate.value != null && endDate.value != null)
+            'created_range': {
+              if (startDate.value != null) 'start': _formatDate(startDate.value),
+              if (endDate.value != null) 'end': _formatDate(endDate.value),
+            },
+        },
       };
 
       final response = await reportService.getAllReport(params);
