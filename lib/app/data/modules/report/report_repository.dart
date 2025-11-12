@@ -68,10 +68,10 @@ class ReportRepository {
     );
   }
 
-  Future<ApiResponseModel> downloadReportXlsx(String paramsEncoded) async {
+  Future<ApiResponseModel> downloadReportXlsx(String paramsEncoded, String path) async {
     return await apiClient.getRaw(
       ApiParams(
-        path: "${AppConstants.reportEndpoint}/generate-xlsx$paramsEncoded",
+        path: "${AppConstants.generateReportEndpoint}/$path$paramsEncoded",
         options: Options(responseType: ResponseType.bytes),
       ),
     );
