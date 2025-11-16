@@ -22,4 +22,10 @@ class RegionRepository {
       ApiParams(path: "${AppConstants.regionEndpoint}/$id", fromJson: (json) => RegionModel.fromJson(json)),
     );
   }
+
+  Future<ApiResponseModel<RegionModel>> createRegion(Map<String, dynamic> body) async {
+    return await apiClient.post(
+      ApiParams(path: AppConstants.regionEndpoint, body: body, fromJson: (json) => RegionModel.fromJson(json)),
+    );
+  }
 }
