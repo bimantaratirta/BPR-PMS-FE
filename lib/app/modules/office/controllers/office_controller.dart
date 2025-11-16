@@ -108,6 +108,7 @@ class OfficeController extends GetxController {
       if (response.code == 201 || response.code == 200) {
         message.value = "Region berhasil dibuat!";
         CustomSnackbar(message: message.value, type: CustomSnackbarType.success).show(context);
+        validationErrors.clear();
         Get.back();
         await refreshData(context);
       } else if (response.code == 422) {

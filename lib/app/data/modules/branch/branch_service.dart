@@ -12,4 +12,12 @@ class BranchService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel<BranchModel>> createBranch(Map<String, dynamic> body) async {
+    try {
+      return await _branchRepository.createBranch(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }

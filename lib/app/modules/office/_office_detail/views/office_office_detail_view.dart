@@ -290,13 +290,57 @@ class OfficeOfficeDetailView extends GetView<OfficeOfficeDetailController> {
                         child: Divider(color: SecondaryColor.neutral300),
                       ),
 
-                      Text(
-                        'List Kantor Kas',
-                        style: Get.textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'List Kantor Kas',
+                            style: Get.textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              controller.showCreateOfficeBranchDialog(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 4)),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: SvgPicture.asset(
+                                          height: 18.h,
+                                          IconAssets.plus,
+                                          color: SecondaryColor.neutral500,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "Tambah",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        color: SecondaryColor.neutral500,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 14.h),
 

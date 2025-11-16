@@ -16,4 +16,10 @@ class BranchRepository {
       ),
     );
   }
+
+  Future<ApiResponseModel<BranchModel>> createBranch(Map<String, dynamic> body) async {
+    return await apiClient.post(
+      ApiParams(path: AppConstants.branchEndpoint, body: body, fromJson: (json) => BranchModel.fromJson(json)),
+    );
+  }
 }
