@@ -20,4 +20,12 @@ class RegionService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel<RegionModel>> createRegion(Map<String, dynamic> body) async {
+    try {
+      return await _regionRepository.createRegion(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }
