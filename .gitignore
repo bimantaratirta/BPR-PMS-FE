@@ -44,3 +44,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase
+/android/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
+# Buka komen di bawah jika project Anda Public/Open Source
+# lib/firebase_options.dart
+
+# Android signing
+**/android/app/src/main/res/raw/google_app_id.xml
+**/android/app/google-services.json
+/android/key.properties
+*.keystore
+*.jks
