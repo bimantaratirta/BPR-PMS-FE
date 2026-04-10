@@ -8,9 +8,55 @@ import 'package:bpr_pms/app/network/api_client.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:bpr_pms/firebase_options.dart';
+
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await GetStorage.init();
+  await FirebaseMessagingService.initLocalNotifications();
+
+  if (message.notification == null) {
+    await FirebaseMessagingService.showLocalNotification(message);
+  }
+
+  await FirebaseMessagingService.handleMessage(message);
+}
 
 class FirebaseMessagingService {
+  static final FlutterLocalNotificationsPlugin _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  static Future<void> initLocalNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+    await _localNotificationsPlugin.initialize(settings: initializationSettings);
+  }
+
+  static Future<void> showLocalNotification(RemoteMessage message) async {
+    String title = message.data['title'] ?? message.notification?.title ?? 'Notifikasi BPR PMS';
+    String body = message.data['body'] ?? message.notification?.body ?? message.data['type'] == 'REQUEST_LOCATION'
+        ? 'Mengirimkan data lokasi...'
+        : 'Memproses data...';
+
+    const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'bpr_pms_channel',
+      'BPR PMS Notifications',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await _localNotificationsPlugin.show(
+      id: message.hashCode,
+      title: title,
+      body: body,
+      notificationDetails: platformChannelSpecifics,
+    );
+  }
+
   static Future<void> init() async {
+    await initLocalNotifications();
     // Pastikan izin lokasi diminta dan di-approve terlebih dahulu
     await LocationService.handlePermission();
 
@@ -31,7 +77,7 @@ class FirebaseMessagingService {
 
     // Foreground message listener
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      await _handleMessage(message);
+      await handleMessage(message);
     });
   }
 
@@ -50,15 +96,9 @@ class FirebaseMessagingService {
       // Jika belum ada user yang login, tidak perlu kirim token
       if (userId.isEmpty) return;
 
-      final apiParams = ApiParams(
-        path: AppConstants.saveFcmTokenEndpoint,
-        body: {
-          "user_id": userId,
-          "fcm_token": fcmToken,
-        },
-      );
+      final apiParams = ApiParams(path: AppConstants.saveFcmTokenEndpoint, body: {"user_id": userId, "fcm_token": fcmToken});
 
-      final response = await apiClient.post(apiParams);
+      final response = await apiClient.put(apiParams);
 
       if (kDebugMode) {
         print("Save FCM Token respons: ${response.code} - ${response.message}");
@@ -70,27 +110,19 @@ class FirebaseMessagingService {
     }
   }
 
-  /// Handler untuk background message
-  @pragma('vm:entry-point')
-  static Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-    await Firebase.initializeApp();
-    await GetStorage.init();
-    await _handleMessage(message);
-  }
-
   /// Logika utama untuk menangani pesan FCM
-  static Future<void> _handleMessage(RemoteMessage message) async {
+  static Future<void> handleMessage(RemoteMessage message) async {
     if (kDebugMode) {
       print("Handling FCM message: ${message.messageId}");
     }
 
     if (message.data['type'] == 'REQUEST_LOCATION') {
-      await _handleLocationRequest();
+      await handleLocationRequest();
     }
   }
 
   /// Menangani request lokasi: ambil GPS, lalu kirim via Dio
-  static Future<void> _handleLocationRequest() async {
+  static Future<void> handleLocationRequest() async {
     try {
       final position = await LocationService.getCurrentPosition();
       if (position == null) {
@@ -109,7 +141,7 @@ class FirebaseMessagingService {
 
       final apiParams = ApiParams(
         path: AppConstants.currentLocationEndpoint,
-        body: {"user_id": userId, "latitude": position.latitude.toString(), "longitude": position.longitude.toString()},
+        body: {"user_id": userId, "latitude": position.latitude, "longitude": position.longitude},
       );
 
       final response = await apiClient.post(apiParams);

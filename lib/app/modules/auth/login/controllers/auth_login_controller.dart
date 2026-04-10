@@ -3,6 +3,9 @@ import 'package:bpr_pms/app/routes/app_pages.dart';
 import 'package:bpr_pms/app/widgets/build_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:bpr_pms/app/common/services/firebase_messaging_service.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthLoginController extends GetxController {
   final AuthService authService = AuthService();
@@ -51,6 +54,19 @@ class AuthLoginController extends GetxController {
 
       if (response.code == 200) {
         message.value = "Login berhasil!";
+        
+        // Trigger save FCM token after successful login
+        try {
+          String? fcmToken = await FirebaseMessaging.instance.getToken();
+          if (fcmToken != null) {
+            await FirebaseMessagingService.saveFcmToken(fcmToken);
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            print("Failed to save FCM token on login: $e");
+          }
+        }
+        
         Get.offAllNamed(Routes.MAIN);
       } else if (response.code == 422) {
         Map<String, dynamic>? validationErrorsMap;

@@ -23,7 +23,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Set background handler
-  FirebaseMessaging.onBackgroundMessage(FirebaseMessagingService.firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await FirebaseMessagingService.init();
 
   // Initialize date formatting for Indonesian locale
