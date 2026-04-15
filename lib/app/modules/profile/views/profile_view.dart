@@ -9,9 +9,6 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
-import 'package:bpr_pms/app/widgets/dialog/build_custom_dialog.dart';
-import 'package:bpr_pms/app/widgets/dialog/content/confirmation_dialog_content.dart';
-
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -120,56 +117,6 @@ class ProfileView extends GetView<ProfileController> {
                       //   ),
                       // ),
                       SizedBox(height: 10),
-                      if (authController.user.value?.role == 'AM' || authController.user.value?.role == 'Direksi') ...[
-                        GestureDetector(
-                          onTap: () {
-                            BuildCustomDialog.show(
-                              context: context,
-                              padding: const EdgeInsets.all(25),
-                              borderRadius: 16,
-                              content: ConfirmationDialogContent(
-                                message: "Apakah Anda yakin ingin meminta update lokasi kepada semua pengguna?",
-                                trueText: "Ya",
-                                falseText: "Batal",
-                                isLoading: controller.isRequestingLocation,
-                                onTruePressed: () {
-                                  controller.requestAllLocation();
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: SecondaryColor.neutral100,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: Get.size.width * 0.15,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Icon(Icons.share_location, size: 24.h, color: MainColor.blueNormalActive),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      "Request Lokasi User",
-                                      style: Get.textTheme.labelMedium!.copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
                       GestureDetector(
                         onTap: () {
                           controller.handleLogout();

@@ -54,6 +54,8 @@ import '../modules/slo/bindings/slo_binding.dart';
 import '../modules/slo/views/slo_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
+import '../modules/employee_location/bindings/employee_location_binding.dart';
+import '../modules/employee_location/views/employee_location_view.dart';
 
 part 'app_routes.dart';
 
@@ -67,6 +69,7 @@ class AppPages {
     GetPage(name: _Paths.SPLASH_SCREEN, page: () => const SplashScreenView(), binding: SplashScreenBinding()),
     GetPage(name: _Paths.AUTH + _Paths.LOGIN, page: () => const AuthLoginView(), binding: AuthLoginBinding()),
     GetPage(name: _Paths.AUTH + _Paths.REGISTER, page: () => const AuthRegisterView(), binding: AuthRegisterBinding()),
+    GetPage(name: _Paths.EMPLOYEE_LOCATION, page: () => const EmployeeLocationView(), binding: EmployeeLocationBinding()),
     GetPage(
       name: _Paths.MAIN,
       page: () => const MainView(),

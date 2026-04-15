@@ -28,4 +28,5 @@ class ImageAssets {
   static const String logoBpr = "assets/images/img_logo_bpr_sahabat_sejati.png";
   static const String logoBprSahabatSejatiTransparant = "assets/images/logo_bpr_sahabat_sejati_transparant.png";
   static const String officeBackground = "assets/images/img_office_background.jpg";
+  static const String mapPlaceholder = "assets/images/img-map-placeholder.png";
 }

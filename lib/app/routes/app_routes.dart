@@ -13,6 +13,10 @@ abstract class Routes {
   static const LO = _Paths.LO;
   static const SLO = _Paths.SLO;
   static const OFFICE = _Paths.OFFICE;
+  static const EMPLOYEE_LOCATION = _Paths.EMPLOYEE_LOCATION;
+
+  // Employee Location Route
+  static String employeeLocation() => _Paths.EMPLOYEE_LOCATION;
 
   // Nasabah Nested Routes
   static String nasabahDetail(String id) => '${_Paths.MAIN}${_Paths.NASABAH}/$id';
@@ -57,4 +61,5 @@ abstract class _Paths {
   static const LO = '/lo';
   static const SLO = '/slo';
   static const OFFICE = '/office';
+  static const EMPLOYEE_LOCATION = '/employee-location';
 }

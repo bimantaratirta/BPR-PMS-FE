@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -212,6 +213,67 @@ class HomeView extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                if (authController.user.value?.role == 'AM' || authController.user.value?.role == 'Direksi') ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Lokasi Karyawan',
+                        style: Get.textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: MainColor.greyLightActive,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Routes.EMPLOYEE_LOCATION),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            ImageAssets.mapPlaceholder,
+                            width: double.infinity,
+                            height: 180.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => Get.toNamed(Routes.EMPLOYEE_LOCATION),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: MainColor.blue1,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            minimumSize: Size.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                          ),
+                          child: Text(
+                            'Lihat Semua',
+                            style: Get.textTheme.labelMedium!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 6),
+                  // Text(
+                  //   '*Tekan peta untuk melihat semua lokasi',
+                  //   style: Get.textTheme.bodySmall!.copyWith(
+                  //     color: SecondaryColor.neutral500,
+                  //     fontStyle: FontStyle.italic,
+                  //   ),
+                  // ),
+                  SizedBox(height: 16),
+                ],
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,8 +1,8 @@
 class AppConstants {
   // API Constants
   // static const String baseApiUrl = "http://10.0.2.2:3001/api/v2";
-  static const String baseApiUrl = "https://api-pms.bprss.com/api/v2";
-  // static const String baseApiUrl = "https://chadwick-preludial-ayesha.ngrok-free.dev/api/v2";
+  // static const String baseApiUrl = "https://api-pms.bprss.com/api/v2";
+  static const String baseApiUrl = "https://chadwick-preludial-ayesha.ngrok-free.dev/api/v2";
   static const String baseImageUrl = "https://minio.s3.nevmock.id/bpr-pms";
 
   // Endpoints
