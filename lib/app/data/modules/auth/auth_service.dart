@@ -22,6 +22,15 @@ class AuthService {
             final jwtPayload = Helper().decodeJwt(response.data!.token!.accessToken!);
             final roleStringFromJwt = jwtPayload?['role'] as String?;
             final userRole = UserRole.fromString(roleStringFromJwt);
+
+            // Validate role: only allow AM, SLO, LO, Direksi
+            if (userRole == null) {
+              return ApiResponseModel(
+                code: 403,
+                message: 'Role "${roleStringFromJwt ?? 'unknown'}" tidak memiliki akses ke aplikasi ini.',
+              );
+            }
+
             _authController.pickRole.value = userRole;
             await StorageClient.saveToken(response.data!.token!.accessToken!, response.data!.token!.refreshToken!);
           }
