@@ -116,6 +116,43 @@ class ProfileView extends GetView<ProfileController> {
                       //     ),
                       //   ),
                       // ),
+                      if (authController.user.value?.role == 'Direksi') ...[
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.userManagement());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: SecondaryColor.neutral100,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: Get.size.width * 0.15,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Icon(Icons.manage_accounts, size: 24.h, color: Colors.black),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Manajemen User",
+                                      style: Get.textTheme.labelMedium!.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                       SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {

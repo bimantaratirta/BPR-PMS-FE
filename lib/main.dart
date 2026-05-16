@@ -38,7 +38,12 @@ void main() async {
   deviceOrientation();
   await ScreenUtil.ensureScreenSize();
 
-  runApp(DevicePreview(enabled: !kReleaseMode && kIsWeb, builder: (context) => const MyApp()));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode && kIsWeb,
+      builder: (context) => const MyApp(),
+    ),
+  );
 }
 
 void deviceOrientation() {

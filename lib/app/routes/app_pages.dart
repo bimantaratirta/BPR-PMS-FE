@@ -56,6 +56,14 @@ import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/employee_location/bindings/employee_location_binding.dart';
 import '../modules/employee_location/views/employee_location_view.dart';
+import '../modules/user_management/bindings/user_management_binding.dart';
+import '../modules/user_management/views/user_management_view.dart';
+import '../modules/user_management/_user_management_create/bindings/user_management_user_management_create_binding.dart';
+import '../modules/user_management/_user_management_create/views/user_management_user_management_create_view.dart';
+import '../modules/user_management/_user_management_detail/bindings/user_management_user_management_detail_binding.dart';
+import '../modules/user_management/_user_management_detail/views/user_management_user_management_detail_view.dart';
+import '../modules/user_management/_user_management_edit/bindings/user_management_user_management_edit_binding.dart';
+import '../modules/user_management/_user_management_edit/views/user_management_user_management_edit_view.dart';
 
 part 'app_routes.dart';
 
@@ -158,6 +166,28 @@ class AppPages {
               name: '/employee/slo/:id',
               page: () => const OfficeOfficeDetailEmployeeSloView(),
               binding: OfficeOfficeDetailEmployeeSloBinding(),
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.USER_MANAGEMENT,
+          page: () => const UserManagementView(),
+          binding: UserManagementBinding(),
+          children: [
+            GetPage(
+              name: '/create',
+              page: () => const UserManagementUserManagementCreateView(),
+              binding: UserManagementUserManagementCreateBinding(),
+            ),
+            GetPage(
+              name: '/:id',
+              page: () => const UserManagementUserManagementDetailView(),
+              binding: UserManagementUserManagementDetailBinding(),
+            ),
+            GetPage(
+              name: '/:id/edit',
+              page: () => const UserManagementUserManagementEditView(),
+              binding: UserManagementUserManagementEditBinding(),
             ),
           ],
         ),

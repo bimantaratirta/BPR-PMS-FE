@@ -40,4 +40,49 @@ class UserRepository {
       ApiParams(path: "${AppConstants.userEndpoint}/$id", fromJson: (json) => UserModel.fromJson(json)),
     );
   }
+
+  Future<ApiResponseModel<UserModel>> createUser(Map<String, dynamic> body) async {
+    return await apiClient.post(
+      ApiParams<UserModel>(
+        path: AppConstants.userEndpoint,
+        body: body,
+        fromJson: (json) => UserModel.fromJson(json),
+      ),
+    );
+  }
+
+  Future<ApiResponseModel<UserModel>> updateUser(String id, Map<String, dynamic> body) async {
+    return await apiClient.put(
+      ApiParams<UserModel>(
+        path: "${AppConstants.userEndpoint}/$id",
+        body: body,
+        fromJson: (json) => UserModel.fromJson(json),
+      ),
+    );
+  }
+
+  Future<ApiResponseModel> deleteUser(String id) async {
+    return await apiClient.delete(
+      ApiParams(path: "${AppConstants.userEndpoint}/$id", fromJson: (json) => null),
+    );
+  }
+
+  Future<ApiResponseModel<UserModel>> restoreUser(String id) async {
+    return await apiClient.patch(
+      ApiParams<UserModel>(
+        path: "${AppConstants.userEndpoint}/$id/restore",
+        fromJson: (json) => UserModel.fromJson(json),
+      ),
+    );
+  }
+
+  Future<ApiResponseModel> resetPassword(String id, Map<String, dynamic> body) async {
+    return await apiClient.patch(
+      ApiParams(
+        path: "${AppConstants.userEndpoint}/$id/password",
+        body: body,
+        fromJson: (json) => null,
+      ),
+    );
+  }
 }

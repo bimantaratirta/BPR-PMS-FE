@@ -43,4 +43,44 @@ class UserService {
       return ApiResponseModel(error: e.toString());
     }
   }
+
+  Future<ApiResponseModel<UserModel>> createUser(Map<String, dynamic> body) async {
+    try {
+      return await _userRepository.createUser(body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel<UserModel>> updateUser(String id, Map<String, dynamic> body) async {
+    try {
+      return await _userRepository.updateUser(id, body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel> deleteUser(String id) async {
+    try {
+      return await _userRepository.deleteUser(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel<UserModel>> restoreUser(String id) async {
+    try {
+      return await _userRepository.restoreUser(id);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
+
+  Future<ApiResponseModel> resetPassword(String id, Map<String, dynamic> body) async {
+    try {
+      return await _userRepository.resetPassword(id, body);
+    } catch (e) {
+      return ApiResponseModel(error: e.toString());
+    }
+  }
 }

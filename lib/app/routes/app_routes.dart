@@ -14,6 +14,7 @@ abstract class Routes {
   static const SLO = _Paths.SLO;
   static const OFFICE = _Paths.OFFICE;
   static const EMPLOYEE_LOCATION = _Paths.EMPLOYEE_LOCATION;
+  static const USER_MANAGEMENT = _Paths.USER_MANAGEMENT;
 
   // Employee Location Route
   static String employeeLocation() => _Paths.EMPLOYEE_LOCATION;
@@ -45,6 +46,12 @@ abstract class Routes {
   static String officeDetailEmployee(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/$id/employee';
   static String officeDetailEmployeeLo(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/employee/lo/$id';
   static String officeDetailEmployeeSlo(String id) => '${_Paths.MAIN}${_Paths.OFFICE}/employee/slo/$id';
+
+  // User Management Nested Routes
+  static String userManagement() => '${_Paths.MAIN}${_Paths.USER_MANAGEMENT}';
+  static String userManagementCreate() => '${_Paths.MAIN}${_Paths.USER_MANAGEMENT}/create';
+  static String userManagementDetail(String id) => '${_Paths.MAIN}${_Paths.USER_MANAGEMENT}/$id';
+  static String userManagementEdit(String id) => '${_Paths.MAIN}${_Paths.USER_MANAGEMENT}/$id/edit';
 }
 
 abstract class _Paths {
@@ -62,4 +69,5 @@ abstract class _Paths {
   static const SLO = '/slo';
   static const OFFICE = '/office';
   static const EMPLOYEE_LOCATION = '/employee-location';
+  static const USER_MANAGEMENT = '/user-management';
 }

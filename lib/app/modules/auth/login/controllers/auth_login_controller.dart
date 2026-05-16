@@ -31,7 +31,9 @@ class AuthLoginController extends GetxController {
   }
 
   void _updateFormValid() {
-    isFormValid.value = usernameController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    isFormValid.value =
+        usernameController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty;
   }
 
   @override
@@ -47,14 +49,17 @@ class AuthLoginController extends GetxController {
       isLoading.value = true;
       message.value = '';
 
-      final payload = {"username": usernameController.text, "password": passwordController.text};
+      final payload = {
+        "username": usernameController.text.trim(),
+        "password": passwordController.text,
+      };
       final response = await authService.login(payload);
 
       isLoading.value = false;
 
       if (response.code == 200) {
         message.value = "Login berhasil!";
-        
+
         // Trigger save FCM token after successful login
         try {
           String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -66,13 +71,15 @@ class AuthLoginController extends GetxController {
             print("Failed to save FCM token on login: $e");
           }
         }
-        
+
         Get.offAllNamed(Routes.MAIN);
       } else if (response.code == 422) {
         Map<String, dynamic>? validationErrorsMap;
 
-        if (response.errors is Map<String, dynamic> && response.errors['validation'] is Map<String, dynamic>) {
-          validationErrorsMap = response.errors['validation'] as Map<String, dynamic>;
+        if (response.errors is Map<String, dynamic> &&
+            response.errors['validation'] is Map<String, dynamic>) {
+          validationErrorsMap =
+              response.errors['validation'] as Map<String, dynamic>;
 
           validationErrorsMap.forEach((fieldKey, errorList) {
             if (errorList is List && errorList.isNotEmpty) {
@@ -92,12 +99,18 @@ class AuthLoginController extends GetxController {
       } else {
         String errorMsg = response.message ?? "Login gagal. Silakan coba lagi.";
         message.value = errorMsg;
-        CustomSnackbar(message: errorMsg, type: CustomSnackbarType.warning).show(context);
+        CustomSnackbar(
+          message: errorMsg,
+          type: CustomSnackbarType.warning,
+        ).show(context);
       }
     } catch (e) {
       isLoading.value = false;
       message.value = e.toString();
-      CustomSnackbar(message: message.value, type: CustomSnackbarType.error).show(context);
+      CustomSnackbar(
+        message: message.value,
+        type: CustomSnackbarType.error,
+      ).show(context);
     }
   }
 }
